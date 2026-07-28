@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clareamento dental sem limite de sessões — Dra. Daiane Carvalho | Barra Funda, SP</title>
+  <meta name="description" content="Clareamento dental com sessões ilimitadas até o seu branco máximo, limpeza profunda e clareamento caseiro inclusos. Barra Funda, São Paulo. Fale no WhatsApp.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tokens.css">
+
+  <!-- ============================================================
+       RASTREIO GA4 — PENDÊNCIA
+       Recolar aqui o script gtag.js com o ID real (G-XXXXXXX).
+       O event listener de conversão no clique do wa.me está no
+       final do <body>.
+       ============================================================ -->
+
+  <style>
+    /* ===== Layout base ===== */
+    .lp { overflow-x: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; padding-left: var(--spacing-xl); padding-right: var(--spacing-xl); }
+    .section { padding: var(--spacing-2xl) 0; }
+    img { max-width: 100%; display: block; }
+
+    /* Placeholder de imagem — trocar pelo arquivo real depois */
+    .ph {
+      background: var(--teal-50);
+      border: 1px dashed var(--teal-200);
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal-400); text-align: center;
+      font-size: 13px; padding: 16px; overflow: hidden;
+    }
+    .ph span { max-width: 24ch; }
+
+    /* ===== Eyebrow / rótulos de seção ===== */
+    .eyebrow { color: var(--marca-acento); margin: 0 0 var(--spacing-sm); }
+    .section-head { margin-bottom: var(--spacing-xl); }
+    .section-head h2 { color: var(--texto-titulo); margin: 0; }
+    .section-head p { color: var(--texto-suave); margin: var(--spacing-md) 0 0; max-width: 52ch; }
+
+    /* ===== HERO ===== */
+    .hero { background: var(--superficie-card); padding-top: var(--spacing-2xl); }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: var(--spacing-xs);
+      background: var(--teal-50); color: var(--teal-800);
+      padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full);
+      margin: 0 0 var(--spacing-md);
+    }
+    .hero h1 { color: var(--texto-titulo); margin: 0 0 var(--spacing-lg); }
+    .hero .lead { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
+    .hero-img { aspect-ratio: 1856 / 2290; width: 100%; }
+
+    /* ===== Faixa de selos ===== */
+    .selos { background: var(--teal-50); }
+    .selo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
+    .selo {
+      background: var(--superficie-card); border-radius: var(--radius-md);
+      padding: var(--spacing-md); display: flex; align-items: center; gap: var(--spacing-sm);
+    }
+    .selo-ico {
+      background: var(--teal-600); border-radius: var(--radius-full);
+      width: 32px; height: 32px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .selo-ico svg { width: 18px; height: 18px; fill: none; stroke: var(--white); stroke-width: 2; }
+    .selo span { color: var(--teal-800); font-weight: 600; font-size: 14px; line-height: 1.3; }
+    .selos .lead { color: var(--texto-suave); margin: var(--spacing-lg) 0 var(--spacing-lg); }
+    .selos .btn-whatsapp { width: 100%; }
+
+    /* ===== Cards de serviço (Incluso) ===== */
+    .cards { display: flex; flex-direction: column; gap: var(--spacing-md); }
+    .card {
+      background: var(--superficie-card); border: 1px solid var(--borda-sutil);
+      border-radius: var(--radius-lg); padding: var(--spacing-xl);
+    }
+    .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); }
+    .card-ico { width: 44px; height: 44px; color: var(--teal-600); }
+    .card-ico svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.6; }
+    .badge {
+      background: var(--mauve-50); color: var(--mauve-600);
+      font-size: 13px; font-weight: 600; padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full); white-space: nowrap;
+    }
+    .card h3 { color: var(--texto-titulo); margin: 0 0 var(--spacing-sm); }
+    .card p { color: var(--texto-suave); margin: 0; }
+
+    /* ===== Branco Máximo (bloco escuro) ===== */
+    .branco { background: var(--teal-800); }
+    .branco .eyebrow { color: var(--teal-200); }
+    .branco h2 { color: var(--white); margin: 0 0 var(--spacing-lg); }
+    .branco p { color: var(--teal-100); margin: 0 0 var(--spacing-xl); }
+    .branco-img { aspect-ratio: 382 / 383; width: 100%; margin-bottom: var(--spacing-xl); }
+    .branco .ph { background: var(--teal-900); border-color: var(--teal-600); color: var(--teal-200); }
+    .branco .btn-whatsapp { width: 100%; }
+
+    /* ===== Como Funciona (passos) ===== */
+    .passos { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+    .passo { display: flex; gap: var(--spacing-md); align-items: flex-start; }
+    .passo-num {
+      background: var(--teal-50); color: var(--teal-600);
+      width: 40px; height: 40px; border-radius: var(--radius-full); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 18px;
+    }
+    .passo h3 { color: var(--texto-forte); margin: 0 0 4px; font-size: 18px; }
+    .passo p { color: var(--texto-suave); margin: 0; }
+    .nota-caseiro {
+      display: flex; gap: var(--spacing-md); align-items: flex-start;
+      background: var(--mint); border-radius: var(--radius-lg);
+      padding: var(--spacing-lg); margin-top: var(--spacing-xl);
+    }
+    .nota-caseiro svg { width: 20px; height: 20px; flex-shrink: 0; stroke: var(--teal-800); fill: none; stroke-width: 2; margin-top: 2px; }
+    .nota-caseiro p { color: var(--teal-900); margin: 0; }
+
+    /* ===== Galerias (Resultados / Consultório) ===== */
+    .galeria { display: flex; gap: var(--spacing-md); overflow-x: auto; padding-bottom: var(--spacing-sm); scroll-snap-type: x mandatory; }
+    .galeria .ph { scroll-snap-align: start; flex: 0 0 78%; aspect-ratio: 310 / 379; }
+    .consultorio .ph { aspect-ratio: 310 / 413; }
+
+    /* ===== Dra. Daiane ===== */
+    .dra .lead { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
+    .dra-img { aspect-ratio: 382 / 504; width: 100%; margin-top: var(--spacing-lg); }
+    .btn-link {
+      display: inline-flex; align-items: center; gap: var(--spacing-sm);
+      background: transparent; color: var(--marca-primaria);
+      border: 1.5px solid var(--marca-primaria); border-radius: var(--radius-md);
+      padding: var(--spacing-sm) var(--spacing-lg); font-weight: 600; font-size: 15px;
+      text-decoration: none; transition: background 0.18s ease, color 0.18s ease;
+    }
+    .btn-link:hover { background: var(--marca-primaria); color: var(--white); }
+    .btn-link:focus-visible { outline: 3px solid var(--marca-primaria-escura); outline-offset: 2px; }
+
+    /* ===== Avaliações ===== */
+    .avaliacoes-grid { display: flex; gap: var(--spacing-md); overflow-x: auto; padding-bottom: var(--spacing-sm); scroll-snap-type: x mandatory; }
+    .avaliacao {
+      flex: 0 0 85%; scroll-snap-align: start;
+      background: var(--superficie-card); border: 1px solid var(--borda-sutil);
+      border-radius: var(--radius-lg); padding: var(--spacing-lg);
+    }
+    .estrelas { display: flex; gap: 2px; margin-bottom: var(--spacing-sm); }
+    .estrelas svg { width: 16px; height: 16px; fill: #F5B301; }
+    .avaliacao p { color: var(--texto-forte); margin: 0 0 var(--spacing-md); font-size: 15px; }
+    .avaliacao .autor { color: var(--texto-suave); font-size: 14px; font-weight: 600; margin: 0; }
+
+    /* ===== FAQ ===== */
+    .faq details {
+      background: var(--superficie-card); border: 1px solid var(--borda-sutil);
+      border-radius: var(--radius-md); padding: var(--spacing-lg); margin-bottom: var(--spacing-md);
+    }
+    .faq summary {
+      color: var(--texto-titulo); font-weight: 600; font-size: 16px;
+      cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--spacing-md);
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "+"; color: var(--teal-400); font-size: 22px; font-weight: 800; flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .faq details[open] summary::after { content: "−"; }
+    .faq details p { color: var(--texto-suave); margin: var(--spacing-md) 0 0; }
+
+    /* ===== Rodapé ===== */
+    .rodape { background: var(--teal-50); padding-bottom: 96px; }
+    .rodape h2 { color: var(--texto-titulo); margin: 0 0 var(--spacing-lg); }
+    .rodape-map { aspect-ratio: 382 / 180; width: 100%; margin-bottom: var(--spacing-lg); }
+    .rodape address { color: var(--texto-suave); font-style: normal; margin: 0 0 var(--spacing-lg); white-space: pre-line; }
+    .rodape .btn-whatsapp { width: 100%; }
+
+    /* ===== Barra fixa WhatsApp ===== */
+    .barra-fixa {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+      background: var(--superficie-card); border-top: 1px solid var(--borda-sutil);
+      padding: var(--spacing-md) var(--spacing-xl);
+      box-shadow: 0 -4px 16px rgba(35, 55, 56, 0.08);
+    }
+    .barra-fixa .btn-whatsapp { width: 100%; }
+
+    /* ===== Responsivo: desktop ===== */
+    @media (min-width: 768px) {
+      .section { padding: var(--spacing-4xl) 0; }
+      .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center; }
+      .hero h1 { font-size: 56px; }
+      .selo-grid { grid-template-columns: repeat(4, 1fr); }
+      .selos .btn-whatsapp, .branco .btn-whatsapp, .rodape .btn-whatsapp { width: auto; }
+      .cards { flex-direction: row; }
+      .card { flex: 1; }
+      .branco-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center; }
+      .branco-img { margin-bottom: 0; order: 2; }
+      .passos { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-xl); }
+      .galeria .ph { flex-basis: 260px; }
+      .consultorio .galeria .ph { flex: 1; }
+      .dra-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center; }
+      .dra-img { margin-top: 0; order: 2; max-width: 382px; }
+      .avaliacao { flex-basis: 300px; }
+      .rodape-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center; }
+      .rodape-map { aspect-ratio: 568 / 422; margin-bottom: 0; order: 2; }
+      .barra-fixa { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="lp">
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero section">
+    <div class="container hero-inner">
+      <div>
+        <span class="hero-badge tipo-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5B301" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          100% de avaliações 5 estrelas no Google
+        </span>
+        <h1 class="tipo-display">Clareamento dental sem limite de sessões</h1>
+        <p class="lead tipo-subtitulo">Resultados visíveis desde a primeira sessão, com branco garantido por até 2 anos.</p>
+      </div>
+      <div class="ph hero-img"><span>Foto — modelo com escala de cor (hero)</span></div>
+    </div>
+  </header>
+
+  <!-- ===================== FAIXA DE SELOS ===================== -->
+  <section class="selos section">
+    <div class="container">
+      <div class="selo-grid">
+        <div class="selo">
+          <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a4 4 0 100 8c2.5 0 3.5-2 6-4s3.5-4 6-4a4 4 0 110 8c-2.5 0-3.5-2-6-4S8.5 8 6 8z"/></svg></span>
+          <span>Sessões ilimitadas</span>
+        </div>
+        <div class="selo">
+          <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/></svg></span>
+          <span>Limpeza inclusa</span>
+        </div>
+        <div class="selo">
+          <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span>Garantia de 2 anos</span>
+        </div>
+        <div class="selo">
+          <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></span>
+          <span>Pagamento facilitado</span>
+        </div>
+      </div>
+      <p class="lead tipo-corpo">Sessões ilimitadas em consultório até você atingir o seu branco máximo — com limpeza profunda e clareamento caseiro inclusos, por metade do valor desses procedimentos separados.</p>
+      <a class="btn-whatsapp js-wa" data-pos="selos" href="https://wa.me/5511949182629?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20clareamento%20dental.">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.15c-.24.68-1.42 1.32-1.96 1.36-.5.05-.98.24-3.29-.69-2.78-1.1-4.55-3.94-4.69-4.12-.14-.18-1.13-1.5-1.13-2.86s.72-2.03.97-2.31c.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.39-.06.6.46.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.27.72 1.18 1.54 1.91 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.18.69-.8.87-1.08.18-.27.36-.23.6-.14.24.09 1.55.73 1.81.87.27.14.44.2.51.31.07.12.07.68-.17 1.36z"/></svg>
+        Conversar agora
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== INCLUSO ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow tipo-label">O que está incluso</p>
+        <h2 class="tipo-titulo">Um tratamento completo, não só o clareamento</h2>
+        <p class="tipo-corpo">Da limpeza ao acompanhamento, tudo pensado para o máximo resultado.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-top">
+            <span class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a4 4 0 100 8c2.5 0 3.5-2 6-4s3.5-4 6-4a4 4 0 110 8c-2.5 0-3.5-2-6-4S8.5 8 6 8z"/></svg></span>
+            <span class="badge">Ilimitado</span>
+          </div>
+          <h3 class="tipo-subtitulo">Sessões em consultório</h3>
+          <p class="tipo-corpo">Clareamento profissional, quantas sessões forem necessárias até o seu branco máximo.</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/></svg></span>
+            <span class="badge">Incluso</span>
+          </div>
+          <h3 class="tipo-subtitulo">Limpeza profunda</h3>
+          <p class="tipo-corpo">Remoção de tártaro e preparo dos dentes antes de começar o clareamento.</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8v4l-3 3v6l-2 2v-8L8 7V3z"/></svg></span>
+            <span class="badge">Leva para casa</span>
+          </div>
+          <h3 class="tipo-subtitulo">Clareamento caseiro</h3>
+          <p class="tipo-corpo">Moldeira sob medida + gel profissional de alta qualidade para você clarear em casa e manter o branco por muito mais tempo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BRANCO MÁXIMO ===================== -->
+  <section class="branco section">
+    <div class="container branco-inner">
+      <div>
+        <p class="eyebrow tipo-label">Como o resultado é medido</p>
+        <h2 class="tipo-titulo">O seu branco máximo</h2>
+        <p class="tipo-corpo">Todo dente tem um limite natural de clareamento — o ponto mais branco que a sua estrutura dental consegue atingir. Ao final de cada sessão, a cor é medida com uma escala padronizada. Quando ela se estabiliza entre uma sessão e outra, você chegou ao seu branco máximo. Por isso as sessões são ilimitadas: o limite não é um número, é o seu resultado.</p>
+        <a class="btn-whatsapp js-wa" data-pos="branco-maximo" href="https://wa.me/5511949182629?text=Ol%C3%A1%21%20Quero%20entender%20o%20meu%20branco%20m%C3%A1ximo.">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.15c-.24.68-1.42 1.32-1.96 1.36-.5.05-.98.24-3.29-.69-2.78-1.1-4.55-3.94-4.69-4.12-.14-.18-1.13-1.5-1.13-2.86s.72-2.03.97-2.31c.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.39-.06.6.46.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.27.72 1.18 1.54 1.91 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.18.69-.8.87-1.08.18-.27.36-.23.6-.14.24.09 1.55.73 1.81.87.27.14.44.2.51.31.07.12.07.68-.17 1.36z"/></svg>
+          Conversar agora
+        </a>
+      </div>
+      <div class="ph branco-img"><span><iframe src="https://www.youtube.com/embed/5JrUhSAutXE?rel=0&amp;modestbranding=1&amp;controls=1" data-gp-vembed-id="VWpzmkkxU" allow="autoplay" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe></span></div>
+    </div>
+  </section>
+
+  <!-- ===================== COMO FUNCIONA ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow tipo-label">Como funciona</p>
+        <h2 class="tipo-titulo">Do primeiro contato ao seu branco ideal</h2>
+      </div>
+      <div class="passos">
+        <div class="passo"><span class="passo-num">1</span><div><h3>Avaliação</h3><p class="tipo-corpo">Analisamos seu caso e definimos o protocolo individual.</p></div></div>
+        <div class="passo"><span class="passo-num">2</span><div><h3>Limpeza profunda</h3><p class="tipo-corpo">Removemos o tártaro e preparamos os dentes.</p></div></div>
+        <div class="passo"><span class="passo-num">3</span><div><h3>Sessões em consultório</h3><p class="tipo-corpo">Clareamento profissional, quantas forem necessárias.</p></div></div>
+        <div class="passo"><span class="passo-num">4</span><div><h3>Medição na escala</h3><p class="tipo-corpo">A cor é aferida ao fim de cada sessão até estabilizar.</p></div></div>
+      </div>
+      <div class="nota-caseiro">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        <p class="tipo-corpo">E você leva para casa uma moldeira feita sob medida para os seus dentes + o gel profissional, para manter o branco por muito mais tempo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTADOS ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow tipo-label">Resultados reais</p>
+        <h2 class="tipo-titulo">Sorrisos que falam por si</h2>
+      </div>
+      <div class="galeria">
+        <div><span><img src="../assets/images/Resultado-Clareamento-Dental1.jpg" alt=""></span></div>
+        <div><span><img src="../assets/images/Resultado-Clareamento-Dental2.jpg" alt=""></span></div>
+        <div><span><img src="../assets/images/Resultado-Clareamento-Dental3.jpg" alt=""></span></div>
+        <div><span><img src="../assets/images/Resultado-Clareamento-Dental4.jpg" alt=""></span></div>
+        <div><span><img src="../assets/images/Resultado-Clareamento-Dental5.jpg" alt=""></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DRA. DAIANE ===================== -->
+  <section class="dra section">
+    <div class="container dra-inner">
+      <div>
+        <p class="eyebrow tipo-label">Quem cuida do seu sorriso</p>
+        <h2 class="tipo-titulo">Dra. Daiane Carvalho</h2>
+        <p class="lead tipo-corpo">Cirurgiã-dentista apaixonada por transformar sorrisos e cuidar de pessoas com acolhimento e atenção. Atuo com foco em clareamento e estética do sorriso, com tratamentos modernos, confortáveis e resultados naturais.</p>
+        <a class="btn-link js-wa" data-pos="dra-daiane" href="https://wa.me/5511949182629?text=Ol%C3%A1%2C%20Dra.%20Daiane%21%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o.">Falar com a Dra. Daiane</a>
+      </div>
+      <div class="ph dra-img"><span>Foto — Dra. Daiane</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== AVALIAÇÕES ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow tipo-label">O que dizem</p>
+        <h2 class="tipo-titulo">Pacientes reais, resultados reais</h2>
+      </div>
+      <div class="avaliacoes-grid">
+        <article class="avaliacao">
+          <div class="estrelas">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>[Depoimento real do paciente — substituir]</p>
+          <p class="autor">— Nome do paciente</p>
+        </article>
+        <article class="avaliacao">
+          <div class="estrelas">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>[Depoimento real do paciente — substituir]</p>
+          <p class="autor">— Nome do paciente</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONSULTÓRIO ===================== -->
+  <section class="consultorio section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow tipo-label">Conheça o espaço</p>
+        <h2 class="tipo-titulo">Um consultório pensado para o seu conforto</h2>
+        <p class="tipo-corpo">Ambiente acolhedor, equipamentos modernos e todo o cuidado com segurança e higiene, na Barra Funda.</p>
+      </div>
+      <div class="galeria">
+        <div class="ph"><span>Foto consultório 1</span></div>
+        <div class="ph"><span>Foto consultório 2</span></div>
+        <div class="ph"><span>Foto consultório 3</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="faq section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow tipo-label">Perguntas frequentes</p>
+        <h2 class="tipo-titulo">Tudo o que você quer saber</h2>
+      </div>
+      <details>
+        <summary>O que é o "branco máximo"?</summary>
+        <p class="tipo-corpo">É o ponto mais branco que a sua estrutura dental consegue atingir naturalmente. A cor é medida numa escala padronizada ao fim de cada sessão; quando estabiliza, você chegou ao seu limite — e é por isso que as sessões são ilimitadas.</p>
+      </details>
+      <details>
+        <summary>Quantas sessões vou precisar?</summary>
+        <p class="tipo-corpo">Depende de cada caso. Como as sessões são ilimitadas, você faz quantas forem necessárias até atingir o seu branco máximo, sem custo adicional por sessão.</p>
+      </details>
+      <details>
+        <summary>O clareamento dói ou causa sensibilidade?</summary>
+        <p class="tipo-corpo">A maioria das pessoas sente pouca ou nenhuma sensibilidade. Quando aparece, é passageira, e ajustamos o protocolo para o seu conforto.</p>
+      </details>
+      <details>
+        <summary>A limpeza está inclusa?</summary>
+        <p class="tipo-corpo">Sim. A limpeza profunda faz parte do tratamento e é feita antes de começar o clareamento, para o melhor resultado.</p>
+      </details>
+      <details>
+        <summary>Por quanto tempo dura o resultado?</summary>
+        <p class="tipo-corpo">O branco é garantido por até 2 anos. Com o clareamento caseiro que você leva para casa, dá para manter o resultado por ainda mais tempo.</p>
+      </details>
+      <details>
+        <summary>Como funciona o pagamento?</summary>
+        <p class="tipo-corpo">Oferecemos pagamento facilitado. Fale com o consultório no WhatsApp para conhecer as condições.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape section">
+    <div class="container rodape-inner">
+      <div>
+        <p class="eyebrow tipo-label">Onde estamos</p>
+        <h2 class="tipo-titulo">Agende seu clareamento</h2>
+        <address class="tipo-corpo">L. Padre Péricles, 145 — Sala 141 A
+Barra Funda, São Paulo — SP</address>
+        <a class="btn-whatsapp js-wa" data-pos="rodape" href="https://wa.me/5511949182629?text=Ol%C3%A1%21%20Quero%20agendar%20o%20meu%20clareamento.">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.15c-.24.68-1.42 1.32-1.96 1.36-.5.05-.98.24-3.29-.69-2.78-1.1-4.55-3.94-4.69-4.12-.14-.18-1.13-1.5-1.13-2.86s.72-2.03.97-2.31c.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.39-.06.6.46.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.27.72 1.18 1.54 1.91 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.18.69-.8.87-1.08.18-.27.36-.23.6-.14.24.09 1.55.73 1.81.87.27.14.44.2.51.31.07.12.07.68-.17 1.36z"/></svg>
+          Conversar agora
+        </a>
+      </div>
+      <div class="ph rodape-map"><span>Mapa — L. Padre Péricles, 145</span></div>
+    </div>
+  </footer>
+
+  <!-- ===================== BARRA FIXA (mobile) ===================== -->
+  <div class="barra-fixa">
+    <a class="btn-whatsapp js-wa" data-pos="barra-fixa" href="https://wa.me/5511949182629?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20clareamento%20dental.">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.15c-.24.68-1.42 1.32-1.96 1.36-.5.05-.98.24-3.29-.69-2.78-1.1-4.55-3.94-4.69-4.12-.14-.18-1.13-1.5-1.13-2.86s.72-2.03.97-2.31c.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.39-.06.6.46.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.27.72 1.18 1.54 1.91 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.18.69-.8.87-1.08.18-.27.36-.23.6-.14.24.09 1.55.73 1.81.87.27.14.44.2.51.31.07.12.07.68-.17 1.36z"/></svg>
+      Conversar agora
+    </a>
+  </div>
+
+</div>
+
+  <!-- ============================================================
+       RASTREIO DE CONVERSÃO — dispara no CLIQUE do wa.me.
+       Descomentar o gtag quando o GA4 estiver colado no <head>.
+       ============================================================ -->
+  <script>
+    document.querySelectorAll('.js-wa').forEach(function (el) {
+      el.addEventListener('click', function () {
+        // gtag('event', 'clique_whatsapp', {
+        //   origem: 'landing_clareamento',
+        //   posicao: this.dataset.pos || 'principal'
+        // });
+      });
+    });
+  </script>
+</body>
+</html>
