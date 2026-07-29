@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BotaoWhatsApp from '../../components/BotaoWhatsApp.astro';
+---
+<Layout
+  title="Canal com urgência? Atendimento de endodontia em Barra Funda — Dra. Daiane Carvalho"
+  description="Dor de dente forte ou canal urgente? Atendimento de endodontia em Barra Funda, São Paulo. Fale agora no WhatsApp."
+  origem="landing_endodontia"
+>
+  <main class="wrap">
+    <p class="tipo-label selo">Endodontia &middot; Barra Funda, SP</p>
+    <h1 class="tipo-display titulo">Landing de endodontia em construção</h1>
+    <p class="tipo-subtitulo sub">Página de urgência (F1). O conteúdo real entra depois de finalizados os assets e o rastreio.</p>
+    <BotaoWhatsApp texto="Chamar no WhatsApp" mensagem="Olá, preciso de atendimento de urgência" posicao="principal" />
+  </main>
+</Layout>
+
+<style is:global>
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px 24px;
+      gap: 24px;
+    }
+    .selo { color: var(--marca-acento); }
+    .titulo { color: var(--texto-titulo); max-width: 18ch; }
+    .sub { color: var(--texto-suave); max-width: 42ch; }
+</style>

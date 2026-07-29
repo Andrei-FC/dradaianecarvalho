@@ -1,0 +1,44 @@
+---
+// FAQ genérico. As perguntas variam por página, então vêm por prop.
+// O primeiro item abre por padrão (aberto=true no índice 0).
+interface Item { q: string; a: string; }
+interface Props {
+  itens: Item[];
+  titulo?: string;
+  eyebrow?: string;
+}
+const { itens, titulo = 'Tudo o que você quer saber', eyebrow = 'Perguntas frequentes' } = Astro.props;
+---
+<section class="faq section">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow tipo-label">{eyebrow}</p>
+      <h2 class="tipo-titulo">{titulo}</h2>
+    </div>
+    {itens.map((item, i) => (
+      <details open={i === 0}>
+        <summary>{item.q}</summary>
+        <p set:html={item.a}></p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style is:global>
+    .faq { background: var(--superficie-pagina); }
+    .faq details {
+      background: var(--superficie-card); border: 1px solid var(--borda-sutil);
+      border-radius: var(--radius-md); padding: var(--spacing-lg); margin-bottom: var(--spacing-md);
+    }
+    .faq summary {
+      color: var(--texto-forte); font-weight: 600; font-size: 16px; line-height: 1.5;
+      cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--spacing-md);
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "▸"; color: var(--marca-primaria); font-size: 16px; flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .faq details[open] summary::after { content: "▾"; }
+    .faq details p { color: var(--texto-suave); margin: var(--spacing-md) 0 0; font-weight: 600; font-size: var(--font-size-label); line-height: 1.3; }
+</style>

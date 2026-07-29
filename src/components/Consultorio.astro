@@ -1,0 +1,26 @@
+---
+// Seção do consultório — compartilhada entre as páginas.
+// As 3 fotos são fixas do espaço físico.
+---
+<section class="consultorio section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow tipo-label">Conheça o espaço</p>
+        <h2 class="tipo-titulo">Um consultório pensado para o seu conforto</h2>
+        <p class="tipo-corpo">Ambiente acolhedor, equipamentos modernos e todo o cuidado com segurança e higiene, na Barra Funda.</p>
+      </div>
+      <div class="galeria">
+        <div class="ph"><img src="/assets/images/Consultorio-Dental1.jpg" alt="Consultório"></div>
+        <div class="ph"><img src="/assets/images/Consultorio-Dental2.jpg" alt="Corredor do consultório"></div>
+        <div class="ph"><img src="/assets/images/Consultorio-Dental3.jpg" alt="Sala de atendimento"></div>
+      </div>
+    </div>
+  </section>
+
+<style is:global>
+    .consultorio { background: var(--superficie-card); }
+    .consultorio .section-head { text-align: center; display: flex; flex-direction: column; align-items: center; }
+    @media (min-width: 768px) {
+      .consultorio .galeria .ph img { height: 100%; object-fit: cover; }
+    }
+</style>

@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/base.css';
+
+import Hero from '../../components/clareamento/Hero.astro';
+import SelosMobile from '../../components/clareamento/SelosMobile.astro';
+import Incluso from '../../components/clareamento/Incluso.astro';
+import Destaque from '../../components/clareamento/Destaque.astro';
+import Branco from '../../components/clareamento/Branco.astro';
+import Funciona from '../../components/clareamento/Funciona.astro';
+import Resultados from '../../components/Resultados.astro';
+import Dra from '../../components/Dra.astro';
+import Avaliacoes from '../../components/Avaliacoes.astro';
+import Consultorio from '../../components/Consultorio.astro';
+import FAQ from '../../components/FAQ.astro';
+import Rodape from '../../components/Rodape.astro';
+import BarraFixa from '../../components/BarraFixa.astro';
+
+const faqItens = [
+  { q: 'Existe um número máximo de sessões?', a: 'Não. Você faz quantas forem necessárias até atingir o seu branco máximo, medido pela escala de cor — sem custo adicional.' },
+  { q: 'Preciso ir com que frequência?', a: 'Depende de cada caso. Definimos o intervalo ideal entre as sessões na sua avaliação, respeitando a resposta dos seus dentes.' },
+  { q: 'O clareamento dental dói ou causa sensibilidade?', a: 'A maioria das pessoas sente pouca ou nenhuma sensibilidade. Quando aparece, é passageira, e ajustamos o protocolo para o seu conforto.' },
+  { q: 'Quantas sessões são necessárias para ver resultado?', a: 'Os primeiros resultados costumam aparecer já nas primeiras sessões. O número total depende do seu ponto de partida e do seu branco máximo.' },
+  { q: 'Quanto tempo dura o clareamento dental?', a: 'O branco é garantido por até 2 anos. Com o clareamento caseiro que você leva para casa, dá para manter o resultado por ainda mais tempo.' },
+  { q: 'Posso fazer clareamento se tenho restaurações ou resina?', a: 'Sim, mas restaurações e resinas não mudam de cor com o clareamento. Avaliamos o seu caso para alinhar as expectativas e, se necessário, trocar restaurações após o tratamento.' },
+  { q: 'O clareamento dental é seguro?', a: 'Sim, quando feito com acompanhamento profissional. Todo o processo é conduzido pela Dra. Daiane, com produtos regularizados e protocolo individual.' },
+];
+---
+<Layout
+  title="Clareamento dental sem limite de sessões — Dra. Daiane Carvalho | Barra Funda, SP"
+  description="Clareamento dental com sessões ilimitadas até o seu branco máximo, limpeza profunda e clareamento caseiro inclusos. Barra Funda, São Paulo. Fale no WhatsApp."
+  origem="landing_clareamento"
+>
+  <div class="lp">
+    <Hero />
+    <SelosMobile />
+    <Incluso />
+    <Destaque />
+    <Branco />
+    <Funciona />
+    <Resultados />
+    <Dra />
+    <Avaliacoes />
+    <Consultorio />
+    <FAQ itens={faqItens} />
+    <Rodape titulo="Agende seu clareamento" ctaTexto="Quero agendar meu clareamento" ctaMensagem="Olá! Quero agendar o meu clareamento." />
+  </div>
+  <BarraFixa texto="Falar agora" mensagem="Olá! Tenho interesse no clareamento dental." />
+</Layout>

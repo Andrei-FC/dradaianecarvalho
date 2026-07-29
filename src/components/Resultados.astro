@@ -1,0 +1,26 @@
+---
+// Galeria de resultados (fotos antes/depois). Fotos ficam na página
+// porque variam por serviço; a moldura e o layout são padrão.
+---
+<section class="resultados section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow tipo-label">Resultados reais</p>
+        <h2 class="tipo-titulo">Sorrisos que falam por si</h2>
+      </div>
+      <div class="galeria">
+        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental1.jpg" alt="Resultado de clareamento dental"></div>
+        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental2.jpg" alt="Resultado de clareamento dental"></div>
+        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental3.jpg" alt="Resultado de clareamento dental"></div>
+        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental4.jpg" alt="Resultado de clareamento dental"></div>
+        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental5.jpg" alt="Resultado de clareamento dental"></div>
+      </div>
+    </div>
+  </section>
+
+<style is:global>
+    .resultados { background: var(--mauve-50); }
+    @media (min-width: 768px) {
+      .resultados .galeria .ph img { height: 100%; object-fit: cover; }
+    }
+</style>

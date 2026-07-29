@@ -1,0 +1,56 @@
+---
+// Layout base compartilhado por todas as páginas.
+// Concentra o <head>, o carregamento do Mulish, o tokens.css,
+// o slot para GA4 e o script de rastreio de clique no wa.me.
+import '../styles/tokens.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** rótulo enviado ao GA4 como origem do clique. ex: 'landing_clareamento' */
+  origem?: string;
+}
+
+const { title, description, origem = 'site' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  {/* ============================================================
+      RASTREIO GA4 — PENDÊNCIA
+      Recolar aqui o script gtag.js com o ID real (G-XXXXXXX).
+      O event listener de conversão no clique do wa.me está no
+      final do <body>. Ver PROJETO-DRA-DAIANE.md seção 3.
+      ============================================================ */}
+</head>
+<body>
+  <slot />
+
+  {/* ============================================================
+      RASTREIO DE CONVERSÃO — dispara no CLIQUE do wa.me.
+      Descomentar o gtag quando o GA4 estiver colado no <head>.
+      A origem vem do Layout; a posição vem do data-pos do botão.
+      ============================================================ */}
+  <script define:vars={{ origem }}>
+    document.querySelectorAll('.js-wa').forEach(function (el) {
+      el.addEventListener('click', function () {
+        // Descomentar quando o gtag estiver ativo:
+        // gtag('event', 'clique_whatsapp', {
+        //   origem: origem,
+        //   posicao: this.dataset.pos || 'principal'
+        // });
+      });
+    });
+  </script>
+</body>
+</html>

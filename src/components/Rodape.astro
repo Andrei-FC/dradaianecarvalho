@@ -1,0 +1,52 @@
+---
+// Rodapé escuro com mapa + CTA. Endereço e mapa vêm do clinica.json.
+// Título e texto/mensagem do CTA variam por página → props.
+import clinica from '../data/clinica.json';
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+
+interface Props {
+  eyebrow?: string;
+  titulo: string;
+  ctaTexto: string;
+  ctaMensagem: string;
+}
+const { eyebrow = 'Onde estamos', titulo, ctaTexto, ctaMensagem } = Astro.props;
+---
+<footer class="rodape section">
+  <div class="container rodape-inner">
+    <div class="rodape-col">
+      <div class="section-head rodape-head">
+        <p class="eyebrow tipo-label">{eyebrow}</p>
+        <h2 class="tipo-titulo">{titulo}</h2>
+      </div>
+      <address class="tipo-corpo rodape-address">{clinica.endereco}</address>
+      <BotaoWhatsApp texto={ctaTexto} mensagem={ctaMensagem} posicao="rodape" class="rodape-cta" />
+    </div>
+    <div class="ph rodape-map"><iframe src={clinica.mapaEmbed} title={`Localização — ${clinica.nome}, ${clinica.bairro}`} style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </div>
+</footer>
+
+<style is:global>
+    .rodape { background: var(--teal-900); padding-bottom: 96px; }
+    .rodape .eyebrow { color: var(--mint); }
+    .rodape h2 { color: var(--white); margin: 0; }
+    .rodape-map { aspect-ratio: 382 / 180; width: 100%; border-radius: var(--radius-md); }
+    .rodape-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .rodape address { color: var(--mint); font-style: normal; margin: 0; white-space: pre-line; }
+    .rodape .btn-whatsapp { width: 100%; }
+    .rodape-inner { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+    .rodape-col { display: contents; }
+    .rodape .rodape-head { order: 1; margin-bottom: 0; }
+    .rodape .rodape-address { order: 2; }
+    .rodape-map { order: 3; }
+    .rodape .rodape-cta { order: 4; }
+    @media (min-width: 768px) {
+      .rodape-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); align-items: center; }
+      .rodape-col { display: flex; flex-direction: column; gap: var(--spacing-lg); order: 1; }
+      .rodape .rodape-head { order: 0; margin-bottom: 0; }
+      .rodape .rodape-address { order: 0; }
+      .rodape .rodape-cta { order: 0; }
+      .rodape .btn-whatsapp { width: 345px; max-width: 100%; }
+      .rodape-map { aspect-ratio: auto; height: 422px; order: 2; }
+    }
+</style>

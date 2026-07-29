@@ -1,0 +1,22 @@
+---
+// Faixa de selos que aparece SÓ no mobile (abaixo do hero).
+// No desktop os mesmos selos vivem dentro do hero (ver Hero.astro).
+import SelosGrid from './SelosGrid.astro';
+import BotaoWhatsApp from '../BotaoWhatsApp.astro';
+---
+<section class="selos section">
+  <div class="container">
+    <SelosGrid />
+    <p class="lead tipo-corpo">Sessões ilimitadas em consultório até você atingir o seu branco máximo — com limpeza profunda e clareamento caseiro inclusos, por metade do valor desses procedimentos separados.</p>
+    <BotaoWhatsApp texto="Conversar agora" mensagem="Olá! Tenho interesse no clareamento dental." posicao="selos" />
+  </div>
+</section>
+
+<style is:global>
+    .selos { background: var(--teal-50); }
+    .selos .lead { color: var(--texto-suave); margin: var(--spacing-lg) 0; }
+    .selos .btn-whatsapp { width: 100%; }
+    @media (min-width: 768px) {
+      .selos { display: none; }
+    }
+</style>

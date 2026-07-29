@@ -1,0 +1,61 @@
+/* ============================================================
+   Primitivos de layout compartilhados entre seções.
+   O que é específico de uma seção mora no <style> do componente.
+   ============================================================ */
+
+.lp { overflow-x: hidden; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-xl);
+}
+
+.section { padding: var(--spacing-2xl) 0; }
+
+img { max-width: 100%; display: block; }
+
+/* Moldura de imagem (cantos arredondados, sem placeholder) */
+.ph {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: block;
+}
+.ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Placeholder real (só onde ainda falta conteúdo) */
+.is-placeholder {
+  background: var(--teal-50);
+  border: 1px dashed var(--teal-200);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--teal-400); text-align: center; font-size: 13px; padding: 16px;
+}
+
+/* Eyebrow / rótulos de seção */
+.eyebrow { color: var(--marca-primaria); margin: 0 0 var(--spacing-sm); }
+.section-head { margin-bottom: var(--spacing-lg); }
+.section-head .eyebrow { margin: 0 0 var(--spacing-sm); }
+.section-head h2 { margin: 0; }
+.section-head p { margin: var(--spacing-sm) 0 0; }
+
+/* Galeria full-bleed: rola até a borda da tela no mobile */
+.galeria {
+  display: flex; gap: var(--spacing-md);
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  margin-left: calc(-1 * var(--spacing-xl)); margin-right: calc(-1 * var(--spacing-xl));
+  padding-left: var(--spacing-xl); padding-right: var(--spacing-xl);
+  scroll-padding-left: var(--spacing-xl);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.galeria::-webkit-scrollbar { display: none; }
+.galeria .ph { scroll-snap-align: start; flex: 0 0 78%; border-radius: var(--radius-md); }
+.galeria .ph img { width: 100%; height: auto; display: block; object-fit: contain; }
+
+@media (min-width: 768px) {
+  .section { padding: var(--spacing-3xl) 0; }
+  .galeria { overflow-x: visible; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+  .galeria .ph { flex: 1; }
+}
