@@ -25,16 +25,21 @@
     .section { padding: var(--spacing-2xl) 0; }
     img { max-width: 100%; display: block; }
 
-    /* Placeholder de imagem — trocar pelo arquivo real depois */
+    /* Moldura de imagem (cantos arredondados, sem placeholder) */
     .ph {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: block;
+    }
+    .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Placeholder real (só onde ainda falta conteúdo) */
+    .is-placeholder {
       background: var(--teal-50);
       border: 1px dashed var(--teal-200);
-      border-radius: var(--radius-md);
       display: flex; align-items: center; justify-content: center;
-      color: var(--teal-400); text-align: center;
-      font-size: 13px; padding: 16px; overflow: hidden;
+      color: var(--teal-400); text-align: center; font-size: 13px; padding: 16px;
     }
-    .ph img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ===== Eyebrow / rótulos de seção ===== */
     .eyebrow { color: var(--marca-primaria); margin: 0 0 var(--spacing-sm); }
@@ -46,15 +51,17 @@
     .hero { background: var(--superficie-card); }
     .hero-inner { padding-top: var(--spacing-2xl); }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: var(--spacing-xs);
+      display: inline-flex; align-self: flex-start; width: auto; align-items: center; gap: var(--spacing-xs);
       background: var(--teal-50); color: var(--teal-800);
       padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full);
       margin: 0;
     }
-    .hero-title-block { display: flex; flex-direction: column; gap: var(--spacing-md); }
+    .hero-title-block { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
     .hero h1 { color: var(--texto-titulo); margin: 0; }
     .hero .lead { color: var(--texto-suave); margin: 0; }
-    .hero-img { aspect-ratio: 1856 / 2290; width: 100%; }
+    /* imagem do hero colada na borda inferior, sem cantos arredondados */
+    .hero-img { aspect-ratio: 1856 / 2290; width: 100%; border-radius: 0; align-self: flex-end; }
+    .hero-img img { object-position: bottom; }
 
     /* Selos: só aparecem no bloco próprio (mobile) OU dentro do hero (desktop) */
     .selo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
@@ -105,6 +112,7 @@
       border-radius: var(--radius-md); overflow: hidden; background: var(--teal-900);
     }
     .branco-video iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .rodape-map iframe { width: 100%; height: 100%; border: 0; display: block; }
     .branco .btn-whatsapp { width: 100%; }
 
     /* ===== Como Funciona (bloco ESCURO teal-900) ===== */
@@ -138,7 +146,8 @@
     .dra { background: var(--superficie-card); }
     .dra-inner { padding-top: var(--spacing-2xl); }
     .dra .lead { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
-    .dra-img { aspect-ratio: 382 / 504; width: 100%; margin-top: var(--spacing-lg); }
+    .dra-img { aspect-ratio: 382 / 504; width: 100%; margin-top: var(--spacing-lg); border-radius: 0; align-self: flex-end; }
+    .dra-img img { object-position: bottom; }
     .btn-link {
       display: inline-flex; align-items: center; gap: var(--spacing-sm);
       background: transparent; color: var(--marca-primaria);
@@ -257,7 +266,7 @@
       <div class="hero-col">
         <div class="hero-title-block">
           <span class="hero-badge tipo-label">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--estrela)" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--estrela)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             100% de avaliações 5 estrelas no Google
           </span>
           <h1 class="tipo-display">Clareamento dental sem limite de sessões</h1>
@@ -273,19 +282,19 @@
           </a>
           <div class="selo-grid">
             <div class="selo">
-              <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a4 4 0 100 8c2.5 0 3.5-2 6-4s3.5-4 6-4a4 4 0 110 8c-2.5 0-3.5-2-6-4S8.5 8 6 8z"/></svg></span>
+              <span class="selo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 0 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg></span>
               <span>Sessões ilimitadas</span>
             </div>
             <div class="selo">
-              <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/></svg></span>
+              <span class="selo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.94 14.06 9 17l-.94-2.94a3 3 0 0 0-2.12-2.12L3 11l2.94-.94a3 3 0 0 0 2.12-2.12L9 5l.94 2.94a3 3 0 0 0 2.12 2.12L15 11l-2.94.94a3 3 0 0 0-2.12 2.12Z"/><path d="M18 5h.01M20 3v.01M19 8l.5-1.5L21 6l-1.5-.5L19 4l-.5 1.5L17 6l1.5.5Z"/></svg></span>
               <span>Limpeza inclusa</span>
             </div>
             <div class="selo">
-              <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+              <span class="selo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg></span>
               <span>Garantia de 2 anos</span>
             </div>
             <div class="selo">
-              <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></span>
+              <span class="selo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></span>
               <span>Pagamento facilitado</span>
             </div>
           </div>
@@ -300,19 +309,19 @@
     <div class="container">
       <div class="selo-grid">
         <div class="selo">
-          <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a4 4 0 100 8c2.5 0 3.5-2 6-4s3.5-4 6-4a4 4 0 110 8c-2.5 0-3.5-2-6-4S8.5 8 6 8z"/></svg></span>
+          <span class="selo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 0 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg></span>
           <span>Sessões ilimitadas</span>
         </div>
         <div class="selo">
-          <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/></svg></span>
+          <span class="selo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.94 14.06 9 17l-.94-2.94a3 3 0 0 0-2.12-2.12L3 11l2.94-.94a3 3 0 0 0 2.12-2.12L9 5l.94 2.94a3 3 0 0 0 2.12 2.12L15 11l-2.94.94a3 3 0 0 0-2.12 2.12Z"/><path d="M18 5h.01M20 3v.01M19 8l.5-1.5L21 6l-1.5-.5L19 4l-.5 1.5L17 6l1.5.5Z"/></svg></span>
           <span>Limpeza inclusa</span>
         </div>
         <div class="selo">
-          <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="selo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg></span>
           <span>Garantia de 2 anos</span>
         </div>
         <div class="selo">
-          <span class="selo-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></span>
+          <span class="selo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></span>
           <span>Pagamento facilitado</span>
         </div>
       </div>
@@ -335,7 +344,7 @@
       <div class="cards">
         <article class="card">
           <div class="card-top">
-            <span class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a4 4 0 018 0 4 4 0 008 0"/><path d="M4 12a4 4 0 008 0 4 4 0 018 0"/></svg></span>
+            <span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.94 14.06 9 17l-.94-2.94a3 3 0 0 0-2.12-2.12L3 11l2.94-.94a3 3 0 0 0 2.12-2.12L9 5l.94 2.94a3 3 0 0 0 2.12 2.12L15 11l-2.94.94a3 3 0 0 0-2.12 2.12Z"/><path d="M20 3v4M22 5h-4"/></svg></span>
             <span class="badge">incluso</span>
           </div>
           <h3 class="tipo-subtitulo">Limpeza profunda</h3>
@@ -343,7 +352,7 @@
         </article>
         <article class="card">
           <div class="card-top">
-            <span class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/></svg></span>
+            <span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
             <span class="badge">em consultório</span>
           </div>
           <h3 class="tipo-subtitulo">Clareamento profissional</h3>
@@ -351,7 +360,7 @@
         </article>
         <article class="card">
           <div class="card-top">
-            <span class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8v4l-3 3v6l-2 2v-8L8 7V3z"/></svg></span>
+            <span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span>
             <span class="badge">incluso</span>
           </div>
           <h3 class="tipo-subtitulo">Clareamento caseiro</h3>
@@ -376,7 +385,7 @@
         </a>
       </div>
       <div class="branco-video">
-        <iframe src="https://www.youtube.com/embed/5JrUhSAutXE?rel=0&amp;modestbranding=1&amp;controls=1" title="O que é o branco máximo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/5JrUhSAutXE?rel=0&amp;modestbranding=1&amp;playsinline=1" title="O que é o branco máximo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </section>
@@ -395,7 +404,7 @@
         <div class="passo"><span class="passo-num">4</span><div><h3>Medição na escala</h3><p>A cor é aferida ao fim de cada sessão até estabilizar.</p></div></div>
       </div>
       <div class="nota-caseiro">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>
         <p>E você leva para casa uma moldeira feita sob medida para os seus dentes + o gel profissional, para manter o branco por muito mais tempo.</p>
       </div>
     </div>
@@ -428,7 +437,7 @@
         </div>
         <p class="lead tipo-corpo">Cirurgiã-dentista apaixonada por transformar sorrisos e cuidar de pessoas com acolhimento e atenção. Atuo com foco em clareamento e estética do sorriso, com tratamentos modernos, confortáveis e resultados naturais.</p>
         <a class="btn-link" href="https://www.instagram.com/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c2.7 0 3.06.01 4.12.06 1.06.05 1.79.22 2.42.46.66.26 1.22.6 1.77 1.15.55.55.89 1.11 1.15 1.77.24.63.41 1.36.46 2.42.05 1.06.06 1.42.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.46 2.42-.26.66-.6 1.22-1.15 1.77-.55.55-1.11.89-1.77 1.15-.63.24-1.36.41-2.42.46-1.06.05-1.42.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.42-.46-.66-.26-1.22-.6-1.77-1.15-.55-.55-.89-1.11-1.15-1.77-.24-.63-.41-1.36-.46-2.42C2.01 15.06 2 14.7 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.46-2.42.26-.66.6-1.22 1.15-1.77.55-.55 1.11-.89 1.77-1.15.63-.24 1.36-.41 2.42-.46C8.94 2.01 9.3 2 12 2zm0 1.8c-2.66 0-2.97.01-4.02.06-.97.04-1.5.21-1.85.34-.47.18-.8.4-1.15.75-.35.35-.57.68-.75 1.15-.13.35-.3.88-.34 1.85-.05 1.05-.06 1.36-.06 4.02s.01 2.97.06 4.02c.04.97.21 1.5.34 1.85.18.47.4.8.75 1.15.35.35.68.57 1.15.75.35.13.88.3 1.85.34 1.05.05 1.36.06 4.02.06s2.97-.01 4.02-.06c.97-.04 1.5-.21 1.85-.34.47-.18.8-.4 1.15-.75.35-.35.57-.68.75-1.15.13-.35.3-.88.34-1.85.05-1.05.06-1.36.06-4.02s-.01-2.97-.06-4.02c-.04-.97-.21-1.5-.34-1.85-.18-.47-.4-.8-.75-1.15-.35-.35-.68-.57-1.15-.75-.35-.13-.88-.3-1.85-.34-1.05-.05-1.36-.06-4.02-.06zm0 3.06a5.14 5.14 0 110 10.28 5.14 5.14 0 010-10.28zm0 8.48a3.34 3.34 0 100-6.68 3.34 3.34 0 000 6.68zm6.54-8.68a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
           Siga a Dra. Daiane
         </a>
       </div>
@@ -539,7 +548,7 @@ Barra Funda, São Paulo — SP</address>
           Quero agendar meu clareamento
         </a>
       </div>
-      <div class="ph rodape-map"><span>Mapa — L. Padre Péricles, 145</span></div>
+      <div class="ph rodape-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.033806110617!2d-46.6662844246708!3d-23.531286478820498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5948fe615443%3A0x750881cd6e07765f!2sDra.%20Daiane%20Carvalho!5e0!3m2!1sen!2sbr!4v1785292617467!5m2!1sen!2sbr" title="Localização — Dra. Daiane Carvalho, Barra Funda" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
     </div>
   </footer>
 
