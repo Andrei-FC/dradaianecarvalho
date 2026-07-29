@@ -44,6 +44,7 @@
     /* ===== Eyebrow / rótulos de seção ===== */
     .eyebrow { color: var(--marca-primaria); margin: 0 0 var(--spacing-sm); }
     .section-head { margin-bottom: var(--spacing-lg); }
+    .section-head .eyebrow { margin: 0 0 var(--spacing-sm); }
     .section-head h2 { margin: 0; }
     .section-head p { margin: var(--spacing-sm) 0 0; }
 
@@ -74,7 +75,7 @@
       width: 32px; height: 32px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
     }
-    .selo-ico svg { width: 24px; height: 24px; }
+    .selo-ico svg { width: 20px; height: 20px; }
     .selo span { color: var(--teal-800); font-weight: 600; font-size: var(--font-size-label); line-height: 1.3; }
 
     /* ===== Faixa de selos (MOBILE) — bloco teal-50 abaixo do hero ===== */
@@ -104,15 +105,22 @@
 
     /* ===== Branco Máximo (fundo CLARO teal-50) ===== */
     .branco { background: var(--teal-50); }
-    .branco h2 { color: var(--teal-800); margin: 0 0 var(--spacing-lg); }
-    .branco p { color: var(--texto-suave); margin: 0 0 var(--spacing-xl); }
+    .branco h2 { color: var(--teal-800); }
+    .branco .branco-texto { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
     .branco-video {
-      aspect-ratio: 1160 / 1164; width: 100%; margin-bottom: var(--spacing-xl);
+      aspect-ratio: 1160 / 1164; width: 100%;
       border-radius: var(--radius-md); overflow: hidden; background: var(--teal-900);
     }
     .branco-video iframe { width: 100%; height: 100%; border: 0; display: block; }
     .rodape-map iframe { width: 100%; height: 100%; border: 0; display: block; }
     .branco .btn-whatsapp { width: 100%; }
+    /* mobile: CTA abaixo do vídeo */
+    .branco-inner { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+    .branco-col { display: contents; }
+    .branco .section-head { order: 1; margin-bottom: 0; }
+    .branco .branco-texto { order: 2; }
+    .branco-video { order: 3; }
+    .branco .branco-cta { order: 4; }
 
     /* ===== Como Funciona (bloco ESCURO teal-900) ===== */
     .funciona { background: var(--teal-900); }
@@ -138,8 +146,21 @@
 
     /* ===== Resultados (fundo mauve-50) ===== */
     .resultados { background: var(--mauve-50); }
-    .galeria { display: flex; gap: var(--spacing-md); overflow-x: auto; padding-bottom: var(--spacing-sm); scroll-snap-type: x mandatory; }
-    .galeria .ph { scroll-snap-align: start; flex: 0 0 78%; aspect-ratio: 1440 / 1761; }
+    /* galeria full-bleed no mobile: rola até a borda da tela */
+    .galeria {
+      display: flex; gap: var(--spacing-md);
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      margin-left: calc(-1 * var(--spacing-xl)); margin-right: calc(-1 * var(--spacing-xl));
+      padding-left: var(--spacing-xl); padding-right: var(--spacing-xl);
+      scroll-padding-left: var(--spacing-xl);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;              /* Firefox */
+      -ms-overflow-style: none;           /* IE/Edge */
+    }
+    .galeria::-webkit-scrollbar { display: none; }  /* Chrome/Safari */
+    /* mostra a imagem inteira (sem crop vertical), largura fixa */
+    .galeria .ph { scroll-snap-align: start; flex: 0 0 78%; border-radius: var(--radius-md); }
+    .galeria .ph img { width: 100%; height: auto; display: block; object-fit: contain; }
 
     /* ===== Dra. Daiane ===== */
     .dra { background: var(--superficie-card); }
@@ -176,7 +197,6 @@
     /* ===== Consultório ===== */
     .consultorio { background: var(--superficie-card); }
     .consultorio .section-head { text-align: center; display: flex; flex-direction: column; align-items: center; }
-    .consultorio .galeria .ph { aspect-ratio: 310 / 413; }
 
     /* ===== FAQ ===== */
     .faq { background: var(--superficie-pagina); }
@@ -230,18 +250,20 @@
       .card { flex: 1; }
 
       .branco-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); align-items: center; }
-      .branco-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
-      .branco h2 { margin: 0; }
-      .branco p { margin: 0; }
-      .branco-video { margin-bottom: 0; order: 2; }
+      .branco-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); order: 1; }
+      .branco .section-head { order: 0; margin-bottom: 0; }
+      .branco .branco-texto { order: 0; margin: 0; }
+      .branco .branco-cta { order: 0; }
+      .branco-video { order: 2; }
       .branco .btn-whatsapp { width: 335px; max-width: 100%; }
 
       .passos { flex-direction: row; gap: var(--spacing-md); }
       .passo { flex: 1; }
       .nota-caseiro { max-width: 612px; }
 
-      .galeria { overflow-x: visible; }
+      .galeria { overflow-x: visible; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
       .galeria .ph { flex: 1; }
+      .resultados .galeria .ph img, .consultorio .galeria .ph img { height: 100%; object-fit: cover; }
 
       .dra-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; max-width: 800px; }
       .dra-img { margin-top: 0; order: 2; max-width: 382px; }
@@ -441,12 +463,12 @@
   <section class="branco section">
     <div class="container branco-inner">
       <div class="branco-col">
-        <div>
+        <div class="section-head">
           <p class="eyebrow tipo-label">Como o resultado é medido</p>
           <h2 class="tipo-titulo">O que é o seu branco máximo</h2>
         </div>
-        <p class="tipo-corpo">Todo dente tem um limite natural de clareamento — o ponto mais branco que a sua estrutura dental consegue atingir. Ao final de cada sessão, a cor é medida com uma escala padronizada. Quando ela se estabiliza entre uma sessão e outra, você chegou ao seu branco máximo. Por isso as sessões são ilimitadas: o limite não é um número, é o seu resultado.</p>
-        <a class="btn-whatsapp js-wa" data-pos="branco-maximo" href="https://wa.me/5511949182629?text=Ol%C3%A1%21%20Quero%20entender%20o%20meu%20branco%20m%C3%A1ximo.">
+        <p class="tipo-corpo branco-texto">Todo dente tem um limite natural de clareamento — o ponto mais branco que a sua estrutura dental consegue atingir. Ao final de cada sessão, a cor é medida com uma escala padronizada. Quando ela se estabiliza entre uma sessão e outra, você chegou ao seu branco máximo. Por isso as sessões são ilimitadas: o limite não é um número, é o seu resultado.</p>
+        <a class="btn-whatsapp js-wa branco-cta" data-pos="branco-maximo" href="https://wa.me/5511949182629?text=Ol%C3%A1%21%20Quero%20entender%20o%20meu%20branco%20m%C3%A1ximo.">
           <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.15c-.24.68-1.42 1.32-1.96 1.36-.5.05-.98.24-3.29-.69-2.78-1.1-4.55-3.94-4.69-4.12-.14-.18-1.13-1.5-1.13-2.86s.72-2.03.97-2.31c.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.39-.06.6.46.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.27.72 1.18 1.54 1.91 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.18.69-.8.87-1.08.18-.27.36-.23.6-.14.24.09 1.55.73 1.81.87.27.14.44.2.51.31.07.12.07.68-.17 1.36z"/></svg>
           Tirar minha dúvida
         </a>
