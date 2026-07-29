@@ -1,1 +1,12 @@
+# build
+dist/
+# deps
+node_modules/
+# astro
+.astro/
+# ambiente
+.env
+.env.production
+# sistema
 .DS_Store
+src/env.d.ts
