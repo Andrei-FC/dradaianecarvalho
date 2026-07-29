@@ -180,7 +180,16 @@
 
     /* ===== Avaliações (fundo respiro mint) ===== */
     .avaliacoes { background: var(--superficie-respiro); }
-    .avaliacoes-grid { display: flex; gap: var(--spacing-lg); overflow-x: auto; padding-bottom: var(--spacing-sm); scroll-snap-type: x mandatory; }
+    .avaliacoes-grid {
+      display: flex; gap: var(--spacing-lg);
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      margin-left: calc(-1 * var(--spacing-xl)); margin-right: calc(-1 * var(--spacing-xl));
+      padding-left: var(--spacing-xl); padding-right: var(--spacing-xl);
+      scroll-padding-left: var(--spacing-xl);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .avaliacoes-grid::-webkit-scrollbar { display: none; }
     .avaliacao {
       flex: 0 0 220px; scroll-snap-align: start;
       background: var(--superficie-card); border: 1px solid var(--borda-sutil);
@@ -219,10 +228,17 @@
     /* ===== Rodapé (bloco ESCURO teal-900) ===== */
     .rodape { background: var(--teal-900); padding-bottom: 96px; }
     .rodape .eyebrow { color: var(--mint); }
-    .rodape h2 { color: var(--white); margin: 0 0 var(--spacing-lg); }
-    .rodape-map { aspect-ratio: 382 / 180; width: 100%; margin-bottom: var(--spacing-lg); border-radius: var(--radius-md); }
-    .rodape address { color: var(--mint); font-style: normal; margin: 0 0 var(--spacing-lg); white-space: pre-line; }
+    .rodape h2 { color: var(--white); margin: 0; }
+    .rodape-map { aspect-ratio: 382 / 180; width: 100%; border-radius: var(--radius-md); }
+    .rodape address { color: var(--mint); font-style: normal; margin: 0; white-space: pre-line; }
     .rodape .btn-whatsapp { width: 100%; }
+    /* mobile: CTA abaixo do mapa */
+    .rodape-inner { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+    .rodape-col { display: contents; }
+    .rodape .rodape-head { order: 1; margin-bottom: 0; }
+    .rodape .rodape-address { order: 2; }
+    .rodape-map { order: 3; }
+    .rodape .rodape-cta { order: 4; }
 
     /* ===== Barra fixa WhatsApp ===== */
     .barra-fixa {
@@ -268,11 +284,15 @@
       .dra-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; max-width: 800px; }
       .dra-img { margin-top: 0; order: 2; max-width: 382px; }
 
-      .avaliacoes-grid { flex-wrap: wrap; overflow-x: visible; justify-content: flex-start; }
+      .avaliacoes-grid { flex-wrap: wrap; overflow-x: visible; justify-content: flex-start; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
 
       .rodape-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); align-items: center; }
+      .rodape-col { display: flex; flex-direction: column; gap: var(--spacing-lg); order: 1; }
+      .rodape .rodape-head { order: 0; margin-bottom: 0; }
+      .rodape .rodape-address { order: 0; }
+      .rodape .rodape-cta { order: 0; }
       .rodape .btn-whatsapp { width: 345px; max-width: 100%; }
-      .rodape-map { aspect-ratio: auto; height: 422px; margin-bottom: 0; order: 2; }
+      .rodape-map { aspect-ratio: auto; height: 422px; order: 2; }
 
       .barra-fixa { display: none; }
     }
@@ -550,21 +570,121 @@
           <div class="avaliacao-head">
             <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
             <div>
-              <p class="avaliacao-nome">Marina R.</p>
+              <p class="avaliacao-nome">Selma M.</p>
               <p class="estrelas">★★★★★</p>
             </div>
           </div>
-          <p class="texto">“Atendimento super atencioso e sem dor nenhuma. O resultado superou o que eu esperava.”</p>
+          <p class="texto">“Profissional incrível, atenciosa e cuidadosa. Fiz meu clareamento e senti zero dor, super recomendo!”</p>
         </article>
         <article class="avaliacao">
           <div class="avaliacao-head">
             <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
             <div>
-              <p class="avaliacao-nome">Carla S.</p>
+              <p class="avaliacao-nome">Udy M.</p>
               <p class="estrelas">★★★★★</p>
             </div>
           </div>
-          <p class="texto">“Fui super bem recebida. As sessões ilimitadas fizeram toda a diferença no resultado.”</p>
+          <p class="texto">“Experiência incrível! Ambiente super acolhedor, atendimento impecável e o clareamento foi tranquilo, sem nenhuma dor.”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Matheus S.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“Excelente profissional, não senti dor nenhuma no procedimento do clareamento dental. Recomendo a todos!”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Joice B.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“Uma profissional maravilhosa! Meu clareamento ficou simplesmente maravilhoso. Obrigada, doutora!”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Viviane P.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“Eu amei a limpeza e o clareamento! Atendimento maravilhoso.”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Amanda N.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“Ótimo atendimento, super didática. Vai explicando cada passo com a maior paciência do mundo. Recomendo!”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Victória A.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“O tratamento dela é incrível! Me tranquilizou durante o processo, tive medo de que doesse mas não senti nada!”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Carolina M.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“Atendimento humanizado, acolhedor, paciente e muito competente. Atendeu a mim e à minha filha. Super recomendo!”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Diego R.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“Atendimento excelente! A Dra. Daiane é super atenciosa, explica tudo com clareza e transmite muita segurança.”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Luciana L.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“Atendimento impecável. A Dra. Daiane me deixou tranquila em todo o processo. Saí super satisfeita. Indico fortemente.”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Fábio N.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“Muito competente, a melhor da Barra Funda, sem sombra de dúvidas. Agradeço toda a atenção. Super recomendo!”</p>
+        </article>
+        <article class="avaliacao">
+          <div class="avaliacao-head">
+            <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></span>
+            <div>
+              <p class="avaliacao-nome">Fabiane C.</p>
+              <p class="estrelas">★★★★★</p>
+            </div>
+          </div>
+          <p class="texto">“Profissional de excelência! Indico de olhos fechados. Muito atenciosa e dedicada aos pacientes. Voltarei sempre.”</p>
         </article>
       </div>
     </div>
@@ -631,12 +751,14 @@
   <!-- ===================== RODAPÉ (bloco escuro) ===================== -->
   <footer class="rodape section">
     <div class="container rodape-inner">
-      <div>
-        <p class="eyebrow tipo-label">Onde estamos</p>
-        <h2 class="tipo-titulo">Agende seu clareamento</h2>
-        <address class="tipo-corpo">L. Padre Péricles, 145 — Sala 141 A
+      <div class="rodape-col">
+        <div class="section-head rodape-head">
+          <p class="eyebrow tipo-label">Onde estamos</p>
+          <h2 class="tipo-titulo">Agende seu clareamento</h2>
+        </div>
+        <address class="tipo-corpo rodape-address">L. Padre Péricles, 145 — Sala 141 A
 Barra Funda, São Paulo — SP</address>
-        <a class="btn-whatsapp js-wa" data-pos="rodape" href="https://wa.me/5511949182629?text=Ol%C3%A1%21%20Quero%20agendar%20o%20meu%20clareamento.">
+        <a class="btn-whatsapp js-wa rodape-cta" data-pos="rodape" href="https://wa.me/5511949182629?text=Ol%C3%A1%21%20Quero%20agendar%20o%20meu%20clareamento.">
           <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.15c-.24.68-1.42 1.32-1.96 1.36-.5.05-.98.24-3.29-.69-2.78-1.1-4.55-3.94-4.69-4.12-.14-.18-1.13-1.5-1.13-2.86s.72-2.03.97-2.31c.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.39-.06.6.46.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.27.72 1.18 1.54 1.91 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.18.69-.8.87-1.08.18-.27.36-.23.6-.14.24.09 1.55.73 1.81.87.27.14.44.2.51.31.07.12.07.68-.17 1.36z"/></svg>
           Quero agendar meu clareamento
         </a>
