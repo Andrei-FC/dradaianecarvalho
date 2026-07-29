@@ -1,6 +1,6 @@
 /* ============================================================
    Dra. Daiane Carvalho — Design tokens (F0)
-   Fonte da verdade: PROJETO-DRA-DAIANE.md, seção 9.
+   Fonte da verdade: arquivo Figma 2h3h8G4YWPLxmbYC4tQ3TD.
    Cor: teal + mauve. Tipografia: Mulish (400/600/800).
    ============================================================ */
 
@@ -34,6 +34,9 @@
   --wa:      #25D366;
   --wa-dark: #128C7E;
   --wa-text: #0A3D20;
+
+  /* ---- Primitives: estrela ---- */
+  --estrela: #F5A623;
 
   /* ---- Tokens semânticos: superfície ---- */
   --superficie-pagina:  var(--bg);
@@ -75,6 +78,30 @@
   --radius-md:   12px;
   --radius-lg:   20px;
   --radius-full: 999px;
+
+  /* ---- Font sizes: MOBILE (frame 2472:2) ----
+     No desktop estes tokens são sobrescritos (media query abaixo)
+     com os valores do frame 2498:65. */
+  --font-size-display:     32px;
+  --font-size-titulo:      24px;
+  --font-size-subtitulo:   18px;
+  --font-size-corpo-forte: 16px;
+  --font-size-corpo:       15px;
+  --font-size-label:       13px;
+  --font-size-legenda:     13px;
+}
+
+/* ---- Font sizes: DESKTOP (frame 2498:65) ---- */
+@media (min-width: 768px) {
+  :root {
+    --font-size-display:     48px;
+    --font-size-titulo:      32px;
+    --font-size-subtitulo:   22px;
+    --font-size-corpo-forte: 16px;
+    --font-size-corpo:       16px;
+    --font-size-label:       14px;
+    --font-size-legenda:     13px;
+  }
 }
 
 /* ============================================================
@@ -95,16 +122,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---- Escala tipográfica (F0, seção 9.5) ---- */
-.tipo-display   { font-size: 48px; font-weight: 800; line-height: 1.1;  letter-spacing: -0.02em; }
-.tipo-titulo    { font-size: 32px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
-.tipo-subtitulo { font-size: 22px; font-weight: 600; line-height: 1.25; }
-.tipo-corpo-forte { font-size: 16px; font-weight: 600; line-height: 1.5; }
-.tipo-corpo     { font-size: 16px; font-weight: 400; line-height: 1.6; }
-.tipo-label     { font-size: 14px; font-weight: 600; line-height: 1.3; letter-spacing: 0.01em; text-transform: uppercase; }
-.tipo-legenda   { font-size: 13px; font-weight: 400; line-height: 1.4; }
+/* ---- Escala tipográfica (tokens responsivos + letter-spacing do Figma) ---- */
+.tipo-display     { font-size: var(--font-size-display);     font-weight: 800; line-height: 1.1;  letter-spacing: -0.02em; }
+.tipo-titulo      { font-size: var(--font-size-titulo);      font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+.tipo-subtitulo   { font-size: var(--font-size-subtitulo);   font-weight: 600; line-height: 1.25; letter-spacing: -0.005em; }
+.tipo-corpo-forte { font-size: var(--font-size-corpo-forte); font-weight: 600; line-height: 1.5; }
+.tipo-corpo       { font-size: var(--font-size-corpo);       font-weight: 400; line-height: 1.6; }
+.tipo-label       { font-size: var(--font-size-label);       font-weight: 600; line-height: 1.3; letter-spacing: 0.01em; text-transform: uppercase; }
+.tipo-legenda     { font-size: var(--font-size-legenda);     font-weight: 400; line-height: 1.4; }
 
-/* ---- Botão de WhatsApp (tratamento do Figma) ---- */
+/* ---- Botão de WhatsApp (tratamento do Figma: texto branco) ---- */
 .btn-whatsapp {
   display: inline-flex;
   align-items: center;
