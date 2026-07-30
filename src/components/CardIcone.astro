@@ -1,0 +1,45 @@
+---
+// Card com ícone (Figma: "Card"). Átomo reutilizável extraído do Incluso.
+// Ícone + badge opcional no topo; título + texto abaixo. Caixa branca com borda.
+// O ícone entra via <slot> (SVG verbatim do Figma). O badge é opcional.
+interface Props {
+  titulo: string;
+  texto: string;
+  /** badge opcional no topo direito (ex: "incluso") */
+  badge?: string;
+}
+const { titulo, texto, badge } = Astro.props;
+---
+<article class="card">
+  <div class="card-top">
+    <span class="card-ico"><slot /></span>
+    {badge && <span class="badge">{badge}</span>}
+  </div>
+  <h3 class="tipo-subtitulo">{titulo}</h3>
+  <p class="tipo-corpo">{texto}</p>
+</article>
+
+<style is:global>
+    /* Box do card + grid — antes viviam presos no Incluso.astro. */
+    .cards { display: flex; flex-direction: column; gap: var(--spacing-md); padding-top: var(--spacing-md); }
+    .card {
+      background: var(--superficie-card); border: 1px solid var(--borda-sutil);
+      border-radius: var(--radius-lg); padding: var(--spacing-xl);
+      display: flex; flex-direction: column; gap: var(--spacing-md);
+    }
+    .card-top { display: flex; align-items: center; justify-content: space-between; }
+    .card-ico { width: 44px; height: 44px; color: var(--teal-600); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .card-ico svg { width: 44px; height: 44px; }
+    .badge {
+      background: var(--mint); color: var(--teal-800);
+      font-size: var(--font-size-legenda); font-weight: 400; line-height: 1.4;
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full); white-space: nowrap;
+    }
+    .card h3 { color: var(--texto-titulo); margin: 0; }
+    .card p { color: var(--texto-suave); margin: 0; }
+    @media (min-width: 768px) {
+      .cards { flex-direction: row; }
+      .card { flex: 1; }
+    }
+</style>

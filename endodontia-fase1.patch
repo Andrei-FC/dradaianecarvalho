@@ -1,0 +1,326 @@
+diff --git a/src/components/Dra.astro b/src/components/Dra.astro
+index 6a09368..93fd593 100644
+--- a/src/components/Dra.astro
++++ b/src/components/Dra.astro
+@@ -3,12 +3,24 @@
+ // O link do Instagram vem do clinica.json.
+ import clinica from '../data/clinica.json';
+ import TituloSecao from './TituloSecao.astro';
++// Texto e título variam por página (clareamento x endodontia) → props com
++// default no texto original de clareamento, para não quebrar aquela landing.
++interface Props {
++  label?: string;
++  titulo?: string;
++  texto?: string;
++}
++const {
++  label = 'Quem cuida do seu sorriso',
++  titulo = 'Dra. Daiane Carvalho',
++  texto = 'Cirurgiã-dentista apaixonada por transformar sorrisos e cuidar de pessoas com acolhimento e atenção. Atuo com foco em clareamento e estética do sorriso, com tratamentos modernos, confortáveis e resultados naturais.',
++} = Astro.props;
+ ---
+ <section class="dra section">
+     <div class="container dra-inner">
+       <div>
+-        <TituloSecao label="Quem cuida do seu sorriso" titulo="Dra. Daiane Carvalho" />
+-        <p class="lead tipo-corpo">Cirurgiã-dentista apaixonada por transformar sorrisos e cuidar de pessoas com acolhimento e atenção. Atuo com foco em clareamento e estética do sorriso, com tratamentos modernos, confortáveis e resultados naturais.</p>
++        <TituloSecao label={label} titulo={titulo} />
++        <p class="lead tipo-corpo">{texto}</p>
+         <a class="btn-link" href={clinica.instagram} target="_blank" rel="noopener">
+           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+ <path d="M16.017 2H7.947C6.37015 2.00185 4.85844 2.62914 3.74353 3.74424C2.62862 4.85933 2.00159 6.37115 2 7.948L2 16.018C2.00185 17.5948 2.62914 19.1066 3.74424 20.2215C4.85933 21.3364 6.37115 21.9634 7.948 21.965H16.018C17.5948 21.9631 19.1066 21.3359 20.2215 20.2208C21.3364 19.1057 21.9634 17.5938 21.965 16.017V7.947C21.9631 6.37015 21.3359 4.85844 20.2208 3.74353C19.1057 2.62862 17.5938 2.00159 16.017 2V2ZM19.957 16.017C19.957 16.5344 19.8551 17.0468 19.6571 17.5248C19.4591 18.0028 19.1689 18.4371 18.803 18.803C18.4371 19.1689 18.0028 19.4591 17.5248 19.6571C17.0468 19.8551 16.5344 19.957 16.017 19.957H7.947C6.90222 19.9567 5.90032 19.5415 5.16165 18.8026C4.42297 18.0638 4.008 17.0618 4.008 16.017V7.947C4.00827 6.90222 4.42349 5.90032 5.16235 5.16165C5.90122 4.42297 6.90322 4.008 7.948 4.008H16.018C17.0628 4.00827 18.0647 4.42349 18.8034 5.16235C19.542 5.90122 19.957 6.90322 19.957 7.948V16.018V16.017Z" fill="#476D6E"/>
+diff --git a/src/components/endodontia/Casos.astro b/src/components/endodontia/Casos.astro
+new file mode 100644
+index 0000000..81fc441
+--- /dev/null
++++ b/src/components/endodontia/Casos.astro
+@@ -0,0 +1,27 @@
++---
++// Seção · Casos (raios-X de tratamentos reais). Espelha a galeria full-bleed
++// de Resultados, mas com placeholders enquanto os raios-X reais não entram.
++// Quando Andrei subir as imagens (public/assets/images/Endo-CasoN.jpg),
++// trocar cada .is-placeholder por <img src=...>.
++import TituloSecao from '../TituloSecao.astro';
++---
++<section class="casos section">
++  <div class="container">
++    <TituloSecao label="Casos reais" titulo="Tratamentos feitos pela Dra. Daiane" />
++    <div class="galeria">
++      <div class="ph is-placeholder casos-ph">Raio-X do caso 1</div>
++      <div class="ph is-placeholder casos-ph">Raio-X do caso 2</div>
++      <div class="ph is-placeholder casos-ph">Raio-X do caso 3</div>
++      <div class="ph is-placeholder casos-ph">Raio-X do caso 4</div>
++      <div class="ph is-placeholder casos-ph">Raio-X do caso 5</div>
++    </div>
++  </div>
++</section>
++
++<style is:global>
++    .casos { background: var(--mauve-50); }
++    .casos .casos-ph { aspect-ratio: 1 / 1; }
++    @media (min-width: 768px) {
++      .casos .galeria .ph { aspect-ratio: 1 / 1; }
++    }
++</style>
+diff --git a/src/components/endodontia/Funciona.astro b/src/components/endodontia/Funciona.astro
+new file mode 100644
+index 0000000..4f9e8cf
+--- /dev/null
++++ b/src/components/endodontia/Funciona.astro
+@@ -0,0 +1,52 @@
++---
++// Passo a passo do tratamento de canal (bloco escuro), visão do PACIENTE.
++// Nada de fluxo B2B (indicação/formulário do dentista). Aqui é: você chega,
++// avalia, trata — geralmente numa sessão só.
++---
++<section class="funciona section">
++    <div class="container">
++      <div class="section-head">
++        <p class="eyebrow tipo-label">Como funciona</p>
++        <h2 class="tipo-titulo">Do primeiro contato até você sair sem dor</h2>
++      </div>
++      <div class="passos">
++        <div class="passo"><span class="passo-num">1</span><div><h3>Você fala comigo</h3><p>Me conta o que está sentindo pelo WhatsApp e agendamos a sua avaliação.</p></div></div>
++        <div class="passo"><span class="passo-num">2</span><div><h3>Avaliação e raio-X</h3><p>Examino o dente e confirmo se é canal, explicando cada passo com clareza.</p></div></div>
++        <div class="passo"><span class="passo-num">3</span><div><h3>Tratamento com conforto</h3><p>Anestesia bem feita e técnica moderna: o objetivo é você não sentir dor durante.</p></div></div>
++        <div class="passo"><span class="passo-num">4</span><div><h3>Geralmente em 1 sessão</h3><p>A maioria dos casos é finalizada num único atendimento, e você sai aliviada.</p></div></div>
++      </div>
++      <div class="nota-caseiro">
++        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
++        <p>Salvar o dente natural é quase sempre melhor do que extrair. O canal remove a infecção e mantém o seu próprio dente no lugar.</p>
++      </div>
++    </div>
++  </section>
++
++<style is:global>
++    /* Mesmo visual do Funciona de clareamento (bloco teal escuro). */
++    .funciona { background: var(--teal-900); }
++    .funciona .eyebrow { color: var(--mint); }
++    .funciona h2 { color: var(--white); margin: 0; }
++    .funciona .passos { display: flex; flex-direction: column; gap: var(--spacing-md); padding-top: var(--spacing-sm); }
++    .funciona .passo { display: flex; gap: var(--spacing-md); align-items: flex-start; }
++    .funciona .passo-num {
++      background: var(--teal-600); color: var(--white);
++      width: 40px; height: 40px; border-radius: var(--radius-full); flex-shrink: 0;
++      display: flex; align-items: center; justify-content: center;
++      font-weight: 600; font-size: var(--font-size-corpo-forte);
++    }
++    .funciona .passo h3 { color: var(--white); margin: 0 0 var(--spacing-xs); font-weight: 600; font-size: var(--font-size-corpo-forte); }
++    .funciona .passo p { color: var(--teal-100); margin: 0; font-weight: 600; font-size: var(--font-size-label); line-height: 1.3; }
++    .funciona .nota-caseiro {
++      display: flex; gap: var(--spacing-lg); align-items: center;
++      background: var(--teal-800); border-radius: var(--radius-md);
++      padding: var(--spacing-lg); margin-top: var(--spacing-lg);
++    }
++    .funciona .nota-caseiro svg { width: 20px; height: 20px; flex-shrink: 0; stroke: var(--white); fill: none; stroke-width: 2; }
++    .funciona .nota-caseiro p { color: var(--white); margin: 0; font-weight: 600; font-size: var(--font-size-corpo-forte); line-height: 1.5; }
++    @media (min-width: 768px) {
++      .funciona .passos { flex-direction: row; gap: var(--spacing-md); }
++      .funciona .passo { flex: 1; }
++      .funciona .nota-caseiro { max-width: 612px; }
++    }
++</style>
+diff --git a/src/components/endodontia/Hero.astro b/src/components/endodontia/Hero.astro
+new file mode 100644
+index 0000000..7909384
+--- /dev/null
++++ b/src/components/endodontia/Hero.astro
+@@ -0,0 +1,50 @@
++---
++// Hero da landing de endodontia (paciente final).
++// Ângulo: dor/aflição → resolvo a dor e salvo o dente. Sem promessa de 24h.
++// Espelha a estrutura do Hero de clareamento (2 colunas no desktop).
++import BotaoWhatsApp from '../BotaoWhatsApp.astro';
++---
++<header class="hero-endo hero section">
++  <div class="container hero-inner">
++    <div class="hero-col">
++      <div class="hero-title-block">
++        <span class="hero-badge tipo-label">
++          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--estrela)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
++          100% de avaliações 5 estrelas no Google
++        </span>
++        <h1 class="tipo-display">Dor de dente forte? O tratamento de canal tira a dor e salva o seu dente.</h1>
++      </div>
++      <p class="lead tipo-subtitulo">Endodontia com técnica moderna e anestesia bem feita — pra você resolver a dor sem perder o dente.</p>
++
++      <div class="hero-selos">
++        <p class="lead tipo-corpo">Atendimento humanizado, na Barra Funda. A Dra. Daiane avalia o seu caso, explica cada passo e conduz o tratamento com foco no seu conforto — a maioria dos casos é resolvida em uma única sessão.</p>
++        <BotaoWhatsApp texto="Conversar agora" mensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." posicao="hero" />
++      </div>
++    </div>
++    <div class="ph hero-img"><img src="/assets/images/Dra-Daiane-Carvalho.jpg" alt="Dra. Daiane Carvalho, endodontista"></div>
++  </div>
++</header>
++
++<style is:global>
++    /* Reusa quase tudo de .hero (clareamento). Só ajustes pontuais aqui. */
++    .hero-endo .hero-title-block { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
++    .hero-endo .hero-badge {
++      display: inline-flex; align-self: flex-start; width: auto; align-items: center; gap: var(--spacing-xs);
++      background: var(--teal-50); color: var(--teal-800);
++      padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full); margin: 0;
++    }
++    .hero-endo.hero { background: var(--superficie-card); }
++    .hero-endo.hero.section { padding-bottom: 0; }
++    .hero-endo .hero-inner { padding-top: var(--spacing-2xl); }
++    .hero-endo .hero-col { display: flex; flex-direction: column; gap: var(--spacing-sm); }
++    .hero-endo h1 { color: var(--texto-titulo); margin: 0; }
++    .hero-endo .lead { color: var(--texto-suave); margin: 0; }
++    .hero-endo .hero-img { aspect-ratio: 382 / 504; width: 100%; border-radius: 0; }
++    .hero-endo .hero-selos { display: none; }
++    @media (min-width: 768px) {
++      .hero-endo .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
++      .hero-endo .hero-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
++      .hero-endo .hero-selos { display: flex; flex-direction: column; gap: var(--spacing-md); }
++      .hero-endo .btn-whatsapp { width: 350px; max-width: 100%; }
++    }
++</style>
+diff --git a/src/components/endodontia/Sinais.astro b/src/components/endodontia/Sinais.astro
+new file mode 100644
+index 0000000..1222ac4
+--- /dev/null
++++ b/src/components/endodontia/Sinais.astro
+@@ -0,0 +1,54 @@
++---
++// Seção educativa leve: "quando pode ser canal".
++// Reusa o padrão de cards do Incluso (clareamento). Ícones simples (stroke),
++// sem depender de assets. Objetivo: paciente se reconhecer num sintoma e falar
++// no WhatsApp — não é diagnóstico, é reconhecimento.
++import TituloSecao from '../TituloSecao.astro';
++---
++<section class="sinais section">
++  <div class="container">
++    <TituloSecao
++      label="Quando pode ser canal"
++      titulo="Reconhece algum destes sinais?"
++      subtitulo="Não é um diagnóstico — só a avaliação confirma. Mas se algum destes te soa familiar, vale conversar."
++    />
++    <div class="cards sinais-cards">
++      <article class="card">
++        <span class="sinal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
++        <h3 class="tipo-subtitulo">Dor forte ou latejante</h3>
++        <p class="tipo-corpo">Aquela dor que pulsa, que aparece sozinha e às vezes piora à noite ou ao deitar.</p>
++      </article>
++      <article class="card">
++        <span class="sinal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2s5 5 5 10a5 5 0 0 1-10 0c0-5 5-10 5-10z"/></svg></span>
++        <h3 class="tipo-subtitulo">Sensibilidade que não passa</h3>
++        <p class="tipo-corpo">Dói com o quente ou o gelado e a dor demora a ir embora, mesmo depois de tirar o estímulo.</p>
++      </article>
++      <article class="card">
++        <span class="sinal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></span>
++        <h3 class="tipo-subtitulo">Dente escurecido</h3>
++        <p class="tipo-corpo">Um dente que mudou de cor e ficou mais acinzentado ou escuro que os vizinhos.</p>
++      </article>
++      <article class="card">
++        <span class="sinal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-4.35-9-8.5C1.5 10 2 6.5 5 5.5c2-.7 3.5.5 4.5 1.8C10.5 6 12 4.8 14 5.5c3 1 3.5 4.5 2 7-3 4.15-4 8.5-4 8.5z"/></svg></span>
++        <h3 class="tipo-subtitulo">Inchaço ou "bolinha" na gengiva</h3>
++        <p class="tipo-corpo">Um inchaço na gengiva perto do dente, às vezes com um carocinho que aparece e some.</p>
++      </article>
++    </div>
++    <p class="sinais-nota tipo-corpo">Sente algo parecido? Me manda uma mensagem contando o que está acontecendo — a gente avalia com calma.</p>
++  </div>
++</section>
++
++<style is:global>
++    .sinais { background: var(--superficie-pagina); }
++    .sinais-cards .card { align-items: flex-start; }
++    .sinal-ico {
++      width: 44px; height: 44px; color: var(--teal-600); flex-shrink: 0;
++      display: flex; align-items: center; justify-content: center;
++    }
++    .sinal-ico svg { width: 28px; height: 28px; stroke: var(--teal-600); }
++    .sinais-nota { color: var(--texto-suave); text-align: center; margin: var(--spacing-lg) 0 0; }
++    @media (min-width: 768px) {
++      .sinais-cards { flex-wrap: wrap; }
++      .sinais-cards .card { flex: 1 1 calc(50% - var(--spacing-md)); }
++    }
++</style>
+diff --git a/src/pages/endodontia/index.astro b/src/pages/endodontia/index.astro
+index 1c456a8..ea614c4 100644
+--- a/src/pages/endodontia/index.astro
++++ b/src/pages/endodontia/index.astro
+@@ -1,32 +1,61 @@
+ ---
+ import Layout from '../../layouts/Layout.astro';
+-import BotaoWhatsApp from '../../components/BotaoWhatsApp.astro';
++import '../../styles/base.css';
++
++import Hero from '../../components/endodontia/Hero.astro';
++import Sinais from '../../components/endodontia/Sinais.astro';
++import CardDestaque from '../../components/CardDestaque.astro';
++import Funciona from '../../components/endodontia/Funciona.astro';
++import Casos from '../../components/endodontia/Casos.astro';
++import Dra from '../../components/Dra.astro';
++import Depoimentos from '../../components/Depoimentos.astro';
++import Espaco from '../../components/Espaco.astro';
++import FAQ from '../../components/FAQ.astro';
++import Rodape from '../../components/Rodape.astro';
++import BarraFixa from '../../components/BarraFixa.astro';
++
++const faqItens = [
++  { q: 'O tratamento de canal dói?', a: 'A ideia de que canal dói ficou no passado. Com anestesia bem feita e técnica moderna, o objetivo é você não sentir dor durante o procedimento. Na verdade, o canal costuma <strong>acabar</strong> com a dor que te trouxe até aqui.' },
++  { q: 'Quantas sessões são necessárias?', a: 'A maioria dos casos é finalizada em uma única sessão. Alguns casos mais complexos podem precisar de uma segunda — se for o seu caso, eu explico o porquê antes de começar.' },
++  { q: 'Dá mesmo para salvar o dente?', a: 'Na maioria das vezes, sim. O tratamento de canal remove a infecção de dentro do dente e permite mantê-lo no lugar, evitando a extração. Salvar o dente natural é quase sempre a melhor escolha.' },
++  { q: 'Quanto tempo dura o atendimento?', a: 'Em geral, cerca de 2 horas, podendo variar conforme a complexidade do caso. Você fica sabendo do tempo estimado na sua avaliação.' },
++  { q: 'E se, ao avaliar, não der para fazer o canal?', a: 'Se ao examinar o dente for identificada alguma condição que impeça o tratamento, eu te explico com clareza quais são as alternativas antes de qualquer coisa. Você nunca fica sem entendimento do que está acontecendo.' },
++  { q: 'É seguro?', a: 'Sim. Todo o tratamento é conduzido pela Dra. Daiane, com técnica atual, materiais de qualidade e todo o cuidado com segurança e higiene.' },
++  { q: 'Como eu marco?', a: 'É só me chamar no WhatsApp contando o que está sentindo. A partir daí agendamos a sua avaliação no melhor dia para você.' },
++];
+ ---
+ <Layout
+-  title="Canal com urgência? Atendimento de endodontia em Barra Funda — Dra. Daiane Carvalho"
+-  description="Dor de dente forte ou canal urgente? Atendimento de endodontia em Barra Funda, São Paulo. Fale agora no WhatsApp."
++  title="Tratamento de canal em Barra Funda — tire a dor e salve o dente | Dra. Daiane Carvalho"
++  description="Dor de dente forte? O tratamento de canal (endodontia) tira a dor e salva o seu dente. Atendimento humanizado na Barra Funda, São Paulo. Fale no WhatsApp."
+   origem="landing_endodontia"
+ >
+-  <main class="wrap">
+-    <p class="tipo-label selo">Endodontia &middot; Barra Funda, SP</p>
+-    <h1 class="tipo-display titulo">Landing de endodontia em construção</h1>
+-    <p class="tipo-subtitulo sub">Página de urgência (F1). O conteúdo real entra depois de finalizados os assets e o rastreio.</p>
+-    <BotaoWhatsApp texto="Chamar no WhatsApp" mensagem="Olá, preciso de atendimento de urgência" posicao="principal" />
+-  </main>
++  <div class="lp">
++    <Hero />
++    <Sinais />
++    <div class="destaque-wrap section">
++      <div class="container">
++        <CardDestaque
++          cor="teal"
++          titulo="Antes de pensar em extrair, avalie o canal"
++          texto="Perder o dente muda a mordida, o sorriso e os dentes vizinhos ao longo do tempo. Na maioria dos casos, o tratamento de canal resolve a dor e mantém o seu dente natural no lugar — vale avaliar antes de partir para a extração."
++        />
++      </div>
++    </div>
++    <Funciona />
++    <Casos />
++    <Dra
++      label="Quem vai cuidar de você"
++      titulo="Dra. Daiane Carvalho"
++      texto="Cirurgiã-dentista dedicada à endodontia, com foco em tratamentos seguros, previsíveis e sem sofrimento. Acredito que técnica de excelência anda junto com um atendimento humano: explico cada etapa, respeito o seu tempo e cuido para que você se sinta acolhida do começo ao fim."
++    />
++    <Depoimentos />
++    <Espaco />
++    <FAQ itens={faqItens} />
++    <Rodape titulo="Vamos resolver essa dor" ctaTexto="Falar com a Dra. Daiane" ctaMensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." />
++  </div>
++  <BarraFixa texto="Falar agora" mensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." />
+ </Layout>
+ 
+ <style is:global>
+-    .wrap {
+-      min-height: 100vh;
+-      display: flex;
+-      flex-direction: column;
+-      align-items: center;
+-      justify-content: center;
+-      text-align: center;
+-      padding: 32px 24px;
+-      gap: 24px;
+-    }
+-    .selo { color: var(--marca-acento); }
+-    .titulo { color: var(--texto-titulo); max-width: 18ch; }
+-    .sub { color: var(--texto-suave); max-width: 42ch; }
++    .destaque-wrap { background: var(--superficie-pagina); }
+ </style>
