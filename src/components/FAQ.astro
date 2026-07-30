@@ -8,13 +8,11 @@ interface Props {
   eyebrow?: string;
 }
 const { itens, titulo = 'Tudo o que você quer saber', eyebrow = 'Perguntas frequentes' } = Astro.props;
+import TituloSecao from './TituloSecao.astro';
 ---
 <section class="faq section">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow tipo-label">{eyebrow}</p>
-      <h2 class="tipo-titulo">{titulo}</h2>
-    </div>
+    <TituloSecao label={eyebrow} titulo={titulo} />
     {itens.map((item, i) => (
       <details open={i === 0}>
         <summary>{item.q}</summary>

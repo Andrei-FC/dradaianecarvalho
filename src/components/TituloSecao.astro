@@ -1,0 +1,23 @@
+---
+// Título de Seção (Figma: "Título de Seção").
+// Bloco reusável de cabeçalho: eyebrow + título + subtítulo opcional.
+// As variantes Mobile/Desktop do Figma colapsam aqui numa só (fonte responsiva via tokens).
+interface Props {
+  label: string;
+  titulo: string;
+  subtitulo?: string;
+  /** centraliza o bloco (usado em Espaço/Consultório) */
+  centralizado?: boolean;
+  class?: string;
+}
+const { label, titulo, subtitulo, centralizado = false, class: extra = '' } = Astro.props;
+---
+<div class:list={['section-head', { 'section-head--centro': centralizado }, extra]}>
+  <p class="eyebrow tipo-label">{label}</p>
+  <h2 class="tipo-titulo">{titulo}</h2>
+  {subtitulo && <p class="tipo-corpo">{subtitulo}</p>}
+</div>
+
+<style is:global>
+    .section-head--centro { text-align: center; display: flex; flex-direction: column; align-items: center; }
+</style>

@@ -1,0 +1,32 @@
+---
+// Seção · Espaço (Figma: "Seção · Espaço"). Antes chamado "Consultório".
+// Galeria do espaço físico. Título centralizado por prop.
+import TituloSecao from './TituloSecao.astro';
+interface Props {
+  label?: string;
+  titulo?: string;
+  subtitulo?: string;
+}
+const {
+  label = 'Conheça o espaço',
+  titulo = 'Um consultório pensado para o seu conforto',
+  subtitulo = 'Ambiente acolhedor, equipamentos modernos e todo o cuidado com segurança e higiene, na Barra Funda.',
+} = Astro.props;
+---
+<section class="espaco section">
+    <div class="container">
+      <TituloSecao label={label} titulo={titulo} subtitulo={subtitulo} centralizado />
+      <div class="galeria">
+        <div class="ph"><img src="/assets/images/Consultorio-Dental1.jpg" alt="Consultório"></div>
+        <div class="ph"><img src="/assets/images/Consultorio-Dental2.jpg" alt="Corredor do consultório"></div>
+        <div class="ph"><img src="/assets/images/Consultorio-Dental3.jpg" alt="Sala de atendimento"></div>
+      </div>
+    </div>
+  </section>
+
+<style is:global>
+    .espaco { background: var(--superficie-card); }
+    @media (min-width: 768px) {
+      .espaco .galeria .ph img { height: 100%; object-fit: cover; }
+    }
+</style>

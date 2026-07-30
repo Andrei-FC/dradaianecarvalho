@@ -1,13 +1,16 @@
 ---
-// Galeria de resultados (fotos antes/depois). Fotos ficam na página
-// porque variam por serviço; a moldura e o layout são padrão.
+// Seção · Resultados (Figma: "Seção · Resultados").
+// Galeria de fotos antes/depois. Título por prop; imagens variam por serviço.
+import TituloSecao from './TituloSecao.astro';
+interface Props {
+  label?: string;
+  titulo?: string;
+}
+const { label = 'Resultados reais', titulo = 'Sorrisos que falam por si' } = Astro.props;
 ---
 <section class="resultados section">
     <div class="container">
-      <div class="section-head">
-        <p class="eyebrow tipo-label">Resultados reais</p>
-        <h2 class="tipo-titulo">Sorrisos que falam por si</h2>
-      </div>
+      <TituloSecao label={label} titulo={titulo} />
       <div class="galeria">
         <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental1.jpg" alt="Resultado de clareamento dental"></div>
         <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental2.jpg" alt="Resultado de clareamento dental"></div>

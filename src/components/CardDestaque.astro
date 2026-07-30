@@ -1,0 +1,35 @@
+---
+// Card Destaque (Figma: "Card Destaque", variante Cor=Teal|Mauve).
+// Card de respiro para destacar um diferencial. A cor é prop.
+//
+// USO DA VARIANTE DE COR (espelha a property "Cor" do Figma):
+//   cor="mauve" → usado na landing /clareamento (protocolo dessensibilizante).
+//   cor="teal"  → reservado para /endodontia e demais páginas de perfil
+//                 clínico/urgência (teal = cor primária da marca). Ainda não
+//                 há página usando; quando a landing de endodontia entrar,
+//                 é só passar cor="teal".
+interface Props {
+  titulo: string;
+  texto: string;
+  /** variante de cor — espelha a property "Cor" do Figma */
+  cor?: 'teal' | 'mauve';
+}
+const { titulo, texto, cor = 'mauve' } = Astro.props;
+---
+<div class:list={['card-destaque', `card-destaque--${cor}`]}>
+  <h2 class="tipo-subtitulo">{titulo}</h2>
+  <p class="tipo-corpo">{texto}</p>
+</div>
+
+<style is:global>
+    .card-destaque {
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl); max-width: 800px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: var(--spacing-sm);
+    }
+    .card-destaque p { color: var(--texto-suave); margin: 0; }
+    .card-destaque--mauve { background: var(--mauve-50); }
+    .card-destaque--mauve h2 { color: var(--mauve-800); margin: 0; }
+    .card-destaque--teal { background: var(--teal-50); }
+    .card-destaque--teal h2 { color: var(--teal-800); margin: 0; }
+</style>

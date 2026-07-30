@@ -1,22 +1,18 @@
 ---
-// Card destaque do protocolo dessensibilizante.
+// Wrapper de seção do card destaque na landing de clareamento.
+// Usa o CardDestaque compartilhado (cor mauve). Conteúdo fixo desta landing.
+import CardDestaque from '../CardDestaque.astro';
 ---
 <section class="destaque section">
-    <div class="container">
-      <div class="card-destaque">
-        <h2 class="tipo-subtitulo">Protocolo dessensibilizante para o seu conforto</h2>
-        <p class="tipo-corpo">Um dos maiores receios de quem quer clarear é a sensibilidade. Por isso, o clareamento aqui inclui um protocolo dessensibilizante aplicado durante as sessões — reduzindo o desconforto e deixando a experiência muito mais tranquila, do começo ao fim.</p>
-      </div>
-    </div>
-  </section>
+  <div class="container">
+    <CardDestaque
+      cor="mauve"
+      titulo="Protocolo dessensibilizante para o seu conforto"
+      texto="Um dos maiores receios de quem quer clarear é a sensibilidade. Por isso, o clareamento aqui inclui um protocolo dessensibilizante aplicado durante as sessões — reduzindo o desconforto e deixando a experiência muito mais tranquila, do começo ao fim."
+    />
+  </div>
+</section>
 
 <style is:global>
     .destaque { background: var(--superficie-pagina); padding-top: 0; }
-    .card-destaque {
-      background: var(--mauve-50); border-radius: var(--radius-lg);
-      padding: var(--spacing-xl); max-width: 800px; margin: 0 auto;
-      display: flex; flex-direction: column; gap: var(--spacing-sm);
-    }
-    .card-destaque h2 { color: var(--mauve-800); margin: 0; }
-    .card-destaque p { color: var(--texto-suave); margin: 0; }
 </style>

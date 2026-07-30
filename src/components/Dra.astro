@@ -2,14 +2,12 @@
 // Seção "Quem cuida do seu sorriso" — Dra. Daiane + link do Instagram.
 // O link do Instagram vem do clinica.json.
 import clinica from '../data/clinica.json';
+import TituloSecao from './TituloSecao.astro';
 ---
 <section class="dra section">
     <div class="container dra-inner">
       <div>
-        <div class="section-head">
-          <p class="eyebrow tipo-label">Quem cuida do seu sorriso</p>
-          <h2 class="tipo-titulo">Dra. Daiane Carvalho</h2>
-        </div>
+        <TituloSecao label="Quem cuida do seu sorriso" titulo="Dra. Daiane Carvalho" />
         <p class="lead tipo-corpo">Cirurgiã-dentista apaixonada por transformar sorrisos e cuidar de pessoas com acolhimento e atenção. Atuo com foco em clareamento e estética do sorriso, com tratamentos modernos, confortáveis e resultados naturais.</p>
         <a class="btn-link" href={clinica.instagram} target="_blank" rel="noopener">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

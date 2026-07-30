@@ -3,6 +3,7 @@
 // Título e texto/mensagem do CTA variam por página → props.
 import clinica from '../data/clinica.json';
 import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import TituloSecao from './TituloSecao.astro';
 
 interface Props {
   eyebrow?: string;
@@ -15,10 +16,7 @@ const { eyebrow = 'Onde estamos', titulo, ctaTexto, ctaMensagem } = Astro.props;
 <footer class="rodape section">
   <div class="container rodape-inner">
     <div class="rodape-col">
-      <div class="section-head rodape-head">
-        <p class="eyebrow tipo-label">{eyebrow}</p>
-        <h2 class="tipo-titulo">{titulo}</h2>
-      </div>
+      <TituloSecao label={eyebrow} titulo={titulo} class="rodape-head" />
       <address class="tipo-corpo rodape-address">{clinica.endereco}</address>
       <BotaoWhatsApp texto={ctaTexto} mensagem={ctaMensagem} posicao="rodape" class="rodape-cta" />
     </div>

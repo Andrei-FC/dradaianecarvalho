@@ -1,0 +1,44 @@
+---
+// Seção · Depoimentos (Figma: "Seção · Depoimentos").
+// Compõe TituloSecao + faixa de CardAvaliacao iterando sobre avaliacoes.json.
+import TituloSecao from './TituloSecao.astro';
+import CardAvaliacao from './CardAvaliacao.astro';
+import avaliacoes from '../data/avaliacoes.json';
+
+interface Props {
+  label?: string;
+  titulo?: string;
+}
+const { label = 'O que dizem', titulo = 'Pacientes reais, resultados reais' } = Astro.props;
+---
+<section class="avaliacoes section">
+  <div class="container">
+    <TituloSecao label={label} titulo={titulo} />
+    <div class="avaliacoes-grid">
+      {avaliacoes.map((a) => <CardAvaliacao nome={a.nome} depoimento={a.texto} />)}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+    .avaliacoes { background: var(--superficie-respiro); }
+    .avaliacoes-grid {
+      display: flex; gap: var(--spacing-lg);
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      margin-left: calc(-1 * var(--spacing-xl)); margin-right: calc(-1 * var(--spacing-xl));
+      padding-left: var(--spacing-xl); padding-right: var(--spacing-xl);
+      scroll-padding-left: var(--spacing-xl);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .avaliacoes-grid::-webkit-scrollbar { display: none; }
+    @media (min-width: 768px) {
+      .avaliacoes-grid {
+        flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start;
+        margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
+        padding-left: max(var(--spacing-xl), calc(50vw - 600px + var(--spacing-xl)));
+        padding-right: max(var(--spacing-xl), calc(50vw - 600px + var(--spacing-xl)));
+        scroll-padding-left: max(var(--spacing-xl), calc(50vw - 600px + var(--spacing-xl)));
+      }
+    }
+</style>
