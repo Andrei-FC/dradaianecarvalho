@@ -1,31 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import clinica from '../data/clinica.json';
+import '../styles/base.css';
+
+import Hero from '../components/home/Hero.astro';
+import Especialidades from '../components/home/Especialidades.astro';
+import Dra from '../components/Dra.astro';
+import Depoimentos from '../components/Depoimentos.astro';
+import Espaco from '../components/Espaco.astro';
+import Rodape from '../components/Rodape.astro';
+import BarraFixa from '../components/BarraFixa.astro';
 ---
 <Layout
-  title="Dra. Daiane Carvalho — Endodontia e Clareamento | São Paulo"
-  description="Consultório da Dra. Daiane Carvalho em Barra Funda, São Paulo. Endodontia, clareamento e clínica geral."
+  title="Dra. Daiane Carvalho — Consultório odontológico na Barra Funda, SP"
+  description="Consultório da Dra. Daiane Carvalho na Barra Funda, São Paulo: clínica geral, endodontia, clareamento e estética do sorriso. 31 avaliações 5 estrelas. Fale no WhatsApp."
   origem="home"
 >
-  <main class="wrap">
-    <p class="tipo-label selo">Consultório odontológico &middot; {clinica.bairro}</p>
-    <h1 class="tipo-display titulo">{clinica.nome}</h1>
-    <p class="tipo-subtitulo sub">Nosso site está sendo atualizado. Em breve, novidades por aqui.</p>
-  </main>
+  <div class="lp">
+    <Hero />
+    <Especialidades />
+    <Dra />
+    <Depoimentos titulo="O que dizem os nossos pacientes" />
+    <Espaco />
+    <Rodape
+      titulo="Fale com o consultório"
+      ctaTexto="Falar no WhatsApp"
+      ctaMensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane."
+    />
+  </div>
+  <BarraFixa texto="Falar no WhatsApp" mensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane." />
 </Layout>
-
-<style is:global>
-    .wrap {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 32px 24px;
-      gap: 20px;
-    }
-    .selo { color: var(--marca-acento); }
-    .titulo { color: var(--texto-titulo); max-width: 16ch; }
-    .sub { color: var(--texto-suave); max-width: 40ch; }
-</style>

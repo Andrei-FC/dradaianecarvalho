@@ -1,0 +1,83 @@
+---
+// Seção de especialidades da HOME.
+// Menção às 4 áreas. Endodontia e clareamento têm landing dedicada (link);
+// clínica geral e botox são SÓ MENÇÃO, sem Ads e sem landing (ver PROJETO §2.5).
+// Cards com link recebem a classe .esp-card--link e uma seta.
+import TituloSecao from '../TituloSecao.astro';
+
+const especialidades = [
+  {
+    titulo: 'Clínica geral',
+    texto: 'Limpeza, restaurações e o cuidado de rotina para manter a saúde da sua boca em dia.',
+    href: null,
+  },
+  {
+    titulo: 'Endodontia',
+    texto: 'Tratamento de canal com foco em resolver a dor e preservar o seu dente.',
+    href: '/endodontia',
+  },
+  {
+    titulo: 'Clareamento',
+    texto: 'Sessões até o seu branco máximo, com limpeza profunda e clareamento caseiro inclusos.',
+    href: '/clareamento',
+  },
+  {
+    titulo: 'Estética do sorriso',
+    texto: 'Procedimentos para harmonizar e valorizar o seu sorriso, com resultados naturais.',
+    href: null,
+  },
+];
+---
+<section class="especialidades section">
+  <div class="container">
+    <TituloSecao
+      label="O que oferecemos"
+      titulo="Tudo o que o seu sorriso precisa, em um só lugar"
+      subtitulo="Da rotina aos tratamentos especializados, com atendimento próximo e humano."
+    />
+    <div class="esp-grid">
+      {especialidades.map((e) => {
+        const inner = (
+          <>
+            <h3 class="tipo-subtitulo">{e.titulo}</h3>
+            <p class="tipo-corpo">{e.texto}</p>
+            {e.href && (
+              <span class="esp-link">
+                Ver mais
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            )}
+          </>
+        );
+        return e.href
+          ? <a class="esp-card esp-card--link" href={e.href}>{inner}</a>
+          : <article class="esp-card">{inner}</article>;
+      })}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+    .especialidades { background: var(--superficie-pagina); }
+    .esp-grid { display: flex; flex-direction: column; gap: var(--spacing-md); padding-top: var(--spacing-md); }
+    .esp-card {
+      background: var(--superficie-card); border: 1px solid var(--borda-sutil);
+      border-radius: var(--radius-lg); padding: var(--spacing-xl);
+      display: flex; flex-direction: column; gap: var(--spacing-sm);
+    }
+    .esp-card h3 { color: var(--texto-titulo); margin: 0; }
+    .esp-card p { color: var(--texto-suave); margin: 0; }
+    .esp-card--link { text-decoration: none; transition: border-color 0.18s ease, transform 0.18s ease; }
+    .esp-card--link:hover { border-color: var(--marca-primaria); transform: translateY(-2px); }
+    .esp-card--link:focus-visible { outline: 3px solid var(--marca-primaria-escura); outline-offset: 2px; }
+    .esp-link {
+      display: inline-flex; align-items: center; gap: var(--spacing-xs);
+      color: var(--marca-primaria); font-weight: 800; font-size: 16px;
+      margin-top: var(--spacing-xs);
+    }
+    .esp-link svg { flex-shrink: 0; }
+    @media (min-width: 768px) {
+      .esp-grid { flex-direction: row; flex-wrap: wrap; }
+      .esp-card { flex: 1 1 calc(50% - var(--spacing-md)); }
+    }
+</style>
