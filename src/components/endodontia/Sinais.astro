@@ -1,42 +1,38 @@
 ---
-// Seção educativa leve: "quando pode ser canal".
-// Compõe o átomo CardIcone (mesmo card do Incluso). Sem badge; grid 2x2 no desktop.
-// Não é diagnóstico — é reconhecimento, pra o paciente se identificar e falar no WhatsApp.
+// Seção "É canal?" (Figma: bloco "Incluso" reaproveitado como sinais).
+// 4 Card Serviço (via átomo CardIcone). Educação leve: reconhecer sintoma → falar no zap.
+// ÍCONE = PLACEHOLDER: um mesmo ícone dental repetido nos 4, deixando claro que falta trocar.
 import TituloSecao from '../TituloSecao.astro';
 import CardIcone from '../CardIcone.astro';
+
+// Ícone placeholder único (dental) — repetido nos 4 cards. 2ª rodada troca por ícones reais.
+const sinais = [
+  { titulo: 'Dor forte ou latejante', texto: 'Aquela dor que pulsa, que aparece sozinha e às vezes piora à noite ou ao deitar.' },
+  { titulo: 'Sensibilidade que não passa', texto: 'Dói com o quente ou o gelado e a dor demora a ir embora, mesmo depois de tirar o estímulo.' },
+  { titulo: 'Dente escurecido', texto: 'Um dente que mudou de cor e ficou mais acinzentado ou escuro que os vizinhos.' },
+  { titulo: 'Inchaço ou "bolinha" na gengiva', texto: 'Um inchaço na gengiva perto do dente, às vezes com um carocinho que aparece e some.' },
+];
 ---
 <section class="sinais section">
   <div class="container">
     <TituloSecao
-      label="Quando pode ser canal"
+      label="É canal?"
       titulo="Reconhece algum destes sinais?"
-      subtitulo="Não é um diagnóstico — só a avaliação confirma. Mas se algum destes te soa familiar, vale conversar."
+      subtitulo="Se você marcou algum destes, provavelmente é caso de avaliar o canal. Me chama que eu te oriento."
     />
     <div class="cards sinais-cards">
-      <CardIcone titulo="Dor forte ou latejante" texto="Aquela dor que pulsa, que aparece sozinha e às vezes piora à noite ou ao deitar.">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </CardIcone>
-      <CardIcone titulo="Sensibilidade que não passa" texto="Dói com o quente ou o gelado e a dor demora a ir embora, mesmo depois de tirar o estímulo.">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2s5 5 5 10a5 5 0 0 1-10 0c0-5 5-10 5-10z"/></svg>
-      </CardIcone>
-      <CardIcone titulo="Dente escurecido" texto="Um dente que mudou de cor e ficou mais acinzentado ou escuro que os vizinhos.">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
-      </CardIcone>
-      <CardIcone titulo={'Inchaço ou "bolinha" na gengiva'} texto="Um inchaço na gengiva perto do dente, às vezes com um carocinho que aparece e some.">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-4.35-9-8.5C1.5 10 2 6.5 5 5.5c2-.7 3.5.5 4.5 1.8C10.5 6 12 4.8 14 5.5c3 1 3.5 4.5 2 7-3 4.15-4 8.5-4 8.5z"/></svg>
-      </CardIcone>
+      {sinais.map((s) => (
+        <CardIcone titulo={s.titulo} texto={s.texto}>
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-placeholder="icone"><path d="M12 5.5c-1.5-2-4-2.5-5.5-1.5C4.5 5.5 4 8.5 5 12c.6 2 1 4 1.5 5.5.4 1.2 1.6 1.5 2.2.4.5-1 .8-2.4 1.3-2.4s.8 1.4 1.3 2.4c.6 1.1 1.8.8 2.2-.4C14 15.5 14.4 14 15 12c1-3.5.5-6.5-1.5-8-1.5-1-4-.5-5.5 1.5"/></svg>
+        </CardIcone>
+      ))}
     </div>
-    <p class="sinais-nota tipo-corpo">Sente algo parecido? Me manda uma mensagem contando o que está acontecendo — a gente avalia com calma.</p>
   </div>
 </section>
 
 <style is:global>
-    .sinais { background: var(--superficie-pagina); }
-    /* ícones de Sinais são stroke, menores que os 44px preenchidos do Incluso */
-    .sinais .card-ico svg { width: 28px; height: 28px; }
-    .sinais-nota { color: var(--texto-suave); text-align: center; margin: var(--spacing-lg) 0 0; }
+    .sinais { background: var(--superficie-card); }
     @media (min-width: 768px) {
-      .sinais-cards { flex-wrap: wrap; }
-      .sinais-cards .card { flex-basis: calc(50% - var(--spacing-md)); }
+      .sinais-cards { flex-wrap: nowrap; }
     }
 </style>

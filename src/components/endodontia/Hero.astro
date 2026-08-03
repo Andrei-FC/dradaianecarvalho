@@ -1,10 +1,11 @@
 ---
-// Hero da landing de endodontia (paciente final).
-// Ângulo: dor/aflição → resolvo a dor e salvo o dente. Sem promessa de 24h.
-// Espelha a estrutura do Hero de clareamento (2 colunas no desktop).
+// Hero da landing de endodontia (paciente final). Ângulo: dor → tira a dor e salva o dente.
+// Espelha a estrutura do Hero de clareamento: reusa as classes .hero/.hero-selos
+// (definidas aqui uma vez) e a faixa de selos no desktop; no mobile a faixa vai em SelosBanda.
+import Selos from './Selos.astro';
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
 ---
-<header class="hero-endo hero section">
+<header class="hero section">
   <div class="container hero-inner">
     <div class="hero-col">
       <div class="hero-title-block">
@@ -12,39 +13,42 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
           <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--estrela)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           100% de avaliações 5 estrelas no Google
         </span>
-        <h1 class="tipo-display">Dor de dente forte? O tratamento de canal tira a dor e salva o seu dente.</h1>
+        <h1 class="tipo-display">Dor de dente forte? O canal tira a dor e salva o seu dente</h1>
       </div>
-      <p class="lead tipo-subtitulo">Endodontia com técnica moderna e anestesia bem feita — pra você resolver a dor sem perder o dente.</p>
+      <p class="lead tipo-subtitulo">Endodontia com técnica moderna e anestesia bem feita — pra resolver a dor sem perder o dente.</p>
 
       <div class="hero-selos">
         <p class="lead tipo-corpo">Atendimento humanizado, na Barra Funda. A Dra. Daiane avalia o seu caso, explica cada passo e conduz o tratamento com foco no seu conforto — a maioria dos casos é resolvida em uma única sessão.</p>
         <BotaoWhatsApp texto="Conversar agora" mensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." posicao="hero" />
+        <Selos />
       </div>
     </div>
-    <div class="ph hero-img"><img src="/assets/images/Dra-Daiane-Carvalho.jpg" alt="Dra. Daiane Carvalho, endodontista"></div>
+    <div class="ph hero-img" data-placeholder="foto-hero"><img src="/assets/images/Dra-daiane-carvalho-clareamento.jpg" alt="Dra. Daiane Carvalho"></div>
   </div>
 </header>
 
 <style is:global>
-    /* Reusa quase tudo de .hero (clareamento). Só ajustes pontuais aqui. */
-    .hero-endo .hero-title-block { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
-    .hero-endo .hero-badge {
+    .hero { background: var(--superficie-card); }
+    .hero.section { padding-bottom: 0; }
+    .hero-inner { padding-top: var(--spacing-2xl); }
+    .hero-badge {
       display: inline-flex; align-self: flex-start; width: auto; align-items: center; gap: var(--spacing-xs);
       background: var(--teal-50); color: var(--teal-800);
-      padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full); margin: 0;
+      padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full);
+      margin: 0;
     }
-    .hero-endo.hero { background: var(--superficie-card); }
-    .hero-endo.hero.section { padding-bottom: 0; }
-    .hero-endo .hero-inner { padding-top: var(--spacing-2xl); }
-    .hero-endo .hero-col { display: flex; flex-direction: column; gap: var(--spacing-sm); }
-    .hero-endo h1 { color: var(--texto-titulo); margin: 0; }
-    .hero-endo .lead { color: var(--texto-suave); margin: 0; }
-    .hero-endo .hero-img { aspect-ratio: 382 / 504; width: 100%; border-radius: 0; }
-    .hero-endo .hero-selos { display: none; }
+    .hero-title-block { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
+    .hero-col { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+    .hero h1 { color: var(--texto-titulo); margin: 0; }
+    .hero .lead { color: var(--texto-suave); margin: 0; }
+    .hero-img { aspect-ratio: 1856 / 2290; width: 100%; border-radius: 0; }
+    .hero-selos { display: none; }
     @media (min-width: 768px) {
-      .hero-endo .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
-      .hero-endo .hero-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
-      .hero-endo .hero-selos { display: flex; flex-direction: column; gap: var(--spacing-md); }
-      .hero-endo .btn-whatsapp { width: 350px; max-width: 100%; }
+      .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
+      .hero-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
+      .hero .lead { margin: 0; }
+      .hero-selos { display: flex; flex-direction: column; gap: var(--spacing-md); }
+      .hero-selos .selo-grid { grid-template-columns: 1fr 1fr; }
+      .hero .btn-whatsapp { width: 350px; max-width: 100%; }
     }
 </style>
