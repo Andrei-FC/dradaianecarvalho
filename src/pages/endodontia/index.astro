@@ -8,7 +8,6 @@ import Sinais from '../../components/endodontia/Sinais.astro';
 import CardDestaque from '../../components/CardDestaque.astro';
 import Video from '../../components/endodontia/Video.astro';
 import Funciona from '../../components/endodontia/Funciona.astro';
-import Resultados from '../../components/Resultados.astro';
 import Dra from '../../components/Dra.astro';
 import Depoimentos from '../../components/Depoimentos.astro';
 import Espaco from '../../components/Espaco.astro';
@@ -18,9 +17,9 @@ import BarraFixa from '../../components/BarraFixa.astro';
 
 const faqItens = [
   { q: 'O tratamento de canal dói?', a: 'A ideia de que canal dói ficou no passado. Com anestesia bem feita e técnica moderna, o objetivo é você não sentir dor durante o procedimento. Na verdade, o canal costuma <strong>acabar</strong> com a dor que te trouxe até aqui.' },
-  { q: 'Quantas sessões são necessárias?', a: 'A maioria dos casos é finalizada em uma única sessão. Alguns casos mais complexos podem precisar de uma segunda — se for o seu caso, eu explico o porquê antes de começar.' },
+  { q: 'Quantas sessões são necessárias?', a: 'A maioria dos casos é finalizada em uma única sessão. Alguns casos mais complexos podem precisar de uma segunda. Se for o seu caso, eu explico o porquê antes de começar.' },
   { q: 'Dá mesmo para salvar o dente?', a: 'Na maioria das vezes, sim. O tratamento de canal remove a infecção de dentro do dente e permite mantê-lo no lugar, evitando a extração. Salvar o dente natural é quase sempre a melhor escolha.' },
-  { q: 'Quanto tempo dura o atendimento?', a: 'Em geral, cerca de 2 horas — porque é feito com calma e capricho, pra resolver bem de uma vez. Você fica sabendo do tempo estimado do seu caso na avaliação.' },
+  { q: 'Quanto tempo dura o atendimento?', a: 'Em geral, cerca de 2 horas, porque é feito com calma e capricho, pra resolver bem de uma vez. Você fica sabendo do tempo estimado do seu caso na avaliação.' },
   { q: 'E se, ao avaliar, não der para fazer o canal?', a: 'Se ao examinar o dente for identificada alguma condição que impeça o tratamento, eu te explico com clareza quais são as alternativas antes de qualquer coisa. Você nunca fica sem entendimento do que está acontecendo.' },
   { q: 'É seguro?', a: 'Sim. Todo o tratamento é conduzido pela Dra. Daiane, com técnica atual, materiais de qualidade e todo o cuidado com segurança e higiene.' },
   { q: 'Como eu marco?', a: 'É só me chamar no WhatsApp contando o que está sentindo. A partir daí agendamos a sua avaliação no melhor dia para você.' },
@@ -28,7 +27,7 @@ const faqItens = [
 ];
 ---
 <Layout
-  title="Tratamento de canal em Barra Funda — tire a dor e salve o dente | Dra. Daiane Carvalho"
+  title="Tratamento de canal em Barra Funda: tire a dor e salve o dente | Dra. Daiane Carvalho"
   description="Dor de dente forte? O tratamento de canal (endodontia) tira a dor e salva o seu dente. Atendimento humanizado na Barra Funda, São Paulo. Fale no WhatsApp."
   origem="landing_endodontia"
 >
@@ -41,19 +40,18 @@ const faqItens = [
         <CardDestaque
           cor="mauve"
           titulo="Antes de pensar em extrair, avalie o canal"
-          texto="Perder o dente muda a mordida, o sorriso e os dentes vizinhos ao longo do tempo. Na maioria dos casos, o tratamento de canal resolve a dor e mantém o seu dente natural no lugar — vale avaliar antes de partir para a extração. A avaliação é rápida e sem compromisso."
+          texto="Perder o dente muda a mordida, o sorriso e os dentes vizinhos ao longo do tempo. Na maioria dos casos, o tratamento de canal resolve a dor e mantém o seu dente natural no lugar. Vale avaliar antes de partir para a extração. A avaliação é rápida e sem compromisso."
         />
       </div>
     </div>
     <Video />
     <Funciona />
-    <Resultados />
     <Dra
       label="Quem vai cuidar de você"
       titulo="Dra. Daiane Carvalho"
       texto="Cirurgiã-dentista dedicada à endodontia, com foco em tratamentos seguros, previsíveis e sem sofrimento. Acredito que técnica de excelência anda junto com um atendimento humano: explico cada etapa, respeito o seu tempo e cuido para que você se sinta acolhida do começo ao fim."
     />
-    <Depoimentos />
+    <Depoimentos contexto="endodontia" />
     <Espaco />
     <FAQ itens={faqItens} />
     <Rodape titulo="Vamos resolver essa dor" ctaTexto="Falar com a Dra. Daiane" ctaMensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." />

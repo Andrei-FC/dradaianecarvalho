@@ -1,32 +1,42 @@
 ---
-// Seção de especialidades da HOME.
-// Menção às 4 áreas. Endodontia e clareamento têm landing dedicada (link);
-// clínica geral e botox são SÓ MENÇÃO, sem Ads e sem landing (ver PROJETO §2.5).
-// Cards com link recebem a classe .esp-card--link e uma seta.
+// Seção de especialidades da HOME (Figma: "Incluso", frame 2604:433 desktop).
+// 4 Card Serviço em grade 2x2 no desktop, empilhados no mobile.
+// Título, texto, lista e ícone vêm VERBATIM do Figma; o link só existe
+// onde há landing dedicada (endodontia e clareamento). Clínica geral e
+// estética não têm Ads nem landing — são menção (ver PROJETO §2.5).
 import TituloSecao from '../TituloSecao.astro';
+import IconeDental from '../IconeDental.astro';
 
 const especialidades = [
   {
-    titulo: 'Clínica geral',
-    texto: 'Limpeza, restaurações e o cuidado de rotina para manter a saúde da sua boca em dia.',
+    icone: 'limpeza',
+    titulo: 'Limpeza e Prevenção',
+    texto: 'Limpeza profissional, aplicação de flúor e orientações de higiene bucal.',
+    itens: ['Profilaxia', 'Remoção de tártaro', 'Aplicação de flúor', 'Orientação de escovação'],
     href: null,
   },
   {
-    titulo: 'Endodontia',
-    texto: 'Tratamento de canal com foco em resolver a dor e preservar o seu dente.',
-    href: '/endodontia',
+    icone: 'obturacao',
+    titulo: 'Clínica Geral',
+    texto: 'Tratamentos básicos como restaurações, extrações e check-ups regulares.',
+    itens: ['Restaurações', 'Extrações', 'Check-ups', 'Diagnósticos'],
+    href: null,
   },
   {
-    titulo: 'Clareamento',
-    texto: 'Sessões até o seu branco máximo, com limpeza profunda e clareamento caseiro inclusos.',
+    icone: 'clareamento',
+    titulo: 'Estética Dental',
+    texto: 'Clareamento e tratamentos para um sorriso mais bonito.',
+    itens: ['Clareamento', 'Restaurações estéticas', 'Check-ups'],
     href: '/clareamento',
   },
   {
-    titulo: 'Estética do sorriso',
-    texto: 'Procedimentos para harmonizar e valorizar o seu sorriso, com resultados naturais.',
-    href: null,
+    icone: 'canal',
+    titulo: 'Endodontia',
+    texto: 'Tratamento de canal com tecnologia moderna e menor desconforto.',
+    itens: ['Tratamento de canal', 'Retratamento', 'Apicectomia', 'Diagnóstico pulpar'],
+    href: '/endodontia',
   },
-];
+] as const;
 ---
 <section class="especialidades section">
   <div class="container">
@@ -37,21 +47,23 @@ const especialidades = [
     />
     <div class="esp-grid">
       {especialidades.map((e) => {
-        const inner = (
-          <>
+        const Tag = e.href ? 'a' : 'article';
+        return (
+          <Tag class:list={['esp-card', e.href && 'esp-card--link']} href={e.href ?? undefined}>
+            <span class="card-ico"><IconeDental nome={e.icone} /></span>
             <h3 class="tipo-subtitulo">{e.titulo}</h3>
             <p class="tipo-corpo">{e.texto}</p>
+            <ul class="esp-itens tipo-corpo">
+              {e.itens.map((i) => <li>{i}</li>)}
+            </ul>
             {e.href && (
               <span class="esp-link">
                 Ver mais
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             )}
-          </>
+          </Tag>
         );
-        return e.href
-          ? <a class="esp-card esp-card--link" href={e.href}>{inner}</a>
-          : <article class="esp-card">{inner}</article>;
       })}
     </div>
   </div>
@@ -63,21 +75,23 @@ const especialidades = [
     .esp-card {
       background: var(--superficie-card); border: 1px solid var(--borda-sutil);
       border-radius: var(--radius-lg); padding: var(--spacing-xl);
-      display: flex; flex-direction: column; gap: var(--spacing-sm);
+      display: flex; flex-direction: column; gap: var(--spacing-md);
     }
     .esp-card h3 { color: var(--texto-titulo); margin: 0; }
     .esp-card p { color: var(--texto-suave); margin: 0; }
+    .esp-itens { color: var(--texto-suave); margin: 0; padding-left: var(--spacing-xl); }
+    .esp-itens li { margin: 0; }
     .esp-card--link { text-decoration: none; transition: border-color 0.18s ease, transform 0.18s ease; }
     .esp-card--link:hover { border-color: var(--marca-primaria); transform: translateY(-2px); }
     .esp-card--link:focus-visible { outline: 3px solid var(--marca-primaria-escura); outline-offset: 2px; }
     .esp-link {
       display: inline-flex; align-items: center; gap: var(--spacing-xs);
       color: var(--marca-primaria); font-weight: 800; font-size: 16px;
-      margin-top: var(--spacing-xs);
+      margin-top: auto;
     }
     .esp-link svg { flex-shrink: 0; }
     @media (min-width: 768px) {
       .esp-grid { flex-direction: row; flex-wrap: wrap; }
-      .esp-card { flex: 1 1 calc(50% - var(--spacing-md)); }
+      .esp-card { flex-basis: calc(50% - var(--spacing-md)); flex-grow: 1; }
     }
 </style>

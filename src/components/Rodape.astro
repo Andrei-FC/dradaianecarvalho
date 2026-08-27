@@ -20,7 +20,7 @@ const { eyebrow = 'Onde estamos', titulo, ctaTexto, ctaMensagem } = Astro.props;
       <address class="tipo-corpo rodape-address">{clinica.endereco}</address>
       <BotaoWhatsApp texto={ctaTexto} mensagem={ctaMensagem} posicao="rodape" class="rodape-cta" />
     </div>
-    <div class="ph rodape-map"><iframe src={clinica.mapaEmbed} title={`Localização — ${clinica.nome}, ${clinica.bairro}`} style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <div class="ph rodape-map"><iframe src={clinica.mapaEmbed} title={`Localização do consultório da ${clinica.nome}, ${clinica.bairro}`} style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
   </div>
 </footer>
 

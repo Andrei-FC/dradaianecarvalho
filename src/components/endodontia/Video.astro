@@ -1,7 +1,9 @@
 ---
 // Seção de vídeo (espelha "Branco Máximo" do clareamento). Ângulo: sem medo de canal.
-// VÍDEO = PLACEHOLDER: reusa o embed do clareamento até o vídeo real da Dra. ser gravado.
-// 2ª rodada troca a URL do iframe.
+// Vídeo real da Dra. (YouTube Short _9xsHXtEvO0). Por ser Short, é VERTICAL 9:16:
+// a caixa usa o modificador .video-vertical em vez da caixa quadrada do clareamento,
+// senão o vídeo entra com tarja preta nas laterais. Ver PROJETO: divergência aberta
+// contra o Figma, onde a caixa desta seção ainda é o placeholder quadrado.
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
 ---
 <section class="branco section">
@@ -11,11 +13,11 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
         <p class="eyebrow tipo-label">Sem medo de canal</p>
         <h2 class="tipo-titulo">Vai doer? Não. E geralmente resolve numa vez só.</h2>
       </div>
-      <p class="tipo-corpo branco-texto">O que dói é a infecção — não o tratamento. Com anestesia bem feita, você passa o canal sem sentir dor, e sai do consultório já sem aquela dor que te trouxe até aqui. Na maioria dos casos, tudo é resolvido numa única sessão: você chega com dor e vai embora aliviada, no mesmo dia.</p>
+      <p class="tipo-corpo branco-texto">O que dói é a infecção, não o tratamento. Com anestesia bem feita, você passa o canal sem sentir dor, e sai do consultório já sem aquela dor que te trouxe até aqui. Na maioria dos casos, tudo é resolvido numa única sessão: você chega com dor e vai embora aliviada, no mesmo dia.</p>
       <BotaoWhatsApp texto="Tirar minha dúvida" mensagem="Olá! Tenho uma dúvida sobre o tratamento de canal." posicao="video" class="branco-cta" />
     </div>
-    <div class="branco-video" data-placeholder="video">
-      <iframe src="https://www.youtube-nocookie.com/embed/5JrUhSAutXE?rel=0&amp;modestbranding=1&amp;playsinline=1" title="Tratamento de canal sem medo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+    <div class="branco-video video-vertical">
+      <iframe src="https://www.youtube-nocookie.com/embed/_9xsHXtEvO0?rel=0&amp;modestbranding=1&amp;playsinline=1" title="Tratamento de canal sem medo, com a Dra. Daiane Carvalho" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -30,6 +32,10 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
       border-radius: var(--radius-md); overflow: hidden; background: var(--teal-900);
     }
     .branco-video iframe { width: 100%; height: 100%; border: 0; display: block; }
+    /* Short é vertical: proporção 9:16 e largura limitada pra não dominar a seção. */
+    .branco-video.video-vertical { aspect-ratio: 9 / 16; max-width: 300px; margin-inline: auto; }
+    /* Short do YouTube = 9:16. Largura travada para o vertical não dominar a seção. */
+    .branco-video.video-vertical { aspect-ratio: 9 / 16; max-width: 300px; margin-inline: auto; }
     .branco .btn-whatsapp { width: 100%; }
     .branco-inner { display: flex; flex-direction: column; gap: var(--spacing-lg); }
     .branco-col { display: contents; }
@@ -45,5 +51,6 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
       .branco .branco-cta { order: 0; }
       .branco-video { order: 2; }
       .branco .btn-whatsapp { width: 335px; max-width: 100%; }
+      .branco-video.video-vertical { max-width: 340px; }
     }
 </style>

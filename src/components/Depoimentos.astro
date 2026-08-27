@@ -8,14 +8,19 @@ import avaliacoes from '../data/avaliacoes.json';
 interface Props {
   label?: string;
   titulo?: string;
+  /** filtra as avaliações pelo campo `contextos` do avaliacoes.json.
+      REGRA DURA: em /endodontia não entram avaliações que mencionem
+      clareamento/estética (coerência de contexto vale mais que quantidade). */
+  contexto: 'home' | 'endodontia' | 'clareamento';
 }
-const { label = 'O que dizem', titulo = 'Pacientes reais, resultados reais' } = Astro.props;
+const { label = 'O que dizem', titulo = 'Pacientes reais, resultados reais', contexto } = Astro.props;
+const lista = avaliacoes.filter((a) => a.contextos.includes(contexto));
 ---
 <section class="avaliacoes section">
   <div class="container">
     <TituloSecao label={label} titulo={titulo} />
     <div class="avaliacoes-grid">
-      {avaliacoes.map((a) => <CardAvaliacao nome={a.nome} depoimento={a.texto} />)}
+      {lista.map((a) => <CardAvaliacao nome={a.nome} depoimento={a.texto} />)}
     </div>
   </div>
 </section>

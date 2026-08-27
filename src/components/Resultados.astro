@@ -1,22 +1,32 @@
 ---
 // Seção · Resultados (Figma: "Seção · Resultados").
-// Galeria de fotos antes/depois. Título por prop; imagens variam por serviço.
+// Galeria de fotos antes/depois. Título e IMAGENS por prop — antes as 5 fotos
+// de clareamento estavam hardcoded aqui, o que fazia a landing de endodontia
+// exibir resultados de clareamento. Cada página passa as suas.
 import TituloSecao from './TituloSecao.astro';
+
 interface Props {
   label?: string;
   titulo?: string;
+  imagens?: { src: string; alt: string }[];
 }
-const { label = 'Resultados reais', titulo = 'Sorrisos que falam por si' } = Astro.props;
+
+const CLAREAMENTO = [1, 2, 3, 4, 5].map((n) => ({
+  src: `/assets/images/Resultado-Clareamento-Dental${n}.jpg`,
+  alt: 'Resultado de clareamento dental',
+}));
+
+const {
+  label = 'Resultados reais',
+  titulo = 'Sorrisos que falam por si',
+  imagens = CLAREAMENTO,
+} = Astro.props;
 ---
 <section class="resultados section">
     <div class="container">
       <TituloSecao label={label} titulo={titulo} />
       <div class="galeria">
-        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental1.jpg" alt="Resultado de clareamento dental"></div>
-        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental2.jpg" alt="Resultado de clareamento dental"></div>
-        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental3.jpg" alt="Resultado de clareamento dental"></div>
-        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental4.jpg" alt="Resultado de clareamento dental"></div>
-        <div class="ph"><img src="/assets/images/Resultado-Clareamento-Dental5.jpg" alt="Resultado de clareamento dental"></div>
+        {imagens.map((img) => <div class="ph"><img src={img.src} alt={img.alt}></div>)}
       </div>
     </div>
   </section>
