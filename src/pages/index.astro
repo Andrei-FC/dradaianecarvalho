@@ -8,24 +8,34 @@ import Dra from '../components/Dra.astro';
 import Depoimentos from '../components/Depoimentos.astro';
 import Espaco from '../components/Espaco.astro';
 import Rodape from '../components/Rodape.astro';
-import BarraFixa from '../components/BarraFixa.astro';
+import BarraMarca from '../components/BarraMarca.astro';
+import BotaoFlutuante from '../components/BotaoFlutuante.astro';
+
+const nav = [
+  { texto: 'Serviços', href: '#servicos' },
+  { texto: 'A Dra. Daiane', href: '#dra-daiane' },
+  { texto: 'Depoimentos', href: '#depoimentos' },
+  { texto: 'O consultório', href: '#consultorio' },
+  { texto: 'Dúvidas', href: '#duvidas' },
+];
+const linksRodape = [
+  { texto: 'Tratamento de canal', href: '/endodontia' },
+  { texto: 'Clareamento dental', href: '/clareamento' },
+];
 ---
 <Layout
   title="Dra. Daiane Carvalho | Consultório odontológico na Barra Funda, SP"
   description="Consultório da Dra. Daiane Carvalho na Barra Funda, São Paulo: clínica geral, endodontia, clareamento e estética do sorriso. 31 avaliações 5 estrelas. Fale no WhatsApp."
   origem="home"
 >
+  <BarraMarca nav={nav} />
   <div class="lp">
     <Hero />
     <Especialidades />
     <Dra />
     <Depoimentos contexto="home" titulo="O que dizem os nossos pacientes" />
     <Espaco />
-    <Rodape
-      titulo="Fale com o consultório"
-      ctaTexto="Falar no WhatsApp"
-      ctaMensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane."
-    />
+    <Rodape ctaMensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane." links={linksRodape} />
   </div>
-  <BarraFixa texto="Falar no WhatsApp" mensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane." />
+  <BotaoFlutuante mensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane." />
 </Layout>

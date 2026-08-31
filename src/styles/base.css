@@ -12,7 +12,11 @@
   padding-right: var(--spacing-xl);
 }
 
-.section { padding: var(--spacing-2xl) 0; }
+/* Ritmo vertical: vem do token responsivo spacing/secao-y (32 / 48). */
+.section { padding: var(--spacing-secao-y) 0; }
+
+/* Âncoras do menu desktop: compensam a barra sticky ao rolar até a seção. */
+[id] { scroll-margin-top: calc(var(--barra-altura) + var(--spacing-lg)); }
 
 img { max-width: 100%; display: block; }
 
@@ -26,10 +30,10 @@ img { max-width: 100%; display: block; }
 
 /* Placeholder real (só onde ainda falta conteúdo) */
 .is-placeholder {
-  background: var(--teal-50);
-  border: 1px dashed var(--teal-200);
+  background: var(--superficie-acento-claro);
+  border: 1px dashed var(--borda-sutil);
   display: flex; align-items: center; justify-content: center;
-  color: var(--teal-400); text-align: center; font-size: 13px; padding: 16px;
+  color: var(--texto-suave); text-align: center; font-size: 13px; padding: 16px;
 }
 
 /* Eyebrow / rótulos de seção */
@@ -38,6 +42,9 @@ img { max-width: 100%; display: block; }
 .section-head .eyebrow { margin: 0 0 var(--spacing-sm); }
 .section-head h2 { margin: 0; }
 .section-head p { margin: var(--spacing-sm) 0 0; }
+
+/* Sobre superfície escura, o eyebrow troca para o rosa claro. */
+.is-escura .eyebrow { color: var(--texto-acento-sobre-escuro); }
 
 /* Galeria full-bleed: rola até a borda da tela no mobile */
 .galeria {
@@ -55,7 +62,6 @@ img { max-width: 100%; display: block; }
 .galeria .ph img { width: 100%; height: auto; display: block; object-fit: contain; }
 
 @media (min-width: 768px) {
-  .section { padding: var(--spacing-3xl) 0; }
   .galeria { overflow-x: visible; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
   .galeria .ph { flex: 1; }
 }

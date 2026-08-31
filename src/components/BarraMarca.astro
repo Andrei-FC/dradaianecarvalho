@@ -1,0 +1,98 @@
+---
+// Barra de marca (Figma: "Seção · Barra de Marca").
+// NÃO é header de navegação. No mobile é identidade pura: logo, sem link e
+// sem menu, para não abrir saída numa página de tráfego pago. No desktop
+// ganha âncoras de rolagem DA PRÓPRIA PÁGINA — âncora não vaza conversão.
+//
+// É `sticky`, não `fixed`: continua ocupando espaço no fluxo, então o hero
+// não precisa de padding-top de compensação (seção 3.5 do documento mestre).
+interface ItemNav { texto: string; href: string; }
+interface Props {
+  /** âncoras do menu desktop, na ordem. Vazio = só a marca. */
+  nav?: ItemNav[];
+}
+const { nav = [] } = Astro.props;
+---
+<div class="barra-marca">
+  <div class="barra-marca-inner">
+    <img
+      class="barra-marca-logo"
+      src="/assets/marca-horizontal.svg"
+      alt="Dra. Daiane Carvalho — Odontologia e Estética"
+      width="255" height="41"
+      fetchpriority="high"
+    />
+    {nav.length > 0 && (
+      <nav class="barra-marca-nav" aria-label="Seções desta página">
+        {nav.map(item => (
+          <a class="barra-marca-link tipo-corpo" href={item.href}>{item.texto}</a>
+        ))}
+      </nav>
+    )}
+  </div>
+</div>
+
+<style is:global>
+    .barra-marca {
+      position: sticky; top: 0; z-index: 60;
+      /* superficie/alternada a 72% + blur 18px */
+      background: rgba(244, 237, 232, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    /* Sem backdrop-filter o texto competiria com o conteúdo rolando por baixo.
+       Decisão do Andrei: subir para 95%, como escolha estética e não só técnica. */
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .barra-marca { background: rgba(244, 237, 232, 0.95); }
+    }
+    .barra-marca-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 20px var(--spacing-xl);
+      display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-xl);
+    }
+    .barra-marca-logo { height: 40px; width: auto; }
+    .barra-marca-nav { display: none; }
+
+    @media (min-width: 768px) {
+      .barra-marca-inner { padding: 28px var(--spacing-xl); }
+      .barra-marca-logo { height: 52px; }
+      .barra-marca-nav { display: flex; align-items: center; gap: var(--spacing-xl); }
+      .barra-marca-link {
+        color: var(--texto-suave); font-weight: 400; text-decoration: none;
+        white-space: nowrap; transition: color 0.18s ease;
+      }
+      .barra-marca-link:hover,
+      .barra-marca-link[aria-current="true"] { color: var(--texto-forte); font-weight: 600; }
+      .barra-marca-link:focus-visible { outline: 2px solid var(--marca-primaria); outline-offset: 4px; border-radius: 2px; }
+    }
+</style>
+
+{/* Marca a seção visível no menu (variante "Selected" do Figma).
+    É progressive enhancement: sem JS, todos os itens ficam no estado Regular.
+    Nenhum conteúdo textual depende disto — só o estado visual. */}
+<script>
+  const links = Array.from(document.querySelectorAll('.barra-marca-link'));
+  if (links.length && 'IntersectionObserver' in window) {
+    const alvos = links
+      .map(a => {
+        const id = a.getAttribute('href')?.slice(1);
+        const el = id ? document.getElementById(id) : null;
+        return el ? { a, el } : null;
+      })
+      .filter(Boolean);
+
+    const visiveis = new Set();
+    const pintar = () => {
+      const atual = alvos.find(t => visiveis.has(t.el));
+      alvos.forEach(t => {
+        if (t === atual) t.a.setAttribute('aria-current', 'true');
+        else t.a.removeAttribute('aria-current');
+      });
+    };
+    const obs = new IntersectionObserver(entradas => {
+      entradas.forEach(e => e.isIntersecting ? visiveis.add(e.target) : visiveis.delete(e.target));
+      pintar();
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    alvos.forEach(t => obs.observe(t.el));
+  }
+</script>

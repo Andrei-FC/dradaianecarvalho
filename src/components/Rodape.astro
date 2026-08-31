@@ -1,50 +1,124 @@
 ---
-// Rodapé escuro com mapa + CTA. Endereço e mapa vêm do clinica.json.
-// Título e texto/mensagem do CTA variam por página → props.
+// Rodapé escuro (Figma: "Rodapé"). Idêntico nas três páginas, exceto os
+// links cruzados. Carrega o NAP completo — endereço canônico, telefone e
+// horário — porque é o bloco que fecha o grafo de links e alimenta o
+// JSON-LD com os mesmos fatos que o usuário lê.
 import clinica from '../data/clinica.json';
 import BotaoWhatsApp from './BotaoWhatsApp.astro';
 import TituloSecao from './TituloSecao.astro';
 
+interface LinkCruzado { texto: string; href: string; }
 interface Props {
-  eyebrow?: string;
-  titulo: string;
-  ctaTexto: string;
+  /** links para as outras páginas do site. Fecha o grafo (seção 2.6). */
+  links?: LinkCruzado[];
   ctaMensagem: string;
+  eyebrow?: string;
+  titulo?: string;
+  ctaTexto?: string;
 }
-const { eyebrow = 'Onde estamos', titulo, ctaTexto, ctaMensagem } = Astro.props;
+const {
+  links = [],
+  ctaMensagem,
+  eyebrow = 'Onde estamos',
+  titulo = 'Fale com o consultório',
+  ctaTexto = 'Combinar um horário',
+} = Astro.props;
+
+// O horário exibido é DERIVADO do clinica.json: agrupa dias com o mesmo
+// intervalo. Fonte única, então o texto e o JSON-LD nunca divergem.
+type Grupo = { dias: string[]; faixa: string };
+const grupos: Grupo[] = [];
+for (const dia of clinica.horario) {
+  const faixa = dia.aberto ? `${dia.abre}–${dia.fecha}` : 'fechado';
+  const anterior = grupos.find(g => g.faixa === faixa);
+  if (anterior) anterior.dias.push(dia.curto);
+  else grupos.push({ dias: [dia.curto], faixa });
+}
+grupos.sort((a, b) => Number(a.faixa === 'fechado') - Number(b.faixa === 'fechado'));
+
+const listar = (dias: string[]) => {
+  const nomes = dias.map((d, i) => (i === 0 ? d : d.toLowerCase()));
+  if (nomes.length === 1) return nomes[0];
+  return `${nomes.slice(0, -1).join(', ')} e ${nomes[nomes.length - 1]}`;
+};
 ---
-<footer class="rodape section">
+<footer class="rodape is-escura section" id="contato">
   <div class="container rodape-inner">
     <div class="rodape-col">
       <TituloSecao label={eyebrow} titulo={titulo} class="rodape-head" />
-      <address class="tipo-corpo rodape-address">{clinica.endereco}</address>
-      <BotaoWhatsApp texto={ctaTexto} mensagem={ctaMensagem} posicao="rodape" class="rodape-cta" />
+
+      <div class="rodape-contato">
+        <address class="tipo-corpo rodape-address">
+          {clinica.endereco.linha1}<br />{clinica.endereco.linha2}
+        </address>
+        <p class="tipo-corpo rodape-tel">
+          Telefone e WhatsApp: <a href={`tel:+${clinica.whatsapp}`}>{clinica.telefoneExibicao}</a>
+        </p>
+      </div>
+
+      <div class="rodape-horario">
+        <p class="tipo-corpo-forte rodape-horario-titulo">Horário de atendimento</p>
+        <ul class="tipo-corpo rodape-horario-dias">
+          {grupos.map(g => <li>{listar(g.dias)}: {g.faixa}</li>)}
+        </ul>
+      </div>
+
+      <BotaoWhatsApp texto={ctaTexto} mensagem={ctaMensagem} posicao="rodape" icone={false} class="rodape-cta" />
+
+      {links.length > 0 && (
+        <nav class="rodape-links" aria-label="Outras páginas">
+          {links.map(l => <a class="tipo-corpo" href={l.href}>{l.texto}</a>)}
+        </nav>
+      )}
     </div>
-    <div class="ph rodape-map"><iframe src={clinica.mapaEmbed} title={`Localização do consultório da ${clinica.nome}, ${clinica.bairro}`} style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+
+    <div class="ph rodape-map">
+      <iframe
+        src={clinica.mapaEmbed}
+        title={`Localização do consultório da ${clinica.nome}, ${clinica.endereco.bairro}, ${clinica.endereco.cidade}`}
+        style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </div>
 </footer>
 
 <style is:global>
-    .rodape { background: var(--teal-900); padding-bottom: 96px; }
-    .rodape .eyebrow { color: var(--mint); }
-    .rodape h2 { color: var(--white); margin: 0; }
+    .rodape { background: var(--superficie-escura); padding-bottom: var(--spacing-4xl); }
+    .rodape h2 { color: var(--texto-sobre-escuro); margin: 0; }
+    .rodape .rodape-contato,
+    .rodape .rodape-horario { color: var(--texto-sobre-escuro); }
+    .rodape address { font-style: normal; margin: 0; }
+    .rodape p { margin: 0; }
+    .rodape-contato { display: flex; flex-direction: column; gap: var(--spacing-xs); }
+    .rodape-tel a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    .rodape-horario { display: flex; flex-direction: column; gap: var(--spacing-xs); }
+    .rodape-horario-dias { list-style: none; margin: 0; padding: 0; }
     .rodape-map { aspect-ratio: 382 / 180; width: 100%; border-radius: var(--radius-md); }
     .rodape-map iframe { width: 100%; height: 100%; border: 0; display: block; }
-    .rodape address { color: var(--mint); font-style: normal; margin: 0; white-space: pre-line; }
     .rodape .btn-whatsapp { width: 100%; }
+    .rodape-links { display: flex; flex-direction: column; gap: var(--spacing-xs); }
+    .rodape-links a { color: var(--texto-acento-sobre-escuro); text-decoration: underline; text-underline-offset: 3px; }
+    .rodape-links a:hover { color: var(--texto-sobre-escuro); }
+
     .rodape-inner { display: flex; flex-direction: column; gap: var(--spacing-lg); }
     .rodape-col { display: contents; }
     .rodape .rodape-head { order: 1; margin-bottom: 0; }
-    .rodape .rodape-address { order: 2; }
-    .rodape-map { order: 3; }
-    .rodape .rodape-cta { order: 4; }
+    .rodape .rodape-contato { order: 2; }
+    .rodape .rodape-horario { order: 3; }
+    .rodape-map { order: 4; }
+    .rodape .rodape-cta { order: 5; }
+    .rodape .rodape-links { order: 6; }
+
     @media (min-width: 768px) {
-      .rodape-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); align-items: center; }
+      .rodape-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
       .rodape-col { display: flex; flex-direction: column; gap: var(--spacing-lg); order: 1; }
-      .rodape .rodape-head { order: 0; margin-bottom: 0; }
-      .rodape .rodape-address { order: 0; }
-      .rodape .rodape-cta { order: 0; }
+      .rodape .rodape-head,
+      .rodape .rodape-contato,
+      .rodape .rodape-horario,
+      .rodape .rodape-cta,
+      .rodape .rodape-links { order: 0; }
+      .rodape .rodape-head { margin-bottom: 0; }
       .rodape .btn-whatsapp { width: 345px; max-width: 100%; }
       .rodape-map { aspect-ratio: auto; height: 422px; order: 2; }
+      .rodape-links { flex-direction: row; gap: var(--spacing-xl); }
     }
 </style>

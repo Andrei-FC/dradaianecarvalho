@@ -1,17 +1,40 @@
 ---
 // Layout base compartilhado por todas as páginas.
 // Concentra o <head>, o carregamento do Mulish, o tokens.css,
-// o slot para GA4 e o script de rastreio de clique no wa.me.
+// as tags de medição e o rastreio de clique no wa.me.
 import '../styles/tokens.css';
+
+// ============================================================
+// MEDIÇÃO
+// ------------------------------------------------------------
+// GOOGLE ADS (ativo). Serve para o algoritmo de lance.
+const GOOGLE_ADS_ID = 'AW-17672469462';
+
+// Rótulo da AÇÃO DE CONVERSÃO do Google Ads.
+// PENDENTE: criar em Ads > Objetivos > Conversões > Nova ação de
+// conversão > Site > configuração manual com código. O painel devolve
+// algo como 'AbC-D_efGhIjK'. Colar aqui e nada mais precisa mudar.
+// Enquanto estiver vazio, o clique NÃO é contabilizado como conversão
+// no Google Ads — isso é o que bloqueia a F4 (seção 6.7).
+const ADS_CONVERSAO_ROTULO = '';
+
+// GA4 (pendente). Serve para análise: origem de tráfego, referral de
+// domínios de IA (seção 10.10), busca por marca. O Ads NÃO substitui isto.
+// Colar aqui o ID no formato 'G-XXXXXXXXXX'.
+const GA4_ID = '';
+// ============================================================
 
 interface Props {
   title: string;
   description: string;
-  /** rótulo enviado ao GA4 como origem do clique. ex: 'landing_clareamento' */
+  /** rótulo enviado como origem do clique. ex: 'landing_clareamento' */
   origem?: string;
+  /** JSON-LD já serializado, injetado no <head> */
+  jsonLd?: string;
 }
 
-const { title, description, origem = 'site' } = Astro.props;
+const { title, description, origem = 'site', jsonLd } = Astro.props;
+const canonical = new URL(Astro.url.pathname, 'https://dradaianecarvalho.com.br').href;
 ---
 
 <!DOCTYPE html>
@@ -21,34 +44,57 @@ const { title, description, origem = 'site' } = Astro.props;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;800&display=swap" rel="stylesheet" />
 
-  {/* ============================================================
-      RASTREIO GA4 — PENDÊNCIA
-      Recolar aqui o script gtag.js com o ID real (G-XXXXXXX).
-      O event listener de conversão no clique do wa.me está no
-      final do <body>. Ver PROJETO-DRA-DAIANE.md seção 3.
-      ============================================================ */}
+  {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+
+  {/* Google tag (gtag.js) */}
+  <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}></script>
+  <script define:vars={{ GOOGLE_ADS_ID, GA4_ID }} is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GOOGLE_ADS_ID);
+    if (GA4_ID) gtag('config', GA4_ID);
+  </script>
 </head>
 <body>
   <slot />
 
   {/* ============================================================
       RASTREIO DE CONVERSÃO — dispara no CLIQUE do wa.me.
-      Descomentar o gtag quando o GA4 estiver colado no <head>.
       A origem vem do Layout; a posição vem do data-pos do botão.
+      Dois disparos, com papéis diferentes:
+        1. 'conversion' com send_to  -> alimenta o lance do Google Ads
+        2. 'clique_whatsapp'         -> alimenta a análise no GA4
       ============================================================ */}
-  <script define:vars={{ origem }}>
+  <script define:vars={{ origem, GOOGLE_ADS_ID, ADS_CONVERSAO_ROTULO }} is:inline>
     document.querySelectorAll('.js-wa').forEach(function (el) {
       el.addEventListener('click', function () {
-        // Descomentar quando o gtag estiver ativo:
-        // gtag('event', 'clique_whatsapp', {
-        //   origem: origem,
-        //   posicao: this.dataset.pos || 'principal'
-        // });
+        if (typeof window.gtag !== 'function') return;
+        var posicao = this.dataset.pos || 'principal';
+
+        if (ADS_CONVERSAO_ROTULO) {
+          window.gtag('event', 'conversion', {
+            send_to: GOOGLE_ADS_ID + '/' + ADS_CONVERSAO_ROTULO
+          });
+        }
+
+        window.gtag('event', 'clique_whatsapp', {
+          origem: origem,
+          posicao: posicao
+        });
       });
     });
   </script>

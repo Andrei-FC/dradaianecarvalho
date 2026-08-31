@@ -1,69 +1,103 @@
 /* ============================================================
-   Dra. Daiane Carvalho — Design tokens (F0)
+   Dra. Daiane Carvalho — Design tokens (F0, v9)
    Fonte da verdade: arquivo Figma 2h3h8G4YWPLxmbYC4tQ3TD.
-   Cor: teal + mauve. Tipografia: Mulish (400/600/800).
+
+   Modo aplicado: "Champagne + Teal".
+   O modo "Champagne" (totalmente quente) existe no Figma apenas
+   como registro da exploração e NÃO é implementado aqui.
+
+   REGRA DE HIGIENE (seção 9.3 do documento mestre):
+   nada no site amarra direto em primitive. Componentes usam
+   SEMPRE os tokens semânticos. Se alguém usar --petrol-600 num
+   componente, o sistema volta a mentir.
    ============================================================ */
 
 :root {
-  /* ---- Primitives: teal (primária) ---- */
-  --teal-50:  #EAF4F3;
-  --teal-100: #C7E4E1;
-  --teal-200: #8FC4C0;
-  --teal-400: #5C9695;
-  --teal-600: #476D6E;
-  --teal-800: #345152;
-  --teal-900: #233738;
+  /* ============================================================
+     PRIMITIVES (24) — coleção "Primitives" do Figma, modo único.
+     Não usar diretamente em componente.
+     ============================================================ */
 
-  /* ---- Primitives: mauve (acento) ---- */
-  --mauve-50:  #F0EAEF;
-  --mauve-100: #D9C9D6;
-  --mauve-200: #B199AC;
-  --mauve-400: #876A82;
-  --mauve-600: #67465D;
-  --mauve-800: #4E3446;
-  --mauve-900: #33222E;
+  /* champagne — neutros quentes, puxando rosa e não amarelo */
+  --champagne-50:  #FBF8F6;
+  --champagne-100: #F4EDE8;
+  --champagne-200: #E9D5CB;
+  --champagne-300: #D9C3B8;
 
-  /* ---- Primitives: neutral ---- */
-  --white:       #FFFFFF;
-  --bg:          #F6FAF9;
-  --mint:        #BEE8E1;
-  --text-soft:   #5F5E5A;
-  --text-strong: #383838;
+  /* petrol — a marca fria. Teal profundo, jamais menta pálido */
+  --petrol-100: #CFE0DF;
+  --petrol-400: #4A7C7E;
+  --petrol-600: #2F5D62;
+  --petrol-800: #1E4145;
+  --petrol-900: #142E31;
 
-  /* ---- Primitives: green (WhatsApp) ---- */
-  --wa:      #25D366;
-  --wa-dark: #128C7E;
-  --wa-text: #0A3D20;
+  /* wood — madeira como tinta escura, nunca como bege */
+  --wood-400: #8A6A58;
+  --wood-600: #6B4F41;
+  --wood-800: #4A362C;
+  --wood-900: #2E211B;
 
-  /* ---- Primitives: estrela ---- */
-  --estrela: #F5A623;
+  /* rose — o acento */
+  --rose-50:  #FAEDED;
+  --rose-200: #ECB6B6;
+  --rose-400: #C97F7F;
+  --rose-600: #954F4F;
+  --rose-800: #6E3A3A;
 
-  /* ---- Tokens semânticos: superfície ---- */
-  --superficie-pagina:  var(--bg);
-  --superficie-card:    var(--white);
-  --superficie-respiro: var(--mint);
+  /* warm / neutral */
+  --warm-text-soft: #6E5E56;
+  --neutral-white:  #FFFFFF;
 
-  /* ---- Tokens semânticos: marca ---- */
-  --marca-primaria:        var(--teal-600);
-  --marca-primaria-escura: var(--teal-800);
-  --marca-acento:          var(--mauve-600);
+  /* green — WhatsApp */
+  --green-wa:      #25D366;
+  --green-wa-dark: #128C7E;
+  --green-wa-text: #0A3D20;
 
-  /* ---- Tokens semânticos: ação (WhatsApp) ---- */
-  --acao-whatsapp:       var(--wa);
-  --acao-whatsapp-hover: var(--wa-dark);
-  --acao-whatsapp-texto: var(--wa-text);
-  --acao-whatsapp-icone: var(--white);
+  /* star */
+  --star-500: #F5A623;
 
-  /* ---- Tokens semânticos: texto ---- */
-  --texto-forte:          var(--text-strong);
-  --texto-suave:          var(--text-soft);
-  --texto-titulo:         var(--teal-800);
-  --texto-sobre-primaria: var(--white);
+  /* ============================================================
+     TOKENS SEMÂNTICOS (22) — coleção "Tokens", modo Champagne + Teal.
+     É aqui que os componentes se amarram.
+     ============================================================ */
 
-  /* ---- Tokens semânticos: borda ---- */
-  --borda-sutil: var(--teal-100);
+  /* superfície */
+  --superficie-pagina:       var(--champagne-50);
+  --superficie-card:         var(--neutral-white);
+  --superficie-alternada:    var(--champagne-100);
+  --superficie-respiro:      var(--champagne-200);
+  --superficie-acento-claro: var(--rose-50);
+  --superficie-escura:       var(--petrol-900);
 
-  /* ---- Spacing (do Figma) ---- */
+  /* marca */
+  --marca-primaria:        var(--petrol-600);
+  --marca-primaria-escura: var(--petrol-800);
+  --marca-acento:          var(--rose-600);
+  --marca-acento-escura:   var(--rose-800);
+
+  /* texto */
+  --texto-forte:               var(--wood-900);
+  --texto-suave:               var(--warm-text-soft);
+  --texto-titulo:              var(--petrol-800);
+  --texto-sobre-primaria:      var(--neutral-white);
+  --texto-sobre-escuro:        var(--champagne-100);
+  --texto-acento-sobre-escuro: var(--rose-200);
+
+  /* borda */
+  --borda-sutil: var(--champagne-300);
+
+  /* ação (WhatsApp) */
+  --acao-whatsapp:       var(--green-wa);
+  --acao-whatsapp-hover: var(--green-wa-dark);
+  --acao-whatsapp-texto: var(--green-wa-text);
+  --acao-whatsapp-icone: var(--neutral-white);
+
+  /* estrela */
+  --estrela: var(--star-500);
+
+  /* ============================================================
+     SPACING & RADIUS — coleção "Spacing & Radius", modo único.
+     ============================================================ */
   --spacing-xs:  4px;
   --spacing-sm:  8px;
   --spacing-md:  12px;
@@ -73,15 +107,15 @@
   --spacing-3xl: 48px;
   --spacing-4xl: 64px;
 
-  /* ---- Radius (do Figma) ---- */
   --radius-sm:   8px;
   --radius-md:   12px;
   --radius-lg:   20px;
   --radius-full: 999px;
 
-  /* ---- Font sizes: MOBILE (frame 2472:2) ----
-     No desktop estes tokens são sobrescritos (media query abaixo)
-     com os valores do frame 2498:65. */
+  /* ============================================================
+     TYPOGRAPHY — coleção "Typography", modo MOBILE.
+     Sobrescrito abaixo pelo modo Desktop.
+     ============================================================ */
   --font-size-display:     32px;
   --font-size-titulo:      24px;
   --font-size-subtitulo:   18px;
@@ -89,9 +123,15 @@
   --font-size-corpo:       15px;
   --font-size-label:       13px;
   --font-size-legenda:     13px;
+
+  /* ritmo vertical de seção (é responsivo, mora na mesma coleção) */
+  --spacing-secao-y: 32px;
+
+  /* altura da barra de marca — usada por scroll-margin das âncoras */
+  --barra-altura: 80px;
 }
 
-/* ---- Font sizes: DESKTOP (frame 2498:65) ---- */
+/* ---- TYPOGRAPHY — modo DESKTOP ---- */
 @media (min-width: 768px) {
   :root {
     --font-size-display:     48px;
@@ -101,6 +141,9 @@
     --font-size-corpo:       16px;
     --font-size-label:       14px;
     --font-size-legenda:     13px;
+
+    --spacing-secao-y: 48px;
+    --barra-altura: 108px;
   }
 }
 
@@ -110,28 +153,35 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
 
+/* O <body> usa a MESMA cor sólida da barra de marca (seção 3.5):
+   evita faixa clara acima do conteúdo no topo em celular. */
 body {
   margin: 0;
   font-family: 'Mulish', system-ui, -apple-system, sans-serif;
   font-weight: 400;
   line-height: 1.6;
   color: var(--texto-forte);
-  background: var(--superficie-pagina);
+  background: var(--superficie-alternada);
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---- Escala tipográfica (tokens responsivos + letter-spacing do Figma) ---- */
+/* ---- Escala tipográfica (7 estilos, convenção tipo/nome) ---- */
 .tipo-display     { font-size: var(--font-size-display);     font-weight: 800; line-height: 1.1;  letter-spacing: -0.02em; }
 .tipo-titulo      { font-size: var(--font-size-titulo);      font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
-.tipo-subtitulo   { font-size: var(--font-size-subtitulo);   font-weight: 600; line-height: 1.25; letter-spacing: -0.005em; }
+.tipo-subtitulo   { font-size: var(--font-size-subtitulo);   font-weight: 600; line-height: 1.25; }
 .tipo-corpo-forte { font-size: var(--font-size-corpo-forte); font-weight: 600; line-height: 1.5; }
 .tipo-corpo       { font-size: var(--font-size-corpo);       font-weight: 400; line-height: 1.6; }
 .tipo-label       { font-size: var(--font-size-label);       font-weight: 600; line-height: 1.3; letter-spacing: 0.01em; text-transform: uppercase; }
 .tipo-legenda     { font-size: var(--font-size-legenda);     font-weight: 400; line-height: 1.4; }
 
-/* ---- Botão de WhatsApp (tratamento do Figma: texto branco) ---- */
+/* ---- Botão de WhatsApp ----
+   Texto branco por decisão do Andrei seguindo o Figma (seção 9.5).
+   O ícone branco passa na WCAG pela régua de componentes gráficos (3:1). */
 .btn-whatsapp {
   display: inline-flex;
   align-items: center;
@@ -158,5 +208,6 @@ body {
 .btn-whatsapp svg { fill: var(--acao-whatsapp-icone); flex-shrink: 0; }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   * { transition: none !important; animation: none !important; }
 }

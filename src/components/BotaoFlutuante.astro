@@ -1,0 +1,35 @@
+---
+// Botão flutuante de WhatsApp (Figma: "Botão/WhatsApp Flutuante", 64x64).
+// Substituiu a barra fixa de largura total. Só ícone, então DEPENDE de
+// aria-label para não ser um botão sem rótulo (seção 3.5).
+import clinica from '../data/clinica.json';
+
+interface Props {
+  /** mensagem pré-preenchida no WhatsApp */
+  mensagem: string;
+  /** rótulo acessível. Descreve a ação, não o ícone. */
+  rotulo?: string;
+}
+const { mensagem, rotulo = 'Falar com o consultório no WhatsApp' } = Astro.props;
+const href = `https://wa.me/${clinica.whatsapp}?text=${encodeURIComponent(mensagem)}`;
+---
+<a class="wa-flutuante js-wa" data-pos="flutuante" href={href} aria-label={rotulo} title={rotulo}>
+  <svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.15c-.24.68-1.42 1.32-1.96 1.36-.5.05-.98.24-3.29-.69-2.78-1.1-4.55-3.94-4.69-4.12-.14-.18-1.13-1.5-1.13-2.86s.72-2.03.97-2.31c.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.39-.06.6.46.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.27.72 1.18 1.54 1.91 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.18.69-.8.87-1.08.18-.27.36-.23.6-.14.24.09 1.55.73 1.81.87.27.14.44.2.51.31.07.12.07.68-.17 1.36z"></path></svg>
+</a>
+
+<style is:global>
+    .wa-flutuante {
+      position: fixed; right: var(--spacing-lg); bottom: var(--spacing-lg); z-index: 55;
+      width: 64px; height: 64px; border-radius: var(--radius-full);
+      background: var(--acao-whatsapp);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 20px rgba(20, 46, 49, 0.22);
+      transition: background 0.18s ease;
+    }
+    .wa-flutuante svg { fill: var(--acao-whatsapp-icone); display: block; }
+    .wa-flutuante:hover, .wa-flutuante:active { background: var(--acao-whatsapp-hover); }
+    .wa-flutuante:focus-visible { outline: 3px solid var(--marca-primaria-escura); outline-offset: 3px; }
+    @media (min-width: 768px) {
+      .wa-flutuante { right: var(--spacing-xl); bottom: var(--spacing-xl); }
+    }
+</style>

@@ -1,8 +1,83 @@
 {
   "nome": "Dra. Daiane Carvalho",
+  "cro": "CRO-SP 170242",
+  "graduacao": "Graduação em Odontologia — Universidade Nove de Julho",
+  "especializacao": "Especialização em Endodontia — São Leopoldo Mandic, São Paulo",
   "whatsapp": "5511949182629",
+  "telefoneExibicao": "(11) 94918-2629",
+  "telefoneInternacional": "+55 11 94918-2629",
   "instagram": "https://www.instagram.com/dradaiane.carvalho/",
-  "endereco": "L. Padre Péricles, 145, Sala 141 A\nBarra Funda, São Paulo, SP",
+  "endereco": {
+    "canonico": "L. Padre Péricles, 145 - Sl 141 A - Barra Funda, São Paulo - SP, 01156-040",
+    "logradouro": "L. Padre Péricles, 145 - Sl 141 A",
+    "bairro": "Barra Funda",
+    "cidade": "São Paulo",
+    "uf": "SP",
+    "cep": "01156-040",
+    "linha1": "L. Padre Péricles, 145 - Sl 141 A",
+    "linha2": "Barra Funda, São Paulo - SP, 01156-040"
+  },
   "bairro": "Barra Funda, SP",
+  "horario": [
+    {
+      "dia": "Domingo",
+      "chave": "Sunday",
+      "aberto": false,
+      "abre": null,
+      "fecha": null,
+      "curto": "Domingo"
+    },
+    {
+      "dia": "Segunda-feira",
+      "chave": "Monday",
+      "aberto": false,
+      "abre": null,
+      "fecha": null,
+      "curto": "Segunda"
+    },
+    {
+      "dia": "Terça-feira",
+      "chave": "Tuesday",
+      "aberto": true,
+      "abre": "08:00",
+      "fecha": "18:00",
+      "curto": "Terça"
+    },
+    {
+      "dia": "Quarta-feira",
+      "chave": "Wednesday",
+      "aberto": false,
+      "abre": null,
+      "fecha": null,
+      "curto": "Quarta"
+    },
+    {
+      "dia": "Quinta-feira",
+      "chave": "Thursday",
+      "aberto": true,
+      "abre": "08:00",
+      "fecha": "18:00",
+      "curto": "Quinta"
+    },
+    {
+      "dia": "Sexta-feira",
+      "chave": "Friday",
+      "aberto": true,
+      "abre": "08:00",
+      "fecha": "18:00",
+      "curto": "Sexta"
+    },
+    {
+      "dia": "Sábado",
+      "chave": "Saturday",
+      "aberto": true,
+      "abre": "12:00",
+      "fecha": "17:00",
+      "curto": "Sábado"
+    }
+  ],
+  "urgencia": "Nos dias em que o consultório está fechado durante o dia (domingo, segunda e quarta), casos de urgência podem ser atendidos à noite, sujeito à disponibilidade da Dra. Daiane.",
+  "convenio": false,
+  "convenioTexto": "Atendimento exclusivamente particular. O consultório não atende convênios.",
   "mapaEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.033806110617!2d-46.6662844246708!3d-23.531286478820498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5948fe615443%3A0x750881cd6e07765f!2sDra.%20Daiane%20Carvalho!5e0!3m2!1sen!2sbr!4v1785292617467!5m2!1sen!2sbr"
 }

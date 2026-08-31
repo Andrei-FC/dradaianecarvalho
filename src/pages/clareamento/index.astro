@@ -14,7 +14,8 @@ import Depoimentos from '../../components/Depoimentos.astro';
 import Espaco from '../../components/Espaco.astro';
 import FAQ from '../../components/FAQ.astro';
 import Rodape from '../../components/Rodape.astro';
-import BarraFixa from '../../components/BarraFixa.astro';
+import BarraMarca from '../../components/BarraMarca.astro';
+import BotaoFlutuante from '../../components/BotaoFlutuante.astro';
 
 const faqItens = [
   { q: 'Existe um número máximo de sessões?', a: 'Não. Você faz quantas forem necessárias até atingir o seu branco máximo, medido pela escala de cor.' },
@@ -25,12 +26,25 @@ const faqItens = [
   { q: 'Posso fazer clareamento se tenho restaurações ou resina?', a: 'Sim, mas restaurações e resinas não mudam de cor com o clareamento. Avaliamos o seu caso para alinhar as expectativas e, se necessário, trocar restaurações após o tratamento.' },
   { q: 'O clareamento dental é seguro?', a: 'Sim, quando feito com acompanhamento profissional. Todo o processo é conduzido pela Dra. Daiane, com produtos regularizados e protocolo individual.' },
 ];
+
+const nav = [
+  { texto: 'O tratamento', href: '#tratamento' },
+  { texto: 'Como funciona', href: '#como-funciona' },
+  { texto: 'Resultados', href: '#resultados' },
+  { texto: 'Depoimentos', href: '#depoimentos' },
+  { texto: 'Dúvidas', href: '#duvidas' },
+];
+const linksRodape = [
+  { texto: 'Dra. Daiane Carvalho', href: '/' },
+  { texto: 'Tratamento de canal', href: '/endodontia' },
+];
 ---
 <Layout
   title="Clareamento dental sem limite de sessões | Dra. Daiane Carvalho, Barra Funda, SP"
   description="Clareamento dental com sessões ilimitadas até o seu branco máximo, limpeza profunda e clareamento caseiro inclusos. Barra Funda, São Paulo. Fale no WhatsApp."
   origem="landing_clareamento"
 >
+  <BarraMarca nav={nav} />
   <div class="lp">
     <Hero />
     <SelosMobile />
@@ -43,7 +57,7 @@ const faqItens = [
     <Depoimentos contexto="clareamento" />
     <Espaco />
     <FAQ itens={faqItens} />
-    <Rodape titulo="Agende seu clareamento" ctaTexto="Quero agendar meu clareamento" ctaMensagem="Olá! Quero agendar o meu clareamento." />
+    <Rodape ctaMensagem="Olá! Quero agendar o meu clareamento." links={linksRodape} />
   </div>
-  <BarraFixa texto="Falar agora" mensagem="Olá! Tenho interesse no clareamento dental." />
+  <BotaoFlutuante mensagem="Olá! Tenho interesse no clareamento dental." />
 </Layout>

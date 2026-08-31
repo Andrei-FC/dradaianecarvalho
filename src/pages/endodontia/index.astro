@@ -13,7 +13,8 @@ import Depoimentos from '../../components/Depoimentos.astro';
 import Espaco from '../../components/Espaco.astro';
 import FAQ from '../../components/FAQ.astro';
 import Rodape from '../../components/Rodape.astro';
-import BarraFixa from '../../components/BarraFixa.astro';
+import BarraMarca from '../../components/BarraMarca.astro';
+import BotaoFlutuante from '../../components/BotaoFlutuante.astro';
 
 const faqItens = [
   { q: 'O tratamento de canal dói?', a: 'A ideia de que canal dói ficou no passado. Com anestesia bem feita e técnica moderna, o objetivo é você não sentir dor durante o procedimento. Na verdade, o canal costuma <strong>acabar</strong> com a dor que te trouxe até aqui.' },
@@ -25,12 +26,25 @@ const faqItens = [
   { q: 'Como eu marco?', a: 'É só me chamar no WhatsApp contando o que está sentindo. A partir daí agendamos a sua avaliação no melhor dia para você.' },
   { q: 'Quanto custa?', a: 'O valor depende do dente e da complexidade do caso, e eu confirmo isso na avaliação, antes de começar qualquer tratamento. Me chama no WhatsApp que eu te explico o seu caso.' },
 ];
+
+const nav = [
+  { texto: 'O tratamento', href: '#tratamento' },
+  { texto: 'Como funciona', href: '#como-funciona' },
+  { texto: 'A Dra. Daiane', href: '#dra-daiane' },
+  { texto: 'Depoimentos', href: '#depoimentos' },
+  { texto: 'Dúvidas', href: '#duvidas' },
+];
+const linksRodape = [
+  { texto: 'Dra. Daiane Carvalho', href: '/' },
+  { texto: 'Clareamento dental', href: '/clareamento' },
+];
 ---
 <Layout
   title="Tratamento de canal em Barra Funda: tire a dor e salve o dente | Dra. Daiane Carvalho"
   description="Dor de dente forte? O tratamento de canal (endodontia) tira a dor e salva o seu dente. Atendimento humanizado na Barra Funda, São Paulo. Fale no WhatsApp."
   origem="landing_endodontia"
 >
+  <BarraMarca nav={nav} />
   <div class="lp">
     <Hero />
     <SelosBanda />
@@ -54,9 +68,9 @@ const faqItens = [
     <Depoimentos contexto="endodontia" />
     <Espaco />
     <FAQ itens={faqItens} />
-    <Rodape titulo="Vamos resolver essa dor" ctaTexto="Falar com a Dra. Daiane" ctaMensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." />
+    <Rodape ctaMensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." links={linksRodape} />
   </div>
-  <BarraFixa texto="Falar agora" mensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." />
+  <BotaoFlutuante mensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." />
 </Layout>
 
 <style is:global>
