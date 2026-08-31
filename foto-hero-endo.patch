@@ -1,0 +1,35 @@
+From f998449e40c6d7b30eca8998fafa236d669d194a Mon Sep 17 00:00:00 2001
+From: claude <a@b>
+Date: Thu, 27 Aug 2026 19:41:22 +0000
+Subject: [PATCH] endodontia: hero passa a usar a foto endo-hero.jpg (apontava
+ para a foto do clareamento)
+
+---
+ src/components/endodontia/Hero.astro | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/components/endodontia/Hero.astro b/src/components/endodontia/Hero.astro
+index 2446b0a..8f74f4e 100644
+--- a/src/components/endodontia/Hero.astro
++++ b/src/components/endodontia/Hero.astro
+@@ -23,7 +23,7 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
+         <Selos />
+       </div>
+     </div>
+-    <div class="ph hero-img" data-placeholder="foto-hero"><img src="/assets/images/Dra-daiane-carvalho-clareamento.jpg" alt="Dra. Daiane Carvalho"></div>
++    <div class="ph hero-img"><img src="/assets/images/endo-hero.jpg" alt="Dra. Daiane Carvalho, endodontista na Barra Funda, em atendimento no consultório"></div>
+   </div>
+ </header>
+ 
+@@ -41,7 +41,7 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
+     .hero-col { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+     .hero h1 { color: var(--texto-titulo); margin: 0; }
+     .hero .lead { color: var(--texto-suave); margin: 0; }
+-    .hero-img { aspect-ratio: 1856 / 2290; width: 100%; border-radius: 0; }
++    .hero-img { aspect-ratio: 902 / 1004; width: 100%; border-radius: 0; }
+     .hero-selos { display: none; }
+     @media (min-width: 768px) {
+       .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
+-- 
+2.43.0
+
