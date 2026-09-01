@@ -25,7 +25,11 @@ const ADS_CONVERSAO_ROTULO = '';
 // GA4 (pendente). Serve para análise: origem de tráfego, referral de
 // domínios de IA (seção 10.10), busca por marca. O Ads NÃO substitui isto.
 // Colar aqui o ID no formato 'G-XXXXXXXXXX'.
-const GA4_ID = '';
+const GA4_ID = 'G-K52WHNQYX9';
+// GOOGLE TAG MANAGER. Container instalado; deixar vazio se não for usado.
+// ATENÇÃO: se dentro do GTM existir uma tag de GA4 com o MESMO ID acima, o
+// pageview é contado DUAS vezes. Escolher um caminho só: ou GA4 aqui, ou no GTM.
+const GTM_ID = 'GTM-TJSGGZRL';
 // ============================================================
 
 interface Props {
@@ -47,13 +51,6 @@ const ogImagemAbs = new URL(ogImagem, 'https://dradaianecarvalho.com.br').href;
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TJSGGZRL');</script>
-<!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
@@ -91,6 +88,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
 
+  {/* Google Tag Manager — precisa ser is:inline, senão o Astro empacota como
+      módulo com defer e o container carrega tarde demais. */}
+  {GTM_ID && (
+    <script define:vars={{ GTM_ID }} is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var gtmS = document.createElement('script');
+      gtmS.async = true;
+      gtmS.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+      document.head.appendChild(gtmS);
+    </script>
+  )}
+
   {/* Google tag (gtag.js) */}
   <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}></script>
   <script define:vars={{ GOOGLE_ADS_ID, GA4_ID }} is:inline>
@@ -102,21 +112,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     if (GA4_ID) gtag('config', GA4_ID);
   </script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K52WHNQYX9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-K52WHNQYX9');
-</script>
 <body>
+  {GTM_ID && (
+    <noscript set:html={`<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`} />
+  )}
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJSGGZRL"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
   <slot />
 
   {/* ============================================================
