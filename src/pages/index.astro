@@ -28,28 +28,30 @@ const faqItens = [
   { q: 'Onde fica o consultório da Dra. Daiane Carvalho?',
     a: 'O consultório da Dra. Daiane Carvalho fica na L. Padre Péricles, 145, Sala 141 A, na Barra Funda, zona oeste de São Paulo (SP).' },
   { q: 'Quais são os horários de atendimento?',
-    a: 'O consultório atende às terças, quintas e sextas, das 08:00 às 18:00, e aos sábados, das 12:00 às 17:00. Nos domingos, segundas e quartas não há atendimento durante o dia, mas casos de urgência podem ser atendidos à noite, conforme a disponibilidade da Dra. Daiane Carvalho.' },
+    a: 'O consultório atende às terças, quintas e sextas, das 08:00 às 18:00, e aos sábados, das 12:00 às 17:00. Nos domingos, segundas e quartas não há atendimento. O atendimento é sempre com hora marcada, em qualquer dia.' },
+  { q: 'Como funciona a primeira consulta?',
+    a: 'É uma avaliação de cerca de 30 minutos. A Dra. Daiane examina os dentes, faz a limpeza e conversa com você sobre o que precisa ser feito. Se houver espaço na agenda, o procedimento pode ser iniciado na mesma visita.' },
   { q: 'Quais tratamentos a Dra. Daiane Carvalho realiza?',
-    a: 'A Dra. Daiane Carvalho realiza tratamento de canal (endodontia), clínica geral (limpeza, restaurações, extrações e check-ups), clareamento dental e estética do sorriso. A especialização dela é em Endodontia.' },
-  { q: 'A Dra. Daiane Carvalho é especialista em endodontia?',
-    a: 'Sim. A Dra. Daiane Carvalho é cirurgiã-dentista formada pela Universidade Nove de Julho e especialista em Endodontia pela São Leopoldo Mandic, em São Paulo, inscrita no CRO-SP sob o número 170242.' },
+    a: 'A Dra. Daiane Carvalho realiza limpeza, com remoção de tártaro e placa; restauração de dentes afetados por cárie ou fratura; clareamento dental; e tratamento de canal, que é a endodontia.' },
+  { q: 'A Dra. Daiane faz limpeza e restauração?',
+    a: 'Faz. Além do tratamento de canal e do clareamento, o consultório atende limpeza, a remoção de tártaro e placa, e restauração de dentes afetados por cárie ou fratura. A limpeza é feita já na avaliação inicial, que é também quando a Dra. Daiane identifica o que mais precisa de atenção.' },
+  { q: 'Vocês atendem aos sábados?',
+    a: 'Sim, das 12h às 17h. O atendimento é sempre com hora marcada, em qualquer dia, mas a marcação é rápida e feita pelo WhatsApp, então às vezes dá para encaixar no mesmo dia. O sábado costuma resolver para quem não consegue sair do trabalho durante a semana.' },
+  { q: 'Qual é a formação da Dra. Daiane Carvalho?',
+    a: 'A Dra. Daiane Carvalho é cirurgiã-dentista formada em Odontologia pela Universidade Nove de Julho e concluiu especialização em Endodontia, a área que trata o canal do dente, na São Leopoldo Mandic, em São Paulo. Está inscrita no CRO-SP sob o número 170242.' },
   { q: 'Estou com dor de dente. O que devo fazer?',
-    a: `Mande uma mensagem no WhatsApp ${clinica.telefoneExibicao} descrevendo a dor. Dor de dente forte costuma indicar inflamação da polpa do dente e não melhora sozinha: quanto antes for avaliada, mais simples é o tratamento. A Dra. Daiane Carvalho atende urgências nos dias e horários de funcionamento e, nos domingos, segundas e quartas, também à noite, conforme disponibilidade.` },
+    a: `Mande uma mensagem no WhatsApp ${clinica.telefoneExibicao} descrevendo a dor. Dor de dente forte costuma indicar inflamação da polpa do dente e não melhora sozinha: quanto antes for avaliada, mais simples é o tratamento. Casos de dor são encaixados dentro dos dias de atendimento, e a marcação pelo WhatsApp costuma ser rápida.` },
   { q: 'O consultório atende convênio?',
     a: 'Não. O atendimento no consultório da Dra. Daiane Carvalho é exclusivamente particular, sem convênios.' },
   { q: 'Como agendar uma consulta?',
     a: `O agendamento é feito pelo WhatsApp, no número ${clinica.telefoneExibicao}. Você conta o que está sentindo, a Dra. Daiane avalia o caso e confirma o melhor horário dentro dos dias de atendimento.` },
-  { q: 'Vocês atendem aos sábados?',
-    a: `Sim, das 12h às 17h. O atendimento é sempre com hora marcada, em qualquer dia, mas a marcação é rápida e feita pelo WhatsApp, então às vezes dá para encaixar no mesmo dia. O sábado costuma resolver para quem não consegue sair do trabalho durante a semana.` },
-  { q: 'A Dra. Daiane faz limpeza e restauração?',
-    a: `Faz. Além do tratamento de canal e do clareamento, o consultório atende limpeza, a remoção de tártaro e placa, e restauração de dentes afetados por cárie ou fratura. A limpeza é feita já na avaliação inicial, que é também quando a Dra. Daiane identifica o que mais precisa de atenção.` },
 ];
 
 const jsonLd = grafo(dentist(), person(), faqPage(faqItens));
 ---
 <Layout
-  title="Dra. Daiane Carvalho | Dentista e endodontista na Barra Funda, São Paulo"
-  description="Consultório da Dra. Daiane Carvalho na Barra Funda, São Paulo. Tratamento de canal, clínica geral, clareamento e estética do sorriso. Atendimento particular."
+  title="Consultório odontológico na Barra Funda, São Paulo | Dra. Daiane Carvalho"
+  description="Consultório odontológico da Dra. Daiane Carvalho na Barra Funda, São Paulo. Limpeza, restauração, clareamento dental e tratamento de canal. Atendimento particular, de terça a sábado."
   origem="home"
   jsonLd={jsonLd}
 >
@@ -61,7 +63,7 @@ const jsonLd = grafo(dentist(), person(), faqPage(faqItens));
       id="dra-daiane"
       label="Quem cuida do seu sorriso"
       titulo="Dra. Daiane Carvalho"
-      texto="A Dra. Daiane Carvalho é cirurgiã-dentista e especialista em Endodontia, com consultório na Barra Funda, em São Paulo. Atende tratamento de canal, clínica geral, clareamento e estética do sorriso, explicando cada etapa com clareza e conduzindo o tratamento no ritmo de cada paciente."
+      texto="A Dra. Daiane Carvalho é cirurgiã-dentista com especialização em Endodontia, a área que trata o canal do dente, e mantém consultório na Barra Funda, em São Paulo. Atende limpeza, restauração, clareamento dental e tratamento de canal, explicando cada etapa com clareza e conduzindo o tratamento no ritmo de cada paciente."
     />
     <Depoimentos id="depoimentos" contexto="home" />
     <Espaco id="consultorio" />

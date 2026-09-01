@@ -17,7 +17,9 @@ interface Props {
 const {
   label = 'Quem cuida do seu sorriso',
   titulo = 'Dra. Daiane Carvalho',
-  texto = 'Cirurgiã-dentista apaixonada por transformar sorrisos e cuidar de pessoas com acolhimento e atenção. Atuo com foco em clareamento e estética do sorriso, com tratamentos modernos, confortáveis e resultados naturais.',
+  // Default deliberadamente genérico: as três páginas passam `texto` próprio.
+  // Ele existe só para nenhuma página futura nascer com copy fora de 1.2.1.
+  texto = 'Cirurgiã-dentista com consultório na Barra Funda, em São Paulo. Atendimento próximo, com cada etapa explicada antes de ser feita e no ritmo de cada paciente.',
   foto = '/assets/images/Dra-Daiane-Carvalho.jpg',
   fotoAlt = 'Dra. Daiane Carvalho no consultório',
   id,

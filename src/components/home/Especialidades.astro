@@ -4,6 +4,7 @@
 import TituloSecao from '../TituloSecao.astro';
 import CardIcone from '../CardIcone.astro';
 import IconeDental from '../IconeDental.astro';
+import BotaoWhatsApp from '../BotaoWhatsApp.astro';
 
 interface Props { id?: string; }
 const { id } = Astro.props;
@@ -14,14 +15,14 @@ const servicos = [
     itens: ['Profilaxia', 'Remoção de tártaro', 'Aplicação de flúor', 'Orientação de escovação'] },
   { icone: 'obturacao', titulo: 'Restauração',
     texto: 'Reconstrução do dente afetado por cárie ou fratura, com resina da cor do próprio dente.',
-    itens: ['Restaurações', 'Reconstrução', 'Check-ups', 'Diagnósticos'] },
+    itens: ['Restauração em resina', 'Reconstrução de dente fraturado', 'Tratamento de cárie'] },
   { icone: 'clareamento', titulo: 'Clareamento dental',
     texto: 'Protocolo feito no consultório para clarear o tom dos dentes, acompanhado sessão a sessão até chegar ao seu branco máximo.',
-    itens: ['Clareamento', 'Restaurações estéticas', 'Check-ups'],
+    itens: ['Clareamento em consultório', 'Avaliação do tom na consulta', 'Acompanhamento sessão a sessão'],
     link: { texto: 'Ver mais', href: '/clareamento/' } },
   { icone: 'canal', titulo: 'Tratamento de canal',
     texto: 'Tratamento da parte interna do dente quando a raiz é atingida. É o que evita a extração e permite manter o dente.',
-    itens: ['Tratamento de canal', 'Retratamento', 'Apicectomia', 'Diagnóstico pulpar'],
+    itens: ['Tratamento de canal', 'Retratamento de canal', 'Diagnóstico pulpar'],
     link: { texto: 'Ver mais', href: '/endodontia/' } },
 ] as const;
 ---
@@ -39,11 +40,22 @@ const servicos = [
         </CardIcone>
       ))}
     </div>
+    <div class="servicos-cta">
+      <BotaoWhatsApp
+        texto="Tirar uma dúvida"
+        mensagem="Olá! Tenho uma dúvida sobre os atendimentos do consultório."
+        posicao="servicos"
+        icone={false}
+      />
+    </div>
   </div>
 </section>
 
 <style is:global>
     .servicos { background: var(--superficie-alternada); }
+    .servicos-cta { display: flex; justify-content: center; margin-top: var(--spacing-xl); }
+    .servicos-cta .btn-whatsapp { width: 100%; }
+    @media (min-width: 768px) { .servicos-cta .btn-whatsapp { width: 350px; } }
     @media (min-width: 768px) {
       .servicos-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
     }

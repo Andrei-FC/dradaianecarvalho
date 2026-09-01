@@ -2,7 +2,7 @@
 // que alimenta o texto visível. Se os dois divergirem, o schema vira ruído.
 //
 // O QUE NÃO ENTRA AQUI, DE PROPÓSITO:
-//  - `aggregateRating`: as 31 avaliações vivem no Google Business Profile, não
+//  - `aggregateRating`: as 32 avaliações vivem no Google Business Profile, não
 //    no site. Marcar nota agregada em HTML próprio com avaliação coletada por
 //    terceiro é território de ação manual (seção 10.4). O canal delas é a F3.
 //  - `priceRange`: preço não vai para peça publicitária (seção 11).
@@ -65,10 +65,13 @@ export function dentist() {
       { '@type': 'City', name: 'São Paulo' },
       { '@type': 'Place', name: 'Barra Funda, São Paulo' },
     ],
+    // Exatamente as quatro áreas divulgadas (1.2.1). Nada além: schema que
+    // lista procedimento não realizado ou não divulgado é pior que ausente.
     availableService: [
       { '@type': 'MedicalProcedure', name: 'Tratamento de canal (endodontia)', url: `${SITE}/endodontia/` },
       { '@type': 'MedicalProcedure', name: 'Clareamento dental', url: `${SITE}/clareamento/` },
-      { '@type': 'MedicalProcedure', name: 'Clínica geral odontológica' },
+      { '@type': 'MedicalProcedure', name: 'Limpeza dental (remoção de tártaro e placa)' },
+      { '@type': 'MedicalProcedure', name: 'Restauração dentária' },
     ],
     sameAs: [clinica.instagram],
     isAcceptingNewPatients: true,
@@ -82,13 +85,25 @@ export function person() {
     '@type': 'Person',
     '@id': `${SITE}/#dra-daiane`,
     name: clinica.nome,
-    jobTitle: 'Cirurgiã-dentista, especialista em Endodontia',
+    jobTitle: 'Cirurgiã-dentista',
+    // 11.6.1: a formação é declarada como credencial concluída; o TÍTULO de
+    // especialista só entra quando o registro for publicado no CRO (~nov/2026).
+    hasCredential: [
+      { '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'degree',
+        name: 'Graduação em Odontologia',
+        recognizedBy: { '@type': 'CollegeOrUniversity', name: 'Universidade Nove de Julho' } },
+      { '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'Especialização',
+        name: 'Especialização em Endodontia',
+        recognizedBy: { '@type': 'CollegeOrUniversity', name: 'São Leopoldo Mandic' } },
+    ],
     identifier: { '@type': 'PropertyValue', propertyID: 'CRO-SP', value: '170242' },
     alumniOf: [
       { '@type': 'CollegeOrUniversity', name: 'Universidade Nove de Julho' },
       { '@type': 'CollegeOrUniversity', name: 'São Leopoldo Mandic' },
     ],
-    knowsAbout: ['Endodontia', 'Tratamento de canal', 'Clareamento dental', 'Odontologia clínica'],
+    knowsAbout: ['Endodontia', 'Tratamento de canal', 'Clareamento dental', 'Limpeza dental', 'Restauração dentária'],
     worksFor: { '@id': `${SITE}/#consultorio` },
     image: `${SITE}/assets/images/Dra-Daiane-Carvalho.jpg`,
     url: `${SITE}/`,
