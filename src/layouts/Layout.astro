@@ -2,7 +2,11 @@
 // Layout base compartilhado por todas as páginas.
 // Concentra o <head>, o carregamento do Mulish, o tokens.css,
 // as tags de medição e o rastreio de clique no wa.me.
+// CSS global do site. Vive AQUI e em nenhum outro lugar: quando cada página
+// importava o base.css por conta própria, bastava reescrever uma página para
+// a linha sumir e o layout inteiro daquela rota cair.
 import '../styles/tokens.css';
+import '../styles/base.css';
 
 // ============================================================
 // MEDIÇÃO
