@@ -48,13 +48,16 @@ const { nav = [] } = Astro.props;
     .barra-marca-inner {
       max-width: 1200px; margin: 0 auto;
       padding: 20px var(--spacing-xl);
-      display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-xl);
+      display: flex; align-items: center; gap: var(--spacing-xl);
+      /* mobile: só a marca, centralizada. No desktop o menu entra e a barra
+         volta a ser logo à esquerda / âncoras à direita. */
+      justify-content: center;
     }
     .barra-marca-logo { height: 40px; width: auto; }
     .barra-marca-nav { display: none; }
 
     @media (min-width: 768px) {
-      .barra-marca-inner { padding: 28px var(--spacing-xl); }
+      .barra-marca-inner { padding: 28px var(--spacing-xl); justify-content: space-between; }
       .barra-marca-logo { height: 52px; }
       .barra-marca-nav { display: flex; align-items: center; gap: var(--spacing-xl); }
       .barra-marca-link {

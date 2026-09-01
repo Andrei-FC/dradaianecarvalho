@@ -1,30 +1,30 @@
 ---
-// Seção "O que é o seu branco máximo" — vídeo do YouTube + CTA. Conteúdo fixo da landing.
+// Seção "O que é o seu branco máximo" (Figma: "Branco Máximo").
+import TituloSecao from '../TituloSecao.astro';
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
+
+const TEXTO = 'Todo dente tem um limite natural de clareamento, que é o ponto mais branco que a sua estrutura dental consegue atingir. Ao final de cada sessão, a cor é medida com uma escala padronizada. Quando ela se estabiliza entre uma sessão e outra, você chegou ao seu branco máximo. Por isso as sessões são ilimitadas: o limite não é um número, é o seu resultado.';
 ---
 <section class="branco section">
   <div class="container branco-inner">
     <div class="branco-col">
-      <div class="section-head">
-        <p class="eyebrow tipo-label">Como o resultado é medido</p>
-        <h2 class="tipo-titulo">O que é o seu branco máximo</h2>
-      </div>
-      <p class="tipo-corpo branco-texto">Todo dente tem um limite natural de clareamento, que é o ponto mais branco que a sua estrutura dental consegue atingir. Ao final de cada sessão, a cor é medida com uma escala padronizada. Quando ela se estabiliza entre uma sessão e outra, você chegou ao seu branco máximo. Por isso as sessões são ilimitadas: o limite não é um número, é o seu resultado.</p>
-      <BotaoWhatsApp texto="Tirar minha dúvida" mensagem="Olá! Quero entender o meu branco máximo." posicao="branco-maximo" class="branco-cta" />
+      <TituloSecao label="Como o resultado é medido" titulo="O que é o seu branco máximo" />
+      <p class="tipo-corpo branco-texto">{TEXTO}</p>
+      <BotaoWhatsApp texto="Tirar uma dúvida" mensagem="Olá! Tenho uma dúvida sobre o clareamento dental." posicao="branco" icone={false} class="branco-cta" />
     </div>
     <div class="branco-video">
-      <iframe src="https://www.youtube-nocookie.com/embed/5JrUhSAutXE?rel=0&amp;modestbranding=1&amp;playsinline=1" title="O que é o branco máximo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube-nocookie.com/embed/5JrUhSAutXE?rel=0&amp;modestbranding=1&amp;playsinline=1" title="O que é o branco máximo" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
 
 <style is:global>
-    .branco { background: var(--teal-50); }
-    .branco h2 { color: var(--teal-800); }
+    .branco { background: var(--superficie-card); }
+    .branco h2 { color: var(--texto-titulo); }
     .branco .branco-texto { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
     .branco-video {
       aspect-ratio: 1160 / 1164; width: 100%;
-      border-radius: var(--radius-md); overflow: hidden; background: var(--teal-900);
+      border-radius: var(--radius-md); overflow: hidden; background: var(--superficie-escura);
     }
     .branco-video iframe { width: 100%; height: 100%; border: 0; display: block; }
     .branco .btn-whatsapp { width: 100%; }
@@ -37,9 +37,8 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
     @media (min-width: 768px) {
       .branco-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); align-items: center; }
       .branco-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); order: 1; }
-      .branco .section-head { order: 0; margin-bottom: 0; }
-      .branco .branco-texto { order: 0; margin: 0; }
-      .branco .branco-cta { order: 0; }
+      .branco .section-head, .branco .branco-texto, .branco .branco-cta { order: 0; margin-bottom: 0; }
+      .branco .branco-texto { margin: 0; }
       .branco-video { order: 2; }
       .branco .btn-whatsapp { width: 335px; max-width: 100%; }
     }

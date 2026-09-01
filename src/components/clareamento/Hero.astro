@@ -1,9 +1,11 @@
 ---
-// Hero da landing de clareamento.
-// No desktop, o parágrafo + botão + selos ficam no bloco .hero-selos (2 colunas).
-// No mobile, esse bloco esconde os selos (que reaparecem na faixa SelosMobile).
+// Hero da landing de clareamento. Demanda considerada: tom de vitrine.
+// No desktop a faixa de selos vive aqui; no mobile vira SelosMobile.
 import SelosGrid from './SelosGrid.astro';
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
+
+const LEAD_SELOS = 'Sessões ilimitadas em consultório até você atingir o seu branco máximo, com limpeza profunda e clareamento caseiro inclusos por metade do valor desses procedimentos separados.';
+const MSG = 'Olá! Gostaria de avaliar o meu sorriso para um clareamento.';
 ---
 <header class="hero section">
   <div class="container hero-inner">
@@ -15,15 +17,15 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
         </span>
         <h1 class="tipo-display">Clareamento dental sem limite de sessões</h1>
       </div>
-      <p class="lead tipo-subtitulo">Resultados visíveis desde a primeira sessão, com branco garantido por até 2 anos.</p>
+      <p class="lead tipo-subtitulo">Resultados visíveis desde a primeira sessão, com branco que dura até 2 anos com os cuidados certos.</p>
 
       <div class="hero-selos">
-        <p class="lead tipo-corpo">Sessões ilimitadas em consultório até você atingir o seu branco máximo, com limpeza profunda e clareamento caseiro inclusos por metade do valor desses procedimentos separados.</p>
-        <BotaoWhatsApp texto="Conversar agora" mensagem="Olá! Tenho interesse no clareamento dental." posicao="hero" />
+        <p class="lead tipo-corpo">{LEAD_SELOS}</p>
+        <BotaoWhatsApp texto="Avaliar o meu sorriso" mensagem={MSG} posicao="hero" icone={false} />
         <SelosGrid />
       </div>
     </div>
-    <div class="ph hero-img"><img src="/assets/images/Dra-daiane-carvalho-clareamento.jpg" alt="Dra. Daiane Carvalho segurando a escala de cor do clareamento"></div>
+    <div class="ph hero-img"><img src="/assets/images/Dra-daiane-carvalho-clareamento.jpg" alt="Dra. Daiane Carvalho, dentista na Barra Funda, em atendimento de clareamento dental"></div>
   </div>
 </header>
 
@@ -33,22 +35,21 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
     .hero-inner { padding-top: var(--spacing-2xl); }
     .hero-badge {
       display: inline-flex; align-self: flex-start; width: auto; align-items: center; gap: var(--spacing-xs);
-      background: var(--teal-50); color: var(--teal-800);
+      background: var(--superficie-alternada); color: var(--texto-titulo);
       padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full);
-      margin: 0;
+      margin: 0; text-transform: none; letter-spacing: 0;
     }
     .hero-title-block { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
     .hero-col { display: flex; flex-direction: column; gap: var(--spacing-sm); }
     .hero h1 { color: var(--texto-titulo); margin: 0; }
     .hero .lead { color: var(--texto-suave); margin: 0; }
-    .hero-img { aspect-ratio: 1856 / 2290; width: 100%; border-radius: 0; }
+    .hero-img { aspect-ratio: 902 / 1004; width: 100%; border-radius: 0; }
     .hero-selos { display: none; }
     @media (min-width: 768px) {
       .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
       .hero-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
       .hero .lead { margin: 0; }
       .hero-selos { display: flex; flex-direction: column; gap: var(--spacing-md); }
-      .hero-selos .selo-grid { grid-template-columns: 1fr 1fr; }
       .hero .btn-whatsapp { width: 350px; max-width: 100%; }
     }
 </style>

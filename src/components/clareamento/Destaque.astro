@@ -1,12 +1,11 @@
 ---
-// Wrapper de seção do card destaque na landing de clareamento.
-// Usa o CardDestaque compartilhado (cor mauve). Conteúdo fixo desta landing.
+// Seção Conforto: um Card Destaque sobre superfície blush.
 import CardDestaque from '../CardDestaque.astro';
 ---
-<section class="destaque section">
+<section class="conforto section">
   <div class="container">
     <CardDestaque
-      cor="mauve"
+      cor="rosa"
       titulo="Protocolo dessensibilizante para o seu conforto"
       texto="Um dos maiores receios de quem quer clarear é a sensibilidade. Por isso, o clareamento aqui inclui um protocolo dessensibilizante aplicado durante as sessões, reduzindo o desconforto e deixando a experiência muito mais tranquila, do começo ao fim."
     />
@@ -14,5 +13,5 @@ import CardDestaque from '../CardDestaque.astro';
 </section>
 
 <style is:global>
-    .destaque { background: var(--superficie-pagina); padding-top: 0; }
+    .conforto { background: var(--superficie-respiro); }
 </style>
