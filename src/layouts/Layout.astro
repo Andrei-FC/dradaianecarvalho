@@ -5,6 +5,14 @@
 // CSS global do site. Vive AQUI e em nenhum outro lugar: quando cada página
 // importava o base.css por conta própria, bastava reescrever uma página para
 // a linha sumir e o layout inteiro daquela rota cair.
+// Mulish AUTO-HOSPEDADA. Antes vinha de fonts.googleapis.com, o que colocava
+// duas origens de terceiro no caminho crítico: o navegador buscava o CSS no
+// googleapis, lia dentro dele o endereço do woff2 no gstatic, e só então
+// pintava texto. Três idas e voltas antes do primeiro pixel — era isso que
+// segurava o FCP em 4,2s no 4G lento. Servido do nosso domínio, é uma ida só.
+// Mesmo princípio da seção 9.6: a marca não depende de Typekit; o corpo do
+// site não depende do Google Fonts.
+import '../styles/fontes.css';
 import '../styles/tokens.css';
 import '../styles/base.css';
 
@@ -82,9 +90,9 @@ const ogImagemAbs = new URL(ogImagem, 'https://dradaianecarvalho.com.br').href;
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#2F5D62" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;800&display=swap" rel="stylesheet" />
+  {/* A fonte é servida do próprio domínio (import no topo deste arquivo).
+      O preload adianta o peso 400, que é o que pinta o corpo do texto. */}
+  <link rel="preload" href="/fonts/mulish-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 
   {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
 

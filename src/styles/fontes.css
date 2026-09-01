@@ -1,0 +1,27 @@
+/* Mulish auto-hospedada. Os .woff2 vivem em public/fonts/ com nome fixo — de
+   propósito: o <link rel="preload"> do Layout precisa apontar para um caminho
+   estável, e arquivo processado pelo bundler ganha hash a cada build.
+   Subconjunto latino apenas; o site é todo em português.
+   font-display: swap — o texto pinta na fonte de sistema e troca quando a
+   Mulish chega. Nunca deixar o texto invisível esperando fonte. */
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/mulish-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/mulish-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/mulish-latin-800-normal.woff2') format('woff2');
+}
