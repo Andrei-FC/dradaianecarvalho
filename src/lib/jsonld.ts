@@ -6,6 +6,11 @@
 //    no site. Marcar nota agregada em HTML próprio com avaliação coletada por
 //    terceiro é território de ação manual (seção 10.4). O canal delas é a F3.
 //  - `priceRange`: preço não vai para peça publicitária (seção 11).
+//
+// TODAS as URLs internas daqui saem COM barra final. O canonical gerado pelo
+// Astro (build.format 'directory') é /endodontia/ — apontar para /endodontia
+// faz o Cloudflare Pages devolver 308 e o schema passa a citar uma URL que
+// redireciona. Manter os dois lados idênticos, byte a byte.
 import clinica from '../data/clinica.json';
 
 const SITE = 'https://dradaianecarvalho.com.br';
@@ -41,8 +46,17 @@ export function dentist() {
     '@type': 'Dentist',
     '@id': `${SITE}/#consultorio`,
     name: clinica.nome,
-    url: SITE,
+    url: `${SITE}/`,
     telephone: clinica.telefoneInternacional,
+    // `image` é exigência do Google para LocalBusiness e `logo` para
+    // Organization. Como Dentist herda dos dois, a ausência de imagem era
+    // reportada uma vez por tipo herdado — era este o campo inválido.
+    image: [
+      `${SITE}/assets/images/Hero-principal.jpg`,
+      `${SITE}/assets/images/Consultorio-Dental1.jpg`,
+      `${SITE}/assets/og.jpg`,
+    ],
+    logo: `${SITE}/favicon-512.png`,
     address: enderecoPostal,
     geo: { '@type': 'GeoCoordinates', latitude: -23.5312865, longitude: -46.6662844 },
     openingHoursSpecification: horarios(),
@@ -52,8 +66,8 @@ export function dentist() {
       { '@type': 'Place', name: 'Barra Funda, São Paulo' },
     ],
     availableService: [
-      { '@type': 'MedicalProcedure', name: 'Tratamento de canal (endodontia)', url: `${SITE}/endodontia` },
-      { '@type': 'MedicalProcedure', name: 'Clareamento dental', url: `${SITE}/clareamento` },
+      { '@type': 'MedicalProcedure', name: 'Tratamento de canal (endodontia)', url: `${SITE}/endodontia/` },
+      { '@type': 'MedicalProcedure', name: 'Clareamento dental', url: `${SITE}/clareamento/` },
       { '@type': 'MedicalProcedure', name: 'Clínica geral odontológica' },
     ],
     sameAs: [clinica.instagram],
@@ -76,7 +90,8 @@ export function person() {
     ],
     knowsAbout: ['Endodontia', 'Tratamento de canal', 'Clareamento dental', 'Odontologia clínica'],
     worksFor: { '@id': `${SITE}/#consultorio` },
-    url: SITE,
+    image: `${SITE}/assets/images/Dra-Daiane-Carvalho.jpg`,
+    url: `${SITE}/`,
     sameAs: [clinica.instagram],
   };
 }
@@ -107,7 +122,7 @@ export function breadcrumb(nome: string, caminho: string) {
   return {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Dra. Daiane Carvalho', item: SITE },
+      { '@type': 'ListItem', position: 1, name: 'Dra. Daiane Carvalho', item: `${SITE}/` },
       { '@type': 'ListItem', position: 2, name: nome, item: `${SITE}${caminho}` },
     ],
   };

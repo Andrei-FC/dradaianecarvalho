@@ -25,7 +25,7 @@ const nav = [
 ];
 const linksRodape = [
   { texto: 'Dra. Daiane Carvalho', href: '/' },
-  { texto: 'Clareamento dental',   href: '/clareamento' },
+  { texto: 'Clareamento dental',   href: '/clareamento/' },
 ];
 
 // Horário derivado do clinica.json — a mesma fonte do rodapé e do JSON-LD.
@@ -86,9 +86,9 @@ const jsonLd = grafo(
   servico({
     nome: 'Tratamento de canal (endodontia)',
     descricao: 'Tratamento de canal com anestesia bem feita e técnica moderna, na maioria dos casos em uma única sessão, no consultório da Dra. Daiane Carvalho na Barra Funda, São Paulo.',
-    caminho: '/endodontia',
+    caminho: '/endodontia/',
   }),
-  breadcrumb('Tratamento de canal', '/endodontia'),
+  breadcrumb('Tratamento de canal', '/endodontia/'),
   faqPage(faq),
 );
 ---

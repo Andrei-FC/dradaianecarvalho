@@ -2,7 +2,11 @@
 <!-- Três rotas, estrutura plana e deliberadamente rasa (seção 2.6).
      Escrito à mão em vez de gerado por integração: com três URLs, uma
      dependência a mais custa mais do que resolve. Se nascer uma quarta
-     página, adicionar aqui. -->
+     página, adicionar aqui.
+
+     BARRA FINAL OBRIGATÓRIA: o build gera /endodontia/index.html, então o
+     canonical é /endodontia/. Sem a barra o Cloudflare devolve 308 e o
+     sitemap passa a listar redirect em vez de destino. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dradaianecarvalho.com.br/</loc>
@@ -10,12 +14,12 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dradaianecarvalho.com.br/endodontia</loc>
+    <loc>https://dradaianecarvalho.com.br/endodontia/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dradaianecarvalho.com.br/clareamento</loc>
+    <loc>https://dradaianecarvalho.com.br/clareamento/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

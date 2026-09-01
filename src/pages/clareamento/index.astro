@@ -39,16 +39,16 @@ const nav = [
 ];
 const linksRodape = [
   { texto: 'Dra. Daiane Carvalho', href: '/' },
-  { texto: 'Tratamento de canal', href: '/endodontia' },
+  { texto: 'Tratamento de canal', href: '/endodontia/' },
 ];
 
 const jsonLd = grafo(
   servico({
     nome: 'Clareamento dental',
     descricao: 'Clareamento dental com sessões ilimitadas em consultório até o branco máximo, com limpeza profunda e clareamento caseiro inclusos, na Barra Funda, São Paulo.',
-    caminho: '/clareamento',
+    caminho: '/clareamento/',
   }),
-  breadcrumb('Clareamento dental', '/clareamento'),
+  breadcrumb('Clareamento dental', '/clareamento/'),
   faqPage(faqItens),
 );
 ---
