@@ -1,44 +1,34 @@
 ---
-// Seção de vídeo (espelha "Branco Máximo" do clareamento).
-// Ângulo: mecanismo da dor + preservar o dente natural — ESPELHA O QUE O VÍDEO DIZ.
-// A promessa de "1 sessão" mora no selo do hero, no passo 4 do Como Funciona e no
-// FAQ; aqui ela é só fecho, para não prometer o que o vídeo não sustenta.
-// Vídeo real da Dra. (YouTube Short _9xsHXtEvO0). Por ser Short, é VERTICAL 9:16:
-// a caixa usa o modificador .video-vertical em vez da caixa quadrada do clareamento,
-// senão o vídeo entra com tarja preta nas laterais. Ver PROJETO: divergência aberta
-// contra o Figma, onde a caixa desta seção ainda é o placeholder quadrado.
+// Seção do vídeo (Figma: "Branco Máximo" da endodontia).
+// Ângulo: mecanismo da dor + preservar o dente natural — espelha o que o vídeo diz.
+// Vídeo real da Dra. (YouTube Short _9xsHXtEvO0). Por ser Short é VERTICAL 9:16.
+import TituloSecao from '../TituloSecao.astro';
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
+
+const TEXTO = 'O que dói é a infecção, não o tratamento. Dentro do dente existe a polpa, onde ficam os nervos e os vasos sanguíneos. Quando ela inflama, a dor aparece. E não fica parada: sem tratamento, a infecção avança para a raiz e para o osso que sustenta o dente. O tratamento de canal elimina a infecção e preserva o seu dente em vez de removê-lo, na maioria das vezes em uma única sessão, no mesmo dia. Nenhum implante é melhor que o seu próprio dente.';
 ---
 <section class="branco section">
   <div class="container branco-inner">
     <div class="branco-col">
-      <div class="section-head">
-        <p class="eyebrow tipo-label">O que está acontecendo</p>
-        <h2 class="tipo-titulo">Por que dói, e por que o canal salva o seu dente</h2>
-      </div>
-      <p class="tipo-corpo branco-texto">O que dói é a infecção, não o tratamento. Dentro do dente existe a polpa, onde ficam os nervos e os vasos sanguíneos. Quando ela inflama, a dor aparece. E não fica parada: sem tratamento, a infecção avança para a raiz e para o osso que sustenta o dente. O canal elimina a infecção e preserva o seu dente em vez de removê-lo, na maioria das vezes em uma única sessão, no mesmo dia. Nenhum implante é melhor que o seu próprio dente.</p>
-      <BotaoWhatsApp texto="Tirar minha dúvida" mensagem="Olá! Tenho uma dúvida sobre o tratamento de canal." posicao="video" class="branco-cta" />
+      <TituloSecao label="O que está acontecendo" titulo="Por que dói, e por que o tratamento de canal salva o seu dente" />
+      <p class="tipo-corpo branco-texto">{TEXTO}</p>
+      <BotaoWhatsApp texto="Tirar uma dúvida" mensagem="Olá! Tenho uma dúvida sobre o tratamento de canal." posicao="video" icone={false} class="branco-cta" />
     </div>
     <div class="branco-video video-vertical">
-      <iframe src="https://www.youtube-nocookie.com/embed/_9xsHXtEvO0?rel=0&amp;modestbranding=1&amp;playsinline=1" title="Por que o dente dói e como o tratamento de canal salva o dente" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube-nocookie.com/embed/_9xsHXtEvO0?rel=0&amp;modestbranding=1&amp;playsinline=1" title="Por que o dente dói e como o tratamento de canal salva o dente" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
 
 <style is:global>
-    /* reusa exatamente o visual de .branco do clareamento */
-    .branco { background: var(--teal-50); }
-    .branco h2 { color: var(--teal-800); }
+    .branco { background: var(--superficie-card); }
+    .branco h2 { color: var(--texto-titulo); }
     .branco .branco-texto { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
     .branco-video {
-      aspect-ratio: 1160 / 1164; width: 100%;
-      border-radius: var(--radius-md); overflow: hidden; background: var(--teal-900);
+      aspect-ratio: 9 / 16; max-width: 300px; margin-inline: auto; width: 100%;
+      border-radius: var(--radius-md); overflow: hidden; background: var(--superficie-escura);
     }
     .branco-video iframe { width: 100%; height: 100%; border: 0; display: block; }
-    /* Short é vertical: proporção 9:16 e largura limitada pra não dominar a seção. */
-    .branco-video.video-vertical { aspect-ratio: 9 / 16; max-width: 300px; margin-inline: auto; }
-    /* Short do YouTube = 9:16. Largura travada para o vertical não dominar a seção. */
-    .branco-video.video-vertical { aspect-ratio: 9 / 16; max-width: 300px; margin-inline: auto; }
     .branco .btn-whatsapp { width: 100%; }
     .branco-inner { display: flex; flex-direction: column; gap: var(--spacing-lg); }
     .branco-col { display: contents; }
@@ -52,8 +42,7 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
       .branco .section-head { order: 0; margin-bottom: 0; }
       .branco .branco-texto { order: 0; margin: 0; }
       .branco .branco-cta { order: 0; }
-      .branco-video { order: 2; }
+      .branco-video { order: 2; max-width: 340px; }
       .branco .btn-whatsapp { width: 335px; max-width: 100%; }
-      .branco-video.video-vertical { max-width: 340px; }
     }
 </style>

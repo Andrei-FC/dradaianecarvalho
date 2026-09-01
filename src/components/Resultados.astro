@@ -9,6 +9,7 @@ interface Props {
   label?: string;
   titulo?: string;
   imagens?: { src: string; alt: string }[];
+  id?: string;
 }
 
 const CLAREAMENTO = [1, 2, 3, 4, 5].map((n) => ({
@@ -20,9 +21,10 @@ const {
   label = 'Resultados reais',
   titulo = 'Sorrisos que falam por si',
   imagens = CLAREAMENTO,
+  id,
 } = Astro.props;
 ---
-<section class="resultados section">
+<section class="resultados section" id={id}>
     <div class="container">
       <TituloSecao label={label} titulo={titulo} />
       <div class="galeria">
@@ -32,7 +34,7 @@ const {
   </section>
 
 <style is:global>
-    .resultados { background: var(--mauve-50); }
+    .resultados { background: var(--superficie-alternada); }
     @media (min-width: 768px) {
       .resultados .galeria .ph img { height: 100%; object-fit: cover; }
     }

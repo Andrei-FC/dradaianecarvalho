@@ -1,9 +1,11 @@
 ---
-// Hero da landing de endodontia (paciente final). Ângulo: dor → tira a dor e salva o dente.
-// Espelha a estrutura do Hero de clareamento: reusa as classes .hero/.hero-selos
-// (definidas aqui uma vez) e a faixa de selos no desktop; no mobile a faixa vai em SelosBanda.
+// Hero da landing de endodontia. Ângulo: dor → tira a dor e salva o dente.
+// No desktop a faixa de selos vive AQUI dentro; no mobile ela vira SelosBanda.
 import Selos from './Selos.astro';
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
+
+const LEAD_SELOS = 'Atendimento humanizado, na Barra Funda. A Dra. Daiane avalia o seu caso, explica cada passo e conduz o tratamento com foco no seu conforto. A maioria dos casos é resolvida em uma única sessão.';
+const MSG = 'Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal.';
 ---
 <header class="hero section">
   <div class="container hero-inner">
@@ -13,13 +15,13 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
           <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--estrela)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           100% de avaliações 5 estrelas no Google
         </span>
-        <h1 class="tipo-display">Dor de dente forte? O canal tira a dor e salva o seu dente</h1>
+        <h1 class="tipo-display">Dor de dente forte? O tratamento de canal tira a dor e salva o seu dente</h1>
       </div>
       <p class="lead tipo-subtitulo">Endodontia com técnica moderna e anestesia bem feita, pra resolver a dor sem perder o dente.</p>
 
       <div class="hero-selos">
-        <p class="lead tipo-corpo">Atendimento humanizado, na Barra Funda. A Dra. Daiane avalia o seu caso, explica cada passo e conduz o tratamento com foco no seu conforto. A maioria dos casos é resolvida em uma única sessão.</p>
-        <BotaoWhatsApp texto="Conversar agora" mensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." posicao="hero" />
+        <p class="lead tipo-corpo">{LEAD_SELOS}</p>
+        <BotaoWhatsApp texto="Descrever o meu caso" mensagem={MSG} posicao="hero" icone={false} />
         <Selos />
       </div>
     </div>
@@ -33,9 +35,9 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
     .hero-inner { padding-top: var(--spacing-2xl); }
     .hero-badge {
       display: inline-flex; align-self: flex-start; width: auto; align-items: center; gap: var(--spacing-xs);
-      background: var(--teal-50); color: var(--teal-800);
+      background: var(--superficie-alternada); color: var(--texto-titulo);
       padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full);
-      margin: 0;
+      margin: 0; text-transform: none; letter-spacing: 0;
     }
     .hero-title-block { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
     .hero-col { display: flex; flex-direction: column; gap: var(--spacing-sm); }

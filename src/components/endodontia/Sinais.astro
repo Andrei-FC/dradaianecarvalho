@@ -1,24 +1,26 @@
 ---
-// Seção "É canal?" (Figma: "Incluso" da landing de endodontia, frame 2604:950).
-// 4 Card Serviço com os ícones reais do banco (icon/dental/*).
-// Texto verbatim do Figma.
+// Seção "É caso de tratamento de canal?" (Figma: "Incluso" da endodontia).
+// 4 Card Serviço com os ícones reais do banco dental. Texto verbatim do Figma.
 import TituloSecao from '../TituloSecao.astro';
 import CardIcone from '../CardIcone.astro';
 import IconeDental from '../IconeDental.astro';
 
+interface Props { id?: string; }
+const { id } = Astro.props;
+
 const sinais = [
-  { icone: 'dor-de-dente', titulo: 'Dor forte ou latejante', texto: 'Aquela dor que pulsa, que aparece sozinha e às vezes piora à noite ou ao deitar.' },
-  { icone: 'sensibilidade', titulo: 'Sensibilidade que não passa', texto: 'Dói com o quente ou o gelado e a dor demora a ir embora, mesmo depois de tirar o estímulo.' },
-  { icone: 'dente-escurecido', titulo: 'Dente escurecido', texto: 'Um dente que mudou de cor e ficou mais acinzentado ou escuro que os vizinhos.' },
-  { icone: 'gengiva-inflamada', titulo: 'Inchaço ou "bolinha" na gengiva', texto: 'Um inchaço na gengiva perto do dente, às vezes com um carocinho que aparece e some.' },
+  { icone: 'dor-de-dente',      titulo: 'Dor forte ou latejante',           texto: 'Aquela dor que pulsa, que aparece sozinha e às vezes piora à noite ou ao deitar.' },
+  { icone: 'sensibilidade',     titulo: 'Sensibilidade que não passa',      texto: 'Dói com o quente ou o gelado e a dor demora a ir embora, mesmo depois de tirar o estímulo.' },
+  { icone: 'dente-escurecido',  titulo: 'Dente escurecido',                 texto: 'Um dente que mudou de cor e ficou mais acinzentado ou escuro que os vizinhos.' },
+  { icone: 'gengiva-inflamada', titulo: 'Inchaço ou "bolinha" na gengiva',  texto: 'Um inchaço na gengiva perto do dente, às vezes com um carocinho que aparece e some.' },
 ] as const;
 ---
-<section class="sinais section">
+<section class="sinais section" id={id}>
   <div class="container">
     <TituloSecao
-      label="É canal?"
+      label="É caso de tratamento de canal?"
       titulo="Reconhece algum destes sinais?"
-      subtitulo="Se você marcou algum destes, provavelmente é caso de avaliar o canal. Me chama que eu te oriento."
+      subtitulo="Se você marcou algum destes, provavelmente é caso de avaliar um tratamento de canal. Me chama que eu te oriento."
     />
     <div class="cards sinais-cards">
       {sinais.map((s) => (
@@ -31,8 +33,6 @@ const sinais = [
 </section>
 
 <style is:global>
-    .sinais { background: var(--superficie-card); }
-    @media (min-width: 768px) {
-      .sinais-cards { flex-wrap: nowrap; }
-    }
+    .sinais { background: var(--superficie-alternada); }
+    @media (min-width: 768px) { .sinais-cards { flex-wrap: nowrap; } }
 </style>

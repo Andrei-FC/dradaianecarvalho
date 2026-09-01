@@ -1,22 +1,22 @@
 ---
-// Faixa de selos que aparece SÓ no mobile (abaixo do hero) — igual ao padrão de clareamento.
-// No desktop os selos vivem dentro do hero.
+// Faixa de selos que aparece SÓ no mobile, abaixo do hero.
+// No desktop os selos vivem dentro do próprio hero.
 import Selos from './Selos.astro';
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
+
+const LEAD = 'Atendimento humanizado, na Barra Funda. A Dra. Daiane avalia o seu caso, explica cada passo e conduz o tratamento com foco no seu conforto. A maioria dos casos é resolvida em uma única sessão.';
 ---
 <section class="selos section">
   <div class="container">
     <Selos />
-    <p class="lead tipo-corpo">Atendimento humanizado, na Barra Funda. A Dra. Daiane avalia o seu caso, explica cada passo e conduz o tratamento com foco no seu conforto. A maioria dos casos é resolvida em uma única sessão.</p>
-    <BotaoWhatsApp texto="Conversar agora" mensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." posicao="selos" />
+    <p class="lead tipo-corpo">{LEAD}</p>
+    <BotaoWhatsApp texto="Descrever o meu caso" mensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." posicao="selos" icone={false} />
   </div>
 </section>
 
 <style is:global>
-    .selos { background: var(--teal-50); }
+    .selos { background: var(--superficie-pagina); }
     .selos .lead { color: var(--texto-suave); margin: var(--spacing-lg) 0; }
     .selos .btn-whatsapp { width: 100%; }
-    @media (min-width: 768px) {
-      .selos { display: none; }
-    }
+    @media (min-width: 768px) { .selos { display: none; } }
 </style>

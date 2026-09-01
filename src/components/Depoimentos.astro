@@ -12,11 +12,12 @@ interface Props {
       REGRA DURA: em /endodontia não entram avaliações que mencionem
       clareamento/estética (coerência de contexto vale mais que quantidade). */
   contexto: 'home' | 'endodontia' | 'clareamento';
+  id?: string;
 }
-const { label = 'O que dizem', titulo = 'Pacientes reais, resultados reais', contexto } = Astro.props;
+const { label = 'O que dizem', titulo = 'Pacientes reais, resultados reais', contexto, id } = Astro.props;
 const lista = avaliacoes.filter((a) => a.contextos.includes(contexto));
 ---
-<section class="avaliacoes section">
+<section class="avaliacoes section" id={id}>
   <div class="container">
     <TituloSecao label={label} titulo={titulo} />
     <div class="avaliacoes-grid">

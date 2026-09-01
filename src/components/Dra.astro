@@ -9,18 +9,31 @@ interface Props {
   label?: string;
   titulo?: string;
   texto?: string;
+  /** foto da seção; cada página passa a sua */
+  foto?: string;
+  fotoAlt?: string;
+  id?: string;
 }
 const {
   label = 'Quem cuida do seu sorriso',
   titulo = 'Dra. Daiane Carvalho',
   texto = 'Cirurgiã-dentista apaixonada por transformar sorrisos e cuidar de pessoas com acolhimento e atenção. Atuo com foco em clareamento e estética do sorriso, com tratamentos modernos, confortáveis e resultados naturais.',
+  foto = '/assets/images/Dra-Daiane-Carvalho.jpg',
+  fotoAlt = 'Dra. Daiane Carvalho no consultório',
+  id,
 } = Astro.props;
+
+// Bloco de credenciais: idêntico byte a byte nas três páginas.
+// Resolve E-E-A-T, alimenta o bloco Person do JSON-LD e cumpre o Art. 43 do
+// Código de Ética, que exige nome e número de inscrição na divulgação.
+const credenciais = [clinica.cro, clinica.graduacao, clinica.especializacao];
 ---
-<section class="dra section">
+<section class="dra section" id={id}>
     <div class="container dra-inner">
       <div>
         <TituloSecao label={label} titulo={titulo} />
         <p class="lead tipo-corpo">{texto}</p>
+        <p class="dra-credenciais tipo-legenda">{credenciais.map((linha, i) => (<>{i > 0 && <br />}{linha}</>))}</p>
         <a class="btn-link" href={clinica.instagram} target="_blank" rel="noopener">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <path d="M16.017 2H7.947C6.37015 2.00185 4.85844 2.62914 3.74353 3.74424C2.62862 4.85933 2.00159 6.37115 2 7.948L2 16.018C2.00185 17.5948 2.62914 19.1066 3.74424 20.2215C4.85933 21.3364 6.37115 21.9634 7.948 21.965H16.018C17.5948 21.9631 19.1066 21.3359 20.2215 20.2208C21.3364 19.1057 21.9634 17.5938 21.965 16.017V7.947C21.9631 6.37015 21.3359 4.85844 20.2208 3.74353C19.1057 2.62862 17.5938 2.00159 16.017 2V2ZM19.957 16.017C19.957 16.5344 19.8551 17.0468 19.6571 17.5248C19.4591 18.0028 19.1689 18.4371 18.803 18.803C18.4371 19.1689 18.0028 19.4591 17.5248 19.6571C17.0468 19.8551 16.5344 19.957 16.017 19.957H7.947C6.90222 19.9567 5.90032 19.5415 5.16165 18.8026C4.42297 18.0638 4.008 17.0618 4.008 16.017V7.947C4.00827 6.90222 4.42349 5.90032 5.16235 5.16165C5.90122 4.42297 6.90322 4.008 7.948 4.008H16.018C17.0628 4.00827 18.0647 4.42349 18.8034 5.16235C19.542 5.90122 19.957 6.90322 19.957 7.948V16.018V16.017Z" fill="#476D6E"/>
@@ -30,7 +43,7 @@ const {
           Siga a Dra. Daiane
         </a>
       </div>
-      <div class="ph dra-img"><img src="/assets/images/Dra-Daiane-Carvalho.jpg" alt="Dra. Daiane Carvalho"></div>
+      <div class="ph dra-img"><img src={foto} alt={fotoAlt}></div>
     </div>
   </section>
 
@@ -38,7 +51,8 @@ const {
     .dra { background: var(--superficie-card); }
     .dra.section { padding-bottom: 0; }
     .dra-inner { padding-top: var(--spacing-2xl); }
-    .dra .lead { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
+    .dra .lead { color: var(--texto-suave); margin: 0 0 var(--spacing-md); }
+    .dra-credenciais { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
     .dra-img { aspect-ratio: 382 / 504; width: 100%; margin-top: var(--spacing-lg); border-radius: 0; }
     .btn-link {
       display: inline-flex; align-items: center; gap: var(--spacing-sm);

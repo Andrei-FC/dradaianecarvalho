@@ -6,14 +6,16 @@ interface Props {
   label?: string;
   titulo?: string;
   subtitulo?: string;
+  id?: string;
 }
 const {
   label = 'Conheça o espaço',
   titulo = 'Um consultório pensado para o seu conforto',
   subtitulo = 'Ambiente acolhedor, equipamentos modernos e todo o cuidado com segurança e higiene, na Barra Funda.',
+  id,
 } = Astro.props;
 ---
-<section class="espaco section">
+<section class="espaco is-escura section" id={id}>
     <div class="container">
       <TituloSecao label={label} titulo={titulo} subtitulo={subtitulo} centralizado />
       <div class="galeria">
@@ -25,7 +27,11 @@ const {
   </section>
 
 <style is:global>
-    .espaco { background: var(--superficie-card); }
+    /* v9: virou bloco ESCURO. É o evento visual que faltava no miolo da página
+       e as fotos do consultório ganham muito sobre fundo escuro (seção 9.4). */
+    .espaco { background: var(--superficie-escura); }
+    .espaco h2 { color: var(--texto-sobre-primaria); }
+    .espaco .section-head p { color: var(--texto-sobre-escuro); }
     @media (min-width: 768px) {
       .espaco .galeria .ph img { height: 100%; object-fit: cover; }
     }
