@@ -39,6 +39,10 @@ const faqItens = [
     a: 'Não. O atendimento no consultório da Dra. Daiane Carvalho é exclusivamente particular, sem convênios.' },
   { q: 'Como agendar uma consulta?',
     a: `O agendamento é feito pelo WhatsApp, no número ${clinica.telefoneExibicao}. Você conta o que está sentindo, a Dra. Daiane avalia o caso e confirma o melhor horário dentro dos dias de atendimento.` },
+  { q: 'Vocês atendem aos sábados?',
+    a: `Sim, das 12h às 17h. O atendimento é sempre com hora marcada, em qualquer dia — mas a marcação é rápida e feita pelo WhatsApp, então às vezes dá para encaixar no mesmo dia. O sábado costuma resolver para quem não consegue sair do trabalho durante a semana.` },
+  { q: 'A Dra. Daiane faz limpeza e restauração?',
+    a: `Faz. Além do tratamento de canal e do clareamento, o consultório atende limpeza — a remoção de tártaro e placa — e restauração de dentes afetados por cárie ou fratura. A limpeza é feita já na avaliação inicial, que é também quando a Dra. Daiane identifica o que mais precisa de atenção.` },
 ];
 
 const jsonLd = grafo(dentist(), person(), faqPage(faqItens));
