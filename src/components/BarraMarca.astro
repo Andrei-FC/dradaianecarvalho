@@ -41,19 +41,22 @@ const { nav = [] } = Astro.props;
 <style is:global>
     .barra-marca {
       position: sticky; top: 0; z-index: 60;
-      /* superficie/alternada a 72% + blur 18px */
-      background: rgba(244, 237, 232, 0.72);
+      /* Gradiente da mesma cor (superficie/alternada): opaco no topo, 70% na
+         base. Chapado, a translucidez criava uma linha divisória no topo do
+         celular; com o gradiente a barra encosta na borda sem costura. */
+      background: linear-gradient(0deg, rgba(244, 237, 232, 0.7) 0%, rgba(244, 237, 232, 1) 100%);
+      border-bottom: 1px solid var(--borda-sutil);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
     /* Sem backdrop-filter o texto competiria com o conteúdo rolando por baixo.
-       Decisão do Andrei: subir para 95%, como escolha estética e não só técnica. */
+       Decisão do Andrei: subir a base do gradiente para 95%. */
     @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-      .barra-marca { background: rgba(244, 237, 232, 0.95); }
+      .barra-marca { background: linear-gradient(0deg, rgba(244, 237, 232, 0.95) 0%, rgba(244, 237, 232, 1) 100%); }
     }
     .barra-marca-inner {
       max-width: 1200px; margin: 0 auto;
-      padding: 20px var(--spacing-xl);
+      padding: 12px var(--spacing-xl);
       display: flex; align-items: center; gap: var(--spacing-xl);
       /* mobile: só a marca, centralizada. No desktop o menu entra e a barra
          volta a ser logo à esquerda / âncoras à direita. */
@@ -71,8 +74,11 @@ const { nav = [] } = Astro.props;
     .barra-marca-nav { display: none; }
 
     @media (min-width: 768px) {
-      .barra-marca-inner { padding: 28px var(--spacing-xl); justify-content: space-between; }
+      .barra-marca-inner { padding: 20px var(--spacing-xl); justify-content: space-between; }
       .barra-marca-logo { height: 52px; }
+      /* No desktop o fundo volta a ser chapado: o gradiente existe para
+         resolver a borda superior do celular, que aqui não é problema. */
+      .barra-marca { background: rgba(244, 237, 232, 0.72); }
       .barra-marca-nav { display: flex; align-items: center; gap: var(--spacing-xl); }
       .barra-marca-link {
         color: var(--texto-suave); font-weight: 400; text-decoration: none;
