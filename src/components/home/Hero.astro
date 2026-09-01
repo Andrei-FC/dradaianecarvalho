@@ -1,48 +1,46 @@
 ---
-// Hero institucional da HOME.
-// Âncora de marca/reputação (ver PROJETO §2.5): quem é, onde é, prova social,
-// CTA ativo. NÃO é hero de conversão de tráfego pago — esse tom mora nas landings.
-// No desktop: 2 colunas (texto + foto). No mobile: empilhado.
+// Hero da home institucional. Superfície ESCURA (Figma) — a home abre com o
+// bloco de marca e não com fundo claro como as landings.
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
-import clinica from '../../data/clinica.json';
 ---
-<header class="hero-home section">
+<header class="hero-home is-escura section">
   <div class="container hero-home-inner">
     <div class="hero-home-col">
       <div class="hero-home-title-block">
-        <span class="hero-badge tipo-label">
+        <span class="hero-home-badge tipo-label">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--estrela)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          31 avaliações 5 estrelas no Google
+          100% de avaliações 5 estrelas no Google
         </span>
         <h1 class="tipo-display">Cuidado odontológico completo, na Barra Funda</h1>
       </div>
       <p class="lead tipo-subtitulo">O consultório da Dra. Daiane Carvalho reúne clínica geral, endodontia, clareamento e estética do sorriso, com acolhimento e atenção a cada paciente.</p>
       <p class="lead tipo-corpo">Da limpeza de rotina ao tratamento de canal, você é atendido em um só lugar, por quem cuida do seu sorriso de perto.</p>
-      <BotaoWhatsApp texto="Falar com o consultório" mensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane." posicao="hero" />
+      <BotaoWhatsApp texto="Falar com o consultório" mensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane." posicao="hero" icone={false} />
     </div>
-    <div class="ph hero-home-img"><img src="/assets/images/Hero-principal.jpg" alt="Dra. Daiane Carvalho finalizando um tratamento de canal no consultório na Barra Funda, São Paulo" width="840" height="938"></div>
+    <div class="ph hero-home-img">
+      <img src="/assets/images/Hero-principal.jpg" width="840" height="938" alt="Dra. Daiane Carvalho finalizando um tratamento de canal no consultório na Barra Funda, São Paulo">
+    </div>
   </div>
 </header>
 
 <style is:global>
-    .hero-home { background: var(--superficie-card); }
-    .hero-home.section { padding-bottom: 0; }
-    .hero-home-inner { padding-top: var(--spacing-2xl); }
+    .hero-home { background: var(--superficie-escura); }
+    .hero-home-badge {
+      display: inline-flex; align-self: flex-start; width: auto; align-items: center; gap: var(--spacing-xs);
+      background: var(--marca-primaria-escura); color: var(--texto-sobre-escuro);
+      padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full);
+      margin: 0; text-transform: none; letter-spacing: 0;
+    }
     .hero-home-title-block { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
     .hero-home-col { display: flex; flex-direction: column; gap: var(--spacing-lg); }
-    .hero-home h1 { color: var(--texto-titulo); margin: 0; }
-    .hero-home .lead { color: var(--texto-suave); margin: 0; }
-    .hero-badge {
-      display: inline-flex; align-self: flex-start; width: auto; align-items: center; gap: var(--spacing-xs);
-      background: var(--teal-50); color: var(--teal-800);
-      padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full);
-      margin: 0;
-    }
-    .hero-home-img { aspect-ratio: 382 / 504; width: 100%; border-radius: 0; margin-top: var(--spacing-lg); }
+    .hero-home h1 { color: var(--texto-sobre-primaria); margin: 0; }
+    .hero-home .lead { color: var(--texto-sobre-escuro); margin: 0; }
+    .hero-home-img { width: 100%; border-radius: var(--radius-md); margin-top: var(--spacing-xl); }
+    .hero-home-img img { height: auto; object-fit: contain; }
+    .hero-home .btn-whatsapp { width: 100%; }
     @media (min-width: 768px) {
       .hero-home-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
-      .hero-home-col { gap: var(--spacing-xl); }
-      .hero-home-img { margin-top: 0; max-width: 382px; }
+      .hero-home-img { margin-top: 0; }
       .hero-home .btn-whatsapp { width: 350px; max-width: 100%; }
     }
 </style>

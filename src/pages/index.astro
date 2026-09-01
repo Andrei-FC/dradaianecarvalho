@@ -1,40 +1,64 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
+import BarraMarca from '../components/BarraMarca.astro';
+import BotaoFlutuante from '../components/BotaoFlutuante.astro';
 import Hero from '../components/home/Hero.astro';
 import Especialidades from '../components/home/Especialidades.astro';
 import Dra from '../components/Dra.astro';
 import Depoimentos from '../components/Depoimentos.astro';
 import Espaco from '../components/Espaco.astro';
+import FAQ from '../components/FAQ.astro';
 import Rodape from '../components/Rodape.astro';
-import BarraMarca from '../components/BarraMarca.astro';
-import BotaoFlutuante from '../components/BotaoFlutuante.astro';
+import clinica from '../data/clinica.json';
 
 const nav = [
-  { texto: 'Serviços', href: '#servicos' },
+  { texto: 'Serviços',      href: '#servicos' },
   { texto: 'A Dra. Daiane', href: '#dra-daiane' },
-  { texto: 'Depoimentos', href: '#depoimentos' },
+  { texto: 'Depoimentos',   href: '#depoimentos' },
   { texto: 'O consultório', href: '#consultorio' },
-  { texto: 'Dúvidas', href: '#duvidas' },
+  { texto: 'Dúvidas',       href: '#duvidas' },
 ];
 const linksRodape = [
   { texto: 'Tratamento de canal', href: '/endodontia' },
-  { texto: 'Clareamento dental', href: '/clareamento' },
+  { texto: 'Clareamento dental',  href: '/clareamento' },
+];
+
+const faqItens = [
+  { q: 'Onde fica o consultório da Dra. Daiane Carvalho?',
+    a: 'O consultório da Dra. Daiane Carvalho fica na L. Padre Péricles, 145, Sala 141 A, na Barra Funda, zona oeste de São Paulo (SP).' },
+  { q: 'Quais são os horários de atendimento?',
+    a: 'O consultório atende às terças, quintas e sextas, das 08:00 às 18:00, e aos sábados, das 12:00 às 17:00. Nos domingos, segundas e quartas não há atendimento durante o dia, mas casos de urgência podem ser atendidos à noite, conforme a disponibilidade da Dra. Daiane Carvalho.' },
+  { q: 'Quais tratamentos a Dra. Daiane Carvalho realiza?',
+    a: 'A Dra. Daiane Carvalho realiza tratamento de canal (endodontia), clínica geral (limpeza, restaurações, extrações e check-ups), clareamento dental e estética do sorriso. A especialização dela é em Endodontia.' },
+  { q: 'A Dra. Daiane Carvalho é especialista em endodontia?',
+    a: 'Sim. A Dra. Daiane Carvalho é cirurgiã-dentista formada pela Universidade Nove de Julho e especialista em Endodontia pela São Leopoldo Mandic, em São Paulo, inscrita no CRO-SP sob o número 170242.' },
+  { q: 'Estou com dor de dente. O que devo fazer?',
+    a: `Mande uma mensagem no WhatsApp ${clinica.telefoneExibicao} descrevendo a dor. Dor de dente forte costuma indicar inflamação da polpa do dente e não melhora sozinha: quanto antes for avaliada, mais simples é o tratamento. A Dra. Daiane Carvalho atende urgências nos dias e horários de funcionamento e, nos domingos, segundas e quartas, também à noite, conforme disponibilidade.` },
+  { q: 'O consultório atende convênio?',
+    a: 'Não. O atendimento no consultório da Dra. Daiane Carvalho é exclusivamente particular, sem convênios.' },
+  { q: 'Como agendar uma consulta?',
+    a: `O agendamento é feito pelo WhatsApp, no número ${clinica.telefoneExibicao}. Você conta o que está sentindo, a Dra. Daiane avalia o caso e confirma o melhor horário dentro dos dias de atendimento.` },
 ];
 ---
 <Layout
-  title="Dra. Daiane Carvalho | Consultório odontológico na Barra Funda, SP"
-  description="Consultório da Dra. Daiane Carvalho na Barra Funda, São Paulo: clínica geral, endodontia, clareamento e estética do sorriso. 31 avaliações 5 estrelas. Fale no WhatsApp."
+  title="Dra. Daiane Carvalho | Dentista e endodontista na Barra Funda, São Paulo"
+  description="Consultório da Dra. Daiane Carvalho na Barra Funda, São Paulo. Tratamento de canal, clínica geral, clareamento e estética do sorriso. Atendimento particular."
   origem="home"
 >
   <BarraMarca nav={nav} />
   <div class="lp">
     <Hero />
-    <Especialidades />
-    <Dra />
-    <Depoimentos contexto="home" titulo="O que dizem os nossos pacientes" />
-    <Espaco />
-    <Rodape ctaMensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane." links={linksRodape} />
+    <Especialidades id="servicos" />
+    <Dra
+      id="dra-daiane"
+      label="Quem cuida do seu sorriso"
+      titulo="Dra. Daiane Carvalho"
+      texto="A Dra. Daiane Carvalho é cirurgiã-dentista e especialista em Endodontia, com consultório na Barra Funda, em São Paulo. Atende tratamento de canal, clínica geral, clareamento e estética do sorriso, explicando cada etapa com clareza e conduzindo o tratamento no ritmo de cada paciente."
+    />
+    <Depoimentos id="depoimentos" contexto="home" />
+    <Espaco id="consultorio" />
+    <FAQ id="duvidas" itens={faqItens} />
+    <Rodape ctaMensagem="Olá! Gostaria de combinar um horário no consultório." links={linksRodape} />
   </div>
   <BotaoFlutuante mensagem="Olá! Gostaria de saber mais sobre os atendimentos da Dra. Daiane." />
 </Layout>

@@ -7,8 +7,12 @@ interface Props {
   texto: string;
   /** badge opcional no topo direito (ex: "incluso") */
   badge?: string;
+  /** lista de itens abaixo do texto (cards de serviço da home) */
+  itens?: string[];
+  /** link opcional no pé do card */
+  link?: { texto: string; href: string };
 }
-const { titulo, texto, badge } = Astro.props;
+const { titulo, texto, badge, itens = [], link } = Astro.props;
 ---
 <article class="card">
   <div class="card-top">
@@ -17,6 +21,12 @@ const { titulo, texto, badge } = Astro.props;
   </div>
   <h3 class="tipo-subtitulo">{titulo}</h3>
   <p class="tipo-corpo">{texto}</p>
+  {itens.length > 0 && (
+    <ul class="card-itens tipo-corpo">
+      {itens.map((i) => <li>{i}</li>)}
+    </ul>
+  )}
+  {link && <a class="card-link tipo-corpo-forte" href={link.href}>{link.texto}</a>}
 </article>
 
 <style is:global>
@@ -37,6 +47,11 @@ const { titulo, texto, badge } = Astro.props;
       border-radius: var(--radius-full); white-space: nowrap;
     }
     .card h3 { color: var(--texto-titulo); margin: 0; }
+    .card-itens { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--spacing-xs); color: var(--texto-suave); }
+    .card-itens li { display: flex; align-items: baseline; gap: var(--spacing-sm); }
+    .card-itens li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--marca-primaria); flex-shrink: 0; }
+    .card-link { color: var(--marca-primaria); text-decoration: underline; text-underline-offset: 3px; margin-top: auto; }
+    .card-link:hover { color: var(--marca-primaria-escura); }
     .card p { color: var(--texto-suave); margin: 0; }
     @media (min-width: 768px) {
       .cards { flex-direction: row; }
