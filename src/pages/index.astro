@@ -10,6 +10,7 @@ import Espaco from '../components/Espaco.astro';
 import FAQ from '../components/FAQ.astro';
 import Rodape from '../components/Rodape.astro';
 import clinica from '../data/clinica.json';
+import { dentist, person, faqPage, grafo } from '../lib/jsonld';
 
 const nav = [
   { texto: 'Serviços',      href: '#servicos' },
@@ -39,11 +40,14 @@ const faqItens = [
   { q: 'Como agendar uma consulta?',
     a: `O agendamento é feito pelo WhatsApp, no número ${clinica.telefoneExibicao}. Você conta o que está sentindo, a Dra. Daiane avalia o caso e confirma o melhor horário dentro dos dias de atendimento.` },
 ];
+
+const jsonLd = grafo(dentist(), person(), faqPage(faqItens));
 ---
 <Layout
   title="Dra. Daiane Carvalho | Dentista e endodontista na Barra Funda, São Paulo"
   description="Consultório da Dra. Daiane Carvalho na Barra Funda, São Paulo. Tratamento de canal, clínica geral, clareamento e estética do sorriso. Atendimento particular."
   origem="home"
+  jsonLd={jsonLd}
 >
   <BarraMarca nav={nav} />
   <div class="lp">

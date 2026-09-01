@@ -1,0 +1,120 @@
+// Construtores de JSON-LD. Todos os fatos saem do clinica.json — a mesma fonte
+// que alimenta o texto visível. Se os dois divergirem, o schema vira ruído.
+//
+// O QUE NÃO ENTRA AQUI, DE PROPÓSITO:
+//  - `aggregateRating`: as 31 avaliações vivem no Google Business Profile, não
+//    no site. Marcar nota agregada em HTML próprio com avaliação coletada por
+//    terceiro é território de ação manual (seção 10.4). O canal delas é a F3.
+//  - `priceRange`: preço não vai para peça publicitária (seção 11).
+import clinica from '../data/clinica.json';
+
+const SITE = 'https://dradaianecarvalho.com.br';
+
+const enderecoPostal = {
+  '@type': 'PostalAddress',
+  streetAddress: clinica.endereco.logradouro,
+  addressLocality: clinica.endereco.cidade,
+  addressRegion: clinica.endereco.uf,
+  postalCode: clinica.endereco.cep,
+  addressCountry: 'BR',
+};
+
+// Derivado do clinica.json: agrupa dias com o mesmo intervalo, ignora fechados.
+function horarios() {
+  const grupos: { dias: string[]; abre: string; fecha: string }[] = [];
+  for (const d of clinica.horario) {
+    if (!d.aberto || !d.abre || !d.fecha) continue;
+    const g = grupos.find((x) => x.abre === d.abre && x.fecha === d.fecha);
+    if (g) g.dias.push(d.chave);
+    else grupos.push({ dias: [d.chave], abre: d.abre, fecha: d.fecha });
+  }
+  return grupos.map((g) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: g.dias.map((d) => `https://schema.org/${d}`),
+    opens: g.abre,
+    closes: g.fecha,
+  }));
+}
+
+export function dentist() {
+  return {
+    '@type': 'Dentist',
+    '@id': `${SITE}/#consultorio`,
+    name: clinica.nome,
+    url: SITE,
+    telephone: clinica.telefoneInternacional,
+    address: enderecoPostal,
+    geo: { '@type': 'GeoCoordinates', latitude: -23.5312865, longitude: -46.6662844 },
+    openingHoursSpecification: horarios(),
+    medicalSpecialty: 'Endodontic',
+    areaServed: [
+      { '@type': 'City', name: 'São Paulo' },
+      { '@type': 'Place', name: 'Barra Funda, São Paulo' },
+    ],
+    availableService: [
+      { '@type': 'MedicalProcedure', name: 'Tratamento de canal (endodontia)', url: `${SITE}/endodontia` },
+      { '@type': 'MedicalProcedure', name: 'Clareamento dental', url: `${SITE}/clareamento` },
+      { '@type': 'MedicalProcedure', name: 'Clínica geral odontológica' },
+    ],
+    sameAs: [clinica.instagram],
+    isAcceptingNewPatients: true,
+    paymentAccepted: undefined,
+    employee: { '@id': `${SITE}/#dra-daiane` },
+  };
+}
+
+export function person() {
+  return {
+    '@type': 'Person',
+    '@id': `${SITE}/#dra-daiane`,
+    name: clinica.nome,
+    jobTitle: 'Cirurgiã-dentista, especialista em Endodontia',
+    identifier: { '@type': 'PropertyValue', propertyID: 'CRO-SP', value: '170242' },
+    alumniOf: [
+      { '@type': 'CollegeOrUniversity', name: 'Universidade Nove de Julho' },
+      { '@type': 'CollegeOrUniversity', name: 'São Leopoldo Mandic' },
+    ],
+    knowsAbout: ['Endodontia', 'Tratamento de canal', 'Clareamento dental', 'Odontologia clínica'],
+    worksFor: { '@id': `${SITE}/#consultorio` },
+    url: SITE,
+    sameAs: [clinica.instagram],
+  };
+}
+
+export function faqPage(itens: { q: string; a: string }[]) {
+  return {
+    '@type': 'FAQPage',
+    mainEntity: itens.map((i) => ({
+      '@type': 'Question',
+      name: i.q,
+      acceptedAnswer: { '@type': 'Answer', text: i.a },
+    })),
+  };
+}
+
+export function servico(opcoes: { nome: string; descricao: string; caminho: string }) {
+  return {
+    '@type': 'MedicalProcedure',
+    name: opcoes.nome,
+    description: opcoes.descricao,
+    url: `${SITE}${opcoes.caminho}`,
+    provider: { '@id': `${SITE}/#consultorio` },
+    procedureType: 'https://schema.org/TherapeuticProcedure',
+  };
+}
+
+export function breadcrumb(nome: string, caminho: string) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Dra. Daiane Carvalho', item: SITE },
+      { '@type': 'ListItem', position: 2, name: nome, item: `${SITE}${caminho}` },
+    ],
+  };
+}
+
+/** Empacota tudo num @graph só e serializa, removendo chaves indefinidas. */
+export function grafo(...nos: object[]) {
+  return JSON.stringify({ '@context': 'https://schema.org', '@graph': nos },
+    (_k, v) => (v === undefined ? undefined : v));
+}

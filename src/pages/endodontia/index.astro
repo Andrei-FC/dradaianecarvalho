@@ -14,6 +14,7 @@ import Espaco from '../../components/Espaco.astro';
 import FAQ from '../../components/FAQ.astro';
 import Rodape from '../../components/Rodape.astro';
 import clinica from '../../data/clinica.json';
+import { servico, breadcrumb, faqPage, grafo } from '../../lib/jsonld';
 
 const nav = [
   { texto: 'O tratamento',  href: '#tratamento' },
@@ -80,11 +81,22 @@ const faq = [
   { q: 'Atende convênio?',
     a: 'Não. O consultório da Dra. Daiane Carvalho atende apenas em regime particular, sem convênios.' },
 ];
+
+const jsonLd = grafo(
+  servico({
+    nome: 'Tratamento de canal (endodontia)',
+    descricao: 'Tratamento de canal com anestesia bem feita e técnica moderna, na maioria dos casos em uma única sessão, no consultório da Dra. Daiane Carvalho na Barra Funda, São Paulo.',
+    caminho: '/endodontia',
+  }),
+  breadcrumb('Tratamento de canal', '/endodontia'),
+  faqPage(faq),
+);
 ---
 <Layout
   title="Tratamento de canal na Barra Funda, São Paulo | Dra. Daiane Carvalho"
   description="Endodontista na Barra Funda, São Paulo. Tratamento de canal com anestesia bem feita e técnica moderna, na maioria dos casos em uma única sessão."
   origem="landing_endodontia"
+  jsonLd={jsonLd}
 >
   <BarraMarca nav={nav} />
   <div class="lp">

@@ -15,6 +15,7 @@ import FAQ from '../../components/FAQ.astro';
 import Rodape from '../../components/Rodape.astro';
 import BarraMarca from '../../components/BarraMarca.astro';
 import BotaoFlutuante from '../../components/BotaoFlutuante.astro';
+import { servico, breadcrumb, faqPage, grafo } from '../../lib/jsonld';
 
 const faqItens = [
   { q: 'Existe um número máximo de sessões?', a: 'Não. Você faz quantas sessões forem necessárias até atingir o seu branco máximo, medido pela escala de cor.' },
@@ -40,11 +41,22 @@ const linksRodape = [
   { texto: 'Dra. Daiane Carvalho', href: '/' },
   { texto: 'Tratamento de canal', href: '/endodontia' },
 ];
+
+const jsonLd = grafo(
+  servico({
+    nome: 'Clareamento dental',
+    descricao: 'Clareamento dental com sessões ilimitadas em consultório até o branco máximo, com limpeza profunda e clareamento caseiro inclusos, na Barra Funda, São Paulo.',
+    caminho: '/clareamento',
+  }),
+  breadcrumb('Clareamento dental', '/clareamento'),
+  faqPage(faqItens),
+);
 ---
 <Layout
   title="Clareamento dental sem limite de sessões | Dra. Daiane Carvalho, Barra Funda, SP"
   description="Clareamento dental com sessões ilimitadas até o seu branco máximo, limpeza profunda e clareamento caseiro inclusos. Barra Funda, São Paulo. Fale no WhatsApp."
   origem="landing_clareamento"
+  jsonLd={jsonLd}
 >
   <BarraMarca nav={nav} />
   <div class="lp">

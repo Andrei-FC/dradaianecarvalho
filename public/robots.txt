@@ -1,0 +1,51 @@
+# Dra. Daiane Carvalho — https://dradaianecarvalho.com.br
+#
+# DECISÃO (seção 10.5 do documento mestre): para um consultório que quer ser
+# encontrado, SER LIDO É O PRODUTO. Os bots de retrieval — os que buscam ao vivo
+# para responder uma pergunta agora — são liberados explicitamente.
+#
+# Muito site bloqueia bot de IA por medo de treinamento e, sem perceber, bloqueia
+# junto o de busca ao vivo. Aqui a distinção é deliberada: se um dia houver
+# desejo de barrar treinamento, barrar SÓ os de treino, nunca os de retrieval.
+#
+# ATENÇÃO: esta lista envelhece rápido. Reconferir os user-agents vigentes na F6.
+
+User-agent: *
+Allow: /
+
+# --- Retrieval / busca ao vivo (liberados de propósito) ---
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# --- Treinamento (também liberados hoje; é aqui que se mexe se mudar de ideia) ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://dradaianecarvalho.com.br/sitemap.xml
