@@ -8,13 +8,17 @@ import TituloSecao from './TituloSecao.astro';
 interface Props {
   label?: string;
   titulo?: string;
-  imagens?: { src: string; alt: string }[];
+  imagens?: { src: string; alt: string; w?: number; h?: number }[];
   id?: string;
 }
 
+// Alt diferenciado por caso. NÃO usar as palavras "antes" e "depois": o Código
+// de Ética veda essas expressões na identificação de foto de caso clínico, e o
+// alt é identificação.
 const CLAREAMENTO = [1, 2, 3, 4, 5].map((n) => ({
   src: `/assets/images/Resultado-Clareamento-Dental${n}.jpg`,
-  alt: 'Resultado de clareamento dental',
+  alt: `Resultado de clareamento dental, caso ${n}, realizado no consultório da Dra. Daiane Carvalho na Barra Funda, São Paulo`,
+  w: 512, h: 627,
 }));
 
 const {
@@ -28,7 +32,7 @@ const {
     <div class="container">
       <TituloSecao label={label} titulo={titulo} />
       <div class="galeria">
-        {imagens.map((img) => <div class="ph"><img src={img.src} alt={img.alt}></div>)}
+        {imagens.map((img) => <div class="ph"><img src={img.src} alt={img.alt} width={img.w} height={img.h} loading="lazy" decoding="async"></div>)}
       </div>
     </div>
   </section>
