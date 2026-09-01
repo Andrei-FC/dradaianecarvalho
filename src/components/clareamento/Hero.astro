@@ -25,7 +25,7 @@ const MSG = 'Olá! Gostaria de avaliar o meu sorriso para um clareamento.';
         <SelosGrid />
       </div>
     </div>
-    <div class="ph hero-img"><img src="/assets/images/Dra-daiane-carvalho-clareamento.jpg" alt="Dra. Daiane Carvalho, dentista na Barra Funda, em atendimento de clareamento dental"></div>
+    <div class="ph hero-img"><img width="1000" height="1234" src="/assets/images/Dra-daiane-carvalho-clareamento.jpg" alt="Dra. Daiane Carvalho, dentista na Barra Funda, em atendimento de clareamento dental"></div>
   </div>
 </header>
 
@@ -43,7 +43,10 @@ const MSG = 'Olá! Gostaria de avaliar o meu sorriso para um clareamento.';
     .hero-col { display: flex; flex-direction: column; gap: var(--spacing-sm); }
     .hero h1 { color: var(--texto-titulo); margin: 0; }
     .hero .lead { color: var(--texto-suave); margin: 0; }
-    .hero-img { aspect-ratio: 902 / 1004; width: 100%; border-radius: 0; }
+    /* Sem aspect-ratio fixo: a foto define a própria altura. Proporção travada
+       aqui cortava qualquer foto que não fosse exatamente 902x1004. */
+    .hero-img { width: 100%; border-radius: 0; }
+    .hero-img img { height: auto; object-fit: contain; }
     .hero-selos { display: none; }
     @media (min-width: 768px) {
       .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
