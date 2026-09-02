@@ -1,11 +1,22 @@
 ---
 // Card Avaliação (Figma: "Card Avaliação").
 // Um depoimento. Avatar genérico (sem foto real, sem consentimento).
+//
+// TEXTO INTEGRAL NO HTML, RECORTE SÓ NO CSS.
+// O depoimento vai inteiro para o HTML e é o CSS que limita a altura visível
+// (-webkit-line-clamp). Motivo: crawler e IA leem 100% do texto (ver 10.3 do
+// documento mestre), enquanto o card continua com altura previsível na faixa.
+// O "Ler mais" é checkbox + label, sem JavaScript — texto montado por JS ficaria
+// invisível para retrieval, que é exatamente o que esta solução evita.
 interface Props {
   nome: string;
   depoimento: string;
+  /** id único do card, usado pelo par checkbox/label do "Ler mais" */
+  id: string;
+  /** true quando o texto é longo o bastante para ser recortado pelo clamp */
+  longo?: boolean;
 }
-const { nome, depoimento } = Astro.props;
+const { nome, depoimento, id, longo = false } = Astro.props;
 ---
 <article class="avaliacao">
   <div class="avaliacao-head">
@@ -15,7 +26,9 @@ const { nome, depoimento } = Astro.props;
       <p class="estrelas">★★★★★</p>
     </div>
   </div>
+  {longo && <input class="avaliacao-toggle" type="checkbox" id={id} />}
   <p class="texto">{`\u201c${depoimento}\u201d`}</p>
+  {longo && <label class="avaliacao-mais tipo-corpo" for={id}></label>}
 </article>
 
 <style is:global>
@@ -30,7 +43,24 @@ const { nome, depoimento } = Astro.props;
     .avatar svg { width: 24px; height: 24px; fill: var(--marca-primaria); }
     .avaliacao-nome { color: var(--texto-forte); font-weight: 600; font-size: 14px; line-height: 1.3; margin: 0; }
     .estrelas { color: var(--estrela); font-size: 13px; line-height: 1.4; margin: 2px 0 0; }
-    .avaliacao p.texto { color: var(--texto-suave); margin: 0; font-size: 16px; line-height: 1.6; }
+    .avaliacao p.texto {
+      color: var(--texto-suave); margin: 0; font-size: 16px; line-height: 1.6;
+      display: -webkit-box; -webkit-box-orient: vertical;
+      -webkit-line-clamp: 6; line-clamp: 6; overflow: hidden;
+    }
+    /* checkbox acessível por teclado, invisível na tela */
+    .avaliacao-toggle {
+      position: absolute; width: 1px; height: 1px;
+      margin: 0; padding: 0; border: 0; opacity: 0;
+    }
+    .avaliacao-toggle:checked ~ p.texto { -webkit-line-clamp: unset; line-clamp: unset; overflow: visible; }
+    .avaliacao-mais {
+      color: var(--marca-primaria); font-weight: 600; font-size: 14px;
+      cursor: pointer; align-self: flex-start; margin-top: var(--spacing-xs);
+    }
+    .avaliacao-mais::after { content: 'Ler mais'; }
+    .avaliacao-toggle:checked ~ .avaliacao-mais::after { content: 'Ler menos'; }
+    .avaliacao-toggle:focus-visible ~ .avaliacao-mais { outline: 2px solid var(--marca-primaria); outline-offset: 2px; border-radius: 2px; }
     @media (min-width: 768px) {
       .avaliacoes-grid .avaliacao { flex: 0 0 280px; }
     }

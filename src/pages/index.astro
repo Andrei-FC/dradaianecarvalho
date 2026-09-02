@@ -28,9 +28,9 @@ const faqItens = [
   { q: 'Onde fica o consultório da Dra. Daiane Carvalho?',
     a: 'O consultório da Dra. Daiane Carvalho fica na L. Padre Péricles, 145, Sala 141 A, na Barra Funda, zona oeste de São Paulo (SP).' },
   { q: 'Quais são os horários de atendimento?',
-    a: 'O consultório atende às terças, quintas e sextas, das 08:00 às 18:00, e aos sábados, das 12:00 às 17:00. Nos domingos, segundas e quartas não há atendimento. O atendimento é sempre com hora marcada, em qualquer dia.' },
+    a: 'A agenda regular do consultório é às terças, quintas e sextas, das 08:00 às 18:00, e aos sábados, das 12:00 às 17:00. O atendimento é sempre com hora marcada, em qualquer dia. A marcação é pelo WhatsApp e depende da disponibilidade: às vezes dá para encaixar no mesmo dia, às vezes o horário mais próximo é alguns dias depois. Fora do horário de atendimento, a Dra. Daiane responde sempre que possível, orienta o que fazer para aliviar a dor e confirma o horário mais próximo disponível.' },
   { q: 'Como funciona a primeira consulta?',
-    a: 'É uma avaliação de cerca de 30 minutos. A Dra. Daiane examina os dentes, faz a limpeza e conversa com você sobre o que precisa ser feito. Se houver espaço na agenda, o procedimento pode ser iniciado na mesma visita.' },
+    a: 'É uma avaliação de cerca de 30 minutos. A Dra. Daiane examina os dentes, faz a limpeza e conversa com você sobre o que precisa ser feito. Cada horário é reservado para um paciente, então não há fila de espera. Se houver espaço na agenda, o procedimento pode ser iniciado na mesma visita.' },
   { q: 'Quais tratamentos a Dra. Daiane Carvalho realiza?',
     a: 'A Dra. Daiane Carvalho realiza limpeza, com remoção de tártaro e placa; restauração de dentes afetados por cárie ou fratura; clareamento dental; e tratamento de canal, que é a endodontia.' },
   { q: 'A Dra. Daiane faz limpeza e restauração?',
@@ -38,13 +38,13 @@ const faqItens = [
   { q: 'Vocês atendem aos sábados?',
     a: 'Sim, das 12h às 17h. O atendimento é sempre com hora marcada, em qualquer dia, mas a marcação é rápida e feita pelo WhatsApp, então às vezes dá para encaixar no mesmo dia. O sábado costuma resolver para quem não consegue sair do trabalho durante a semana.' },
   { q: 'Qual é a formação da Dra. Daiane Carvalho?',
-    a: 'A Dra. Daiane Carvalho é cirurgiã-dentista formada em Odontologia pela Universidade Nove de Julho e concluiu especialização em Endodontia, a área que trata o canal do dente, na São Leopoldo Mandic, em São Paulo. Está inscrita no CRO-SP sob o número 170242.' },
+    a: 'A Dra. Daiane Carvalho é cirurgiã-dentista, inscrita no CRO-SP sob o número 170242. Graduação em Odontologia pela Universidade Nove de Julho; especialização em Endodontia — a área que trata o canal do dente — pela São Leopoldo Mandic, em São Paulo.' },
   { q: 'Estou com dor de dente. O que devo fazer?',
-    a: `Mande uma mensagem no WhatsApp ${clinica.telefoneExibicao} descrevendo a dor. Dor de dente forte costuma indicar inflamação da polpa do dente e não melhora sozinha: quanto antes for avaliada, mais simples é o tratamento. Casos de dor são encaixados dentro dos dias de atendimento, e a marcação pelo WhatsApp costuma ser rápida.` },
+    a: `Mande uma mensagem no WhatsApp ${clinica.telefoneExibicao} descrevendo a dor. Dor de dente forte costuma indicar inflamação da polpa do dente e não melhora sozinha: quanto antes for avaliada, mais simples é o tratamento. A Dra. Daiane responde sempre que possível, orienta o que fazer para aliviar a dor e confirma o horário mais próximo disponível.` },
   { q: 'O consultório atende convênio?',
     a: 'Não. O atendimento no consultório da Dra. Daiane Carvalho é exclusivamente particular, sem convênios.' },
   { q: 'Como agendar uma consulta?',
-    a: `O agendamento é feito pelo WhatsApp, no número ${clinica.telefoneExibicao}. Você conta o que está sentindo, a Dra. Daiane avalia o caso e confirma o melhor horário dentro dos dias de atendimento.` },
+    a: `O agendamento é feito pelo WhatsApp, no número ${clinica.telefoneExibicao}. Você conta o que está sentindo, a Dra. Daiane avalia o caso e confirma o horário mais próximo disponível.` },
 ];
 
 const jsonLd = grafo(dentist(), person(), faqPage(faqItens));
@@ -63,7 +63,7 @@ const jsonLd = grafo(dentist(), person(), faqPage(faqItens));
       id="dra-daiane"
       label="Quem cuida do seu sorriso"
       titulo="Dra. Daiane Carvalho"
-      texto="A Dra. Daiane Carvalho é cirurgiã-dentista com especialização em Endodontia, a área que trata o canal do dente, e mantém consultório na Barra Funda, em São Paulo. Atende limpeza, restauração, clareamento dental e tratamento de canal, explicando cada etapa com clareza e conduzindo o tratamento no ritmo de cada paciente."
+      texto="A Dra. Daiane Carvalho é cirurgiã-dentista e mantém consultório na Barra Funda, em São Paulo. Atende limpeza, restauração, clareamento dental e tratamento de canal, explicando cada etapa com clareza e conduzindo o tratamento no ritmo de cada paciente."
     />
     <Depoimentos id="depoimentos" contexto="home" />
     <Espaco id="consultorio" />

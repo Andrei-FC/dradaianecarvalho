@@ -31,7 +31,6 @@ const linksRodape = [
 // Horário derivado do clinica.json — a mesma fonte do rodapé e do JSON-LD.
 // Escrito à mão em dois lugares, um dia diverge (seção 1.2).
 const abertos = clinica.horario.filter(d => d.aberto);
-const fechados = clinica.horario.filter(d => !d.aberto);
 const listar = (ds: string[]) => {
   const n = ds.map((d, i) => (i === 0 ? d : d.toLowerCase()));
   return n.length === 1 ? n[0] : `${n.slice(0, -1).join(', ')} e ${n[n.length - 1]}`;
@@ -44,12 +43,10 @@ for (const d of abertos) {
 const horarioFrase = grupos
   .map(g => `${listar(g.dias).toLowerCase()}, das ${g.abre} às ${g.fecha}`)
   .join(', e ');
-// no plural: "Nos domingos, segundas e quartas..."
-const fechadosFrase = listar(fechados.map(d => `${d.curto}s`)).toLowerCase();
 
 const faq = [
   { q: 'Atende urgência? Consigo ser atendida hoje?',
-    a: `O consultório da Dra. Daiane Carvalho atende ${horarioFrase}. Nos ${fechadosFrase} não há atendimento. O atendimento é sempre com hora marcada, mas a marcação é rápida e feita pelo WhatsApp, então casos de dor costumam ser encaixados no mesmo dia ou no dia seguinte de atendimento. Mande mensagem contando o que está sentindo e eu confirmo o horário mais próximo.` },
+    a: `A agenda regular do consultório da Dra. Daiane Carvalho é ${horarioFrase}. O atendimento é sempre com hora marcada, mas a marcação é rápida e feita pelo WhatsApp, então casos de dor costumam ser encaixados no mesmo dia ou no dia seguinte. Fora do horário de atendimento, a Dra. Daiane responde sempre que possível, orienta o que fazer para aliviar a dor e confirma o horário mais próximo disponível. Mande mensagem contando o que está sentindo.` },
   { q: 'Como sei que preciso de tratamento de canal?',
     a: 'Os sinais mais comuns são dor espontânea, dor que piora à noite, sensibilidade prolongada ao quente ou ao frio, dor ao mastigar, inchaço na gengiva perto do dente e escurecimento do dente. Só o exame clínico com radiografia confirma a indicação. Se você tem algum desses sinais, mande mensagem no WhatsApp descrevendo o que está sentindo.' },
   { q: 'O tratamento de canal dói?',
@@ -94,7 +91,7 @@ const jsonLd = grafo(
 ---
 <Layout
   title="Tratamento de canal na Barra Funda, São Paulo | Dra. Daiane Carvalho"
-  description="Endodontista na Barra Funda, São Paulo. Tratamento de canal com anestesia bem feita e técnica moderna, na maioria dos casos em uma única sessão."
+  description="Tratamento de canal na Barra Funda, São Paulo. Anestesia bem feita e técnica moderna, na maioria dos casos em uma única sessão. Consultório particular."
   origem="landing_endodontia"
   jsonLd={jsonLd}
 >
@@ -120,7 +117,7 @@ const jsonLd = grafo(
       id="dra-daiane"
       label="Quem vai cuidar de você"
       titulo="Dra. Daiane Carvalho"
-      texto="A Dra. Daiane Carvalho é cirurgiã-dentista com especialização em Endodontia, a área que trata o canal do dente. Atendo casos de dor com anestesia bem feita e técnica atual, para resolver o problema sem sofrimento e sem perder o dente. Explico cada etapa antes de fazer, para você saber exatamente o que vai acontecer."
+      texto="A Dra. Daiane Carvalho é cirurgiã-dentista e atende na Barra Funda com foco em tratamento de canal — endodontia, a área que trata o canal do dente. Atendo casos de dor com anestesia bem feita e técnica atual, para resolver o problema sem sofrimento e sem perder o dente. Explico cada etapa antes de fazer, para você saber exatamente o que vai acontecer."
     />
     <Depoimentos id="depoimentos" contexto="endodontia" />
     <Espaco id="consultorio" />
