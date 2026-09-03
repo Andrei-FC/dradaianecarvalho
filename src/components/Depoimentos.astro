@@ -9,26 +9,25 @@ interface Props {
   label?: string;
   titulo?: string;
   /** filtra as avaliações pelo campo `contextos` do avaliacoes.json.
-      REGRA DURA 1: em /endodontia não entram avaliações que mencionem
+      REGRA 1: em /endodontia não entram avaliações que mencionem
       clareamento/estética (coerência de contexto vale mais que quantidade).
-      REGRA DURA 2 (conformidade, não design): o texto de uma avaliação pode ser
-      editado para retirar o que o consultório realiza mas não divulga — idade de
-      paciente infantil, botox, extração (ver 1.2.1 do documento mestre). NÃO
-      encurtar por espaço: o card recorta no CSS e o HTML carrega o texto inteiro. */
+      REGRA 2: o texto é um RECORTE da avaliação real do Google, não o texto
+      integral. Alvo de 100 a 120 caracteres — os cards da faixa esticam até a
+      altura do mais alto, então um depoimento longo deixa branco embaixo de
+      todos os outros. A frase que carrega o argumento vem primeiro.
+      REGRA 3: o recorte também retira o que o consultório realiza mas não
+      divulga — idade de paciente infantil, botox, extração (1.2.1). */
   contexto: 'home' | 'endodontia' | 'clareamento';
   id?: string;
 }
 const { label = 'O que dizem', titulo = 'Pacientes reais, resultados reais', contexto, id } = Astro.props;
 const lista = avaliacoes.filter((a) => a.contextos.includes(contexto));
-// limiar de recorte: ~6 linhas de 16px num card de 280px. Calculado no build,
-// para o "Ler mais" existir sem medir nada no navegador.
-const LIMITE_CLAMP = 170;
 ---
 <section class="avaliacoes section" id={id}>
   <div class="container">
     <TituloSecao label={label} titulo={titulo} />
     <div class="avaliacoes-grid">
-      {lista.map((a, i) => <CardAvaliacao nome={a.nome} depoimento={a.texto} id={`av-${contexto}-${i}`} longo={a.texto.length > LIMITE_CLAMP} />)}
+      {lista.map((a) => <CardAvaliacao nome={a.nome} depoimento={a.texto} />)}
     </div>
   </div>
 </section>

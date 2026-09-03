@@ -30,9 +30,9 @@
     {
       "dia": "Segunda-feira",
       "chave": "Monday",
-      "aberto": false,
-      "abre": null,
-      "fecha": null,
+      "aberto": true,
+      "abre": "08:00",
+      "fecha": "18:00",
       "curto": "Segunda"
     },
     {
@@ -46,9 +46,9 @@
     {
       "dia": "Quarta-feira",
       "chave": "Wednesday",
-      "aberto": false,
-      "abre": null,
-      "fecha": null,
+      "aberto": true,
+      "abre": "08:00",
+      "fecha": "18:00",
       "curto": "Quarta"
     },
     {
