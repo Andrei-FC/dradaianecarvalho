@@ -1,4 +1,5 @@
 ---
+import clinica from '../../data/clinica.json';
 // Hero da landing de endodontia. Ângulo: dor → tira a dor e salva o dente.
 // No desktop a faixa de selos vive AQUI dentro; no mobile ela vira SelosBanda.
 import Selos from './Selos.astro';
@@ -16,6 +17,7 @@ const MSG = 'Olá! Estou com dor de dente e gostaria de avaliar um tratamento de
           100% de avaliações 5 estrelas no Google
         </span>
         <h1 class="tipo-display">Dor de dente forte? O tratamento de canal tira a dor e salva o seu dente</h1>
+        <p class="eyebrow tipo-label">{clinica.nome} &middot; {clinica.cro}</p>
       </div>
       <p class="lead tipo-subtitulo">Endodontia com técnica moderna e anestesia bem feita, pra resolver a dor sem perder o dente.</p>
 

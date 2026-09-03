@@ -1,4 +1,5 @@
 ---
+import clinica from '../../data/clinica.json';
 // Hero da landing de clareamento. Demanda considerada: tom de vitrine.
 // No desktop a faixa de selos vive aqui; no mobile vira SelosMobile.
 import SelosGrid from './SelosGrid.astro';
@@ -16,6 +17,7 @@ const MSG = 'Olá! Gostaria de avaliar o meu sorriso para um clareamento.';
           100% de avaliações 5 estrelas no Google
         </span>
         <h1 class="tipo-display">Clareamento dental sem limite de sessões</h1>
+        <p class="eyebrow tipo-label">{clinica.nome} &middot; {clinica.cro}</p>
       </div>
       <p class="lead tipo-subtitulo">Resultados visíveis desde a primeira sessão, com branco que dura até 2 anos com os cuidados certos.</p>
 

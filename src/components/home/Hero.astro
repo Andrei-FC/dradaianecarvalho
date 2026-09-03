@@ -2,6 +2,7 @@
 // Hero da home institucional. Superfície ESCURA (Figma) — a home abre com o
 // bloco de marca e não com fundo claro como as landings.
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
+import clinica from '../../data/clinica.json';
 ---
 <header class="hero-home is-escura section">
   <div class="container hero-home-inner">
@@ -12,7 +13,7 @@ import BotaoWhatsApp from '../BotaoWhatsApp.astro';
           100% de avaliações 5 estrelas no Google
         </span>
         <h1 class="tipo-display">Consultório odontológico na Barra Funda</h1>
-        <p class="eyebrow tipo-label">Dra. Daiane Carvalho</p>
+        <p class="eyebrow tipo-label">{clinica.nome} &middot; {clinica.cro}</p>
       </div>
       <p class="lead tipo-subtitulo">Limpeza, restauração, clareamento e tratamento de canal. Atendimento de segunda a sábado, com hora marcada, em Barra Funda, São Paulo.</p>
       <p class="lead tipo-corpo">A marcação é pelo WhatsApp e costuma ser rápida.</p>
