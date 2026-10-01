@@ -50,8 +50,6 @@ const MSG = 'Olá! Gostaria de avaliar um tratamento de canal.';
 
 <style is:global>
     .hero { background: var(--superficie-card); }
-    .hero.section { padding-bottom: 0; }
-    .hero-inner { padding-top: var(--spacing-2xl); }
     .hero-badge {
       display: inline-flex; align-self: flex-start; width: auto; align-items: center; gap: var(--spacing-xs);
       background: var(--superficie-alternada); color: var(--texto-titulo);
@@ -66,9 +64,16 @@ const MSG = 'Olá! Gostaria de avaliar um tratamento de canal.';
     .hero-col { display: flex; flex-direction: column; gap: var(--spacing-sm); }
     .hero h1 { color: var(--texto-titulo); margin: 0; }
     .hero .lead { color: var(--texto-suave); margin: 0; }
-    /* Sem aspect-ratio fixo: a foto define a própria altura. Proporção travada
+    /* A foto FLUTUA, como no hero da home. O `border-radius: 0` e o
+       `padding-bottom: 0` da seção vinham da versão antiga, em que a imagem era
+       colada na base do hero.
+       O raio é 16px por decisão do Andrei em 01/10, e por isso NÃO é token: o
+       sistema tem md=12 e lg=20, e 16 cairia no meio dos dois. Fica explícito
+       aqui em vez de forçar um token novo por causa de uma foto. Vira token no
+       dia em que for o padrão de hero das três páginas.
+       Sem aspect-ratio fixo: a foto define a própria altura. Proporção travada
        aqui cortava qualquer foto que não fosse exatamente 902x1004. */
-    .hero-img { width: 100%; border-radius: 0; }
+    .hero-img { width: 100%; border-radius: 16px; margin-top: var(--spacing-xl); }
     .hero-img img { height: auto; object-fit: contain; }
     .hero-selos { display: none; }
     /* No celular o CTA do hero sobe para ANTES da foto. Antes disso o botão só
@@ -78,6 +83,7 @@ const MSG = 'Olá! Gostaria de avaliar um tratamento de canal.';
     .hero .hero-cta-mobile { width: 100%; }
     @media (min-width: 768px) {
       .hero .hero-cta-mobile { display: none; }
+      .hero-img { margin-top: 0; }
       .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
       .hero-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
       .hero .lead { margin: 0; }
