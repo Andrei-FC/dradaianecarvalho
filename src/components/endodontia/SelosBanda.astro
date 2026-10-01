@@ -2,22 +2,26 @@
 // Faixa de selos que aparece SÓ no mobile, abaixo do hero.
 // No desktop os selos vivem dentro do próprio hero.
 //
-// SEM CTA. O botão desta faixa saiu quando o CTA do hero subiu para antes da foto
-// (SITE-MUDANCAS 1.10.4): os dois ficavam na mesma rolagem, com o mesmo rótulo e a
-// mesma mensagem. A dobra era o problema a resolver, não a quantidade de botões.
+// Este é o ÚNICO CTA do hero no celular. A 1.10.4 pedia o botão acima da dobra e a
+// implementação criou um segundo dentro do hero, deixando dois botões idênticos na
+// mesma rolagem. O Figma resolveu de outro jeito: um botão só, aqui, logo depois da
+// foto e ANTES dos selos — com a foto recortada mais baixa, ele já cabe na dobra.
 import Selos from './Selos.astro';
+import BotaoWhatsApp from '../BotaoWhatsApp.astro';
 
 const LEAD = 'Atendimento particular com hora marcada, na Barra Funda. A Dra. Daiane avalia o seu caso, explica cada passo e conduz o tratamento com foco no seu conforto. A maioria dos casos é resolvida em uma única sessão.';
 ---
 <section class="selos section">
   <div class="container">
-    <Selos />
     <p class="lead tipo-corpo">{LEAD}</p>
+    <BotaoWhatsApp texto="Descrever o meu caso" mensagem="Olá! Gostaria de avaliar um tratamento de canal." posicao="selos" icone={false} />
+    <Selos />
   </div>
 </section>
 
 <style is:global>
     .selos { background: var(--superficie-pagina); }
-    .selos .lead { color: var(--texto-suave); margin: var(--spacing-lg) 0 0; }
+    .selos .lead { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
+    .selos .btn-whatsapp { width: 100%; margin-bottom: var(--spacing-lg); }
     @media (min-width: 768px) { .selos { display: none; } }
 </style>
