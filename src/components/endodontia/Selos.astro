@@ -1,20 +1,31 @@
 ---
 // 4 mini-cards do hero de endodontia (Figma: "Mini Card").
-// ATENÇÃO: usam o banco de ícones de INTERFACE, não o dental. O Figma mapeia
-// calendário, carinha, selo de check e cartão — não desenhos de dente.
+// Os ícones vêm de DOIS bancos: três do banco de interface e um do dental
+// (`icon/dental/dentenovo` no selo de retratamento e pino). O Figma mapeia assim,
+// e o desenho carrega o significado — por isso o `banco` é explícito por selo.
+//
+// "Anestesia sem dor" saiu em 01/10 e "Salva o dente natural" também. A primeira
+// NÃO é frase vedada (o fato clínico é exato, ver SITE-MUDANCAS 1.10.7); saiu por
+// espaço, para o hero passar a dizer retratamento e pino, que nenhum outro ponto
+// dizia. A segunda saiu por ser promessa de resultado.
 import IconeUI from '../IconeUI.astro';
+import IconeDental from '../IconeDental.astro';
 
 const selos = [
-  { label: 'Geralmente 1 sessão',   icone: 'calendario' },
-  { label: 'Anestesia sem dor',     icone: 'carinha-feliz' },
-  { label: 'Salva o dente natural', icone: 'selo-check' },
-  { label: 'Pagamento facilitado',  icone: 'cartao' },
+  { label: 'Maioria em 1 sessão',        banco: 'ui',     icone: 'calendario' },
+  { label: 'Retratamento e pino',        banco: 'dental', icone: 'dente-novo' },
+  { label: 'Radiografia no consultório', banco: 'ui',     icone: 'selo-check' },
+  { label: 'Pagamento facilitado',       banco: 'ui',     icone: 'cartao' },
 ] as const;
 ---
 <div class="selo-grid">
   {selos.map((s) => (
     <div class="selo">
-      <span class="selo-ico"><IconeUI nome={s.icone} tamanho={20} /></span>
+      <span class="selo-ico">
+        {s.banco === 'dental'
+          ? <IconeDental nome={s.icone} tamanho={20} />
+          : <IconeUI nome={s.icone} tamanho={20} />}
+      </span>
       <span class="tipo-label selo-label">{s.label}</span>
     </div>
   ))}

@@ -10,12 +10,16 @@ const passos = [
   { n: '1', titulo: 'Você fala comigo',        texto: 'Me conta o que está sentindo pelo WhatsApp e agendamos a sua avaliação.' },
   { n: '2', titulo: 'Avaliação e raio-X',      texto: 'Examino o dente e confirmo se é caso de tratamento de canal, explicando cada passo com clareza.' },
   { n: '3', titulo: 'Tratamento com conforto', texto: 'Anestesia bem feita e técnica moderna pra você não sentir dor durante o tratamento.' },
-  { n: '4', titulo: 'Geralmente em 1 sessão',  texto: 'Na maioria dos casos, o tratamento é finalizado num único atendimento, e você sai livre da dor.' },
+  // O passo 4 deixou de ser "quantas sessões" e virou o DESFECHO, que é o fim
+  // natural de uma lista de processo. O fato da sessão única não se perdeu: está no
+  // selo, no card destaque e na FAQ. Dizer o incômodo posterior é ativo de
+  // confiança, não ressalva — é o que quem está vendendo omite.
+  { n: '4', titulo: 'Você sai sem a dor',       texto: 'A dor que te trouxe termina no mesmo atendimento. Pode haver incômodo depois, e eu te explico o que esperar.' },
 ] as const;
 ---
 <section class="funciona is-escura section" id={id}>
   <div class="container">
-    <TituloSecao label="Como funciona" titulo="Do primeiro contato à sua dor resolvida" />
+    <TituloSecao label="Como funciona" titulo="Do primeiro contato ao dente restaurado" />
     <div class="passos">
       {passos.map((p) => (
         <div class="passo">
@@ -26,9 +30,6 @@ const passos = [
           </div>
         </div>
       ))}
-    </div>
-    <div class="nota-caseiro">
-      <p class="tipo-corpo-forte">Quanto antes você trata, mais simples é resolver. Dor de dente não melhora sozinha.</p>
     </div>
   </div>
 </section>
@@ -46,14 +47,8 @@ const passos = [
     }
     .funciona .passo h3 { color: var(--texto-sobre-primaria); margin: 0 0 var(--spacing-xs); }
     .funciona .passo p { color: var(--texto-sobre-escuro); margin: 0; }
-    .funciona .nota-caseiro {
-      background: var(--marca-primaria-escura); border-radius: var(--radius-md);
-      padding: var(--spacing-lg); margin-top: var(--spacing-lg);
-    }
-    .funciona .nota-caseiro p { color: var(--texto-sobre-primaria); margin: 0; }
     @media (min-width: 768px) {
       .funciona .passos { flex-direction: row; gap: var(--spacing-md); }
       .funciona .passo { flex: 1; }
-      .funciona .nota-caseiro { max-width: 612px; }
     }
 </style>

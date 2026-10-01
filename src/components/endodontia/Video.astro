@@ -1,17 +1,32 @@
 ---
 // Seção do vídeo (Figma: "Branco Máximo" da endodontia).
-// Ângulo: mecanismo da dor + preservar o dente natural — espelha o que o vídeo diz.
 // Vídeo real da Dra. (YouTube Short _9xsHXtEvO0). Por ser Short é VERTICAL 9:16.
+//
+// A REGRA QUE GOVERNA ESTE BLOCO: a mesma informação muda de natureza conforme o
+// canal. Escrita na página, a explicação da dor é aula — o site ensinando pulpite a
+// quem já está com o dente doendo. Dita por ela em vídeo, é demonstração. O texto
+// antigo explicava polpa, nervo e infecção aqui; foi removido porque o vídeo já faz
+// isso. O que sobrou entrega a explicação ao vídeo em vez de fazê-la.
+//
+// E é AQUI que a dor mora agora. Ela não precisava sumir da página, precisava parar
+// de ser a tese. Concentrá-la nesta seção deixa o resto no eixo de especialidade sem
+// deixar órfão quem chega com dor (SITE-MUDANCAS 1.10.2).
 import TituloSecao from '../TituloSecao.astro';
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
 
-const TEXTO = 'O que dói é a infecção, não o tratamento. Dentro do dente existe a polpa, onde ficam os nervos e os vasos sanguíneos. Quando ela inflama, a dor aparece. E não fica parada: sem tratamento, a infecção avança para a raiz e para o osso que sustenta o dente. O tratamento de canal elimina a infecção e preserva o seu dente em vez de removê-lo, na maioria das vezes em uma única sessão, no mesmo dia. Nenhum implante é melhor que o seu próprio dente.';
+const PARAGRAFOS = [
+  'Se está doendo agora, vou te explicar o que está acontecendo aí dentro',
+  'No vídeo, a Dra. Daiane mostra onde fica o canal dentro do dente, de onde vem a dor e o que o tratamento faz ali. Quanto antes você trata, mais simples é resolver. Dor de dente não melhora sozinha.',
+  'Nenhum implante é melhor do que o seu próprio dente.',
+];
 ---
 <section class="branco section">
   <div class="container branco-inner">
     <div class="branco-col">
-      <TituloSecao label="O que está acontecendo" titulo="Por que dói, e por que o tratamento de canal salva o seu dente" />
-      <p class="tipo-corpo branco-texto">{TEXTO}</p>
+      <TituloSecao label="A Dra. Daiane explica" titulo="O que acontece dentro do dente, explicado por quem vai tratar" />
+      <div class="branco-textos">
+        {PARAGRAFOS.map((t) => <p class="tipo-corpo">{t}</p>)}
+      </div>
       <BotaoWhatsApp texto="Tirar uma dúvida" mensagem="Olá! Tenho uma dúvida sobre o tratamento de canal." posicao="video" icone={false} class="branco-cta" />
     </div>
     <div class="branco-video video-vertical">
@@ -23,7 +38,8 @@ const TEXTO = 'O que dói é a infecção, não o tratamento. Dentro do dente ex
 <style is:global>
     .branco { background: var(--superficie-card); }
     .branco h2 { color: var(--texto-titulo); }
-    .branco .branco-texto { color: var(--texto-suave); margin: 0 0 var(--spacing-lg); }
+    .branco .branco-textos { display: flex; flex-direction: column; gap: var(--spacing-md); margin: 0 0 var(--spacing-lg); }
+    .branco .branco-textos p { color: var(--texto-suave); margin: 0; }
     .branco-video {
       aspect-ratio: 9 / 16; max-width: 300px; margin-inline: auto; width: 100%;
       border-radius: var(--radius-md); overflow: hidden; background: var(--superficie-escura);
@@ -33,14 +49,14 @@ const TEXTO = 'O que dói é a infecção, não o tratamento. Dentro do dente ex
     .branco-inner { display: flex; flex-direction: column; gap: var(--spacing-lg); }
     .branco-col { display: contents; }
     .branco .section-head { order: 1; margin-bottom: 0; }
-    .branco .branco-texto { order: 2; }
+    .branco .branco-textos { order: 2; }
     .branco-video { order: 3; }
     .branco .branco-cta { order: 4; }
     @media (min-width: 768px) {
       .branco-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); align-items: center; }
       .branco-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); order: 1; }
       .branco .section-head { order: 0; margin-bottom: 0; }
-      .branco .branco-texto { order: 0; margin: 0; }
+      .branco .branco-textos { order: 0; margin: 0; }
       .branco .branco-cta { order: 0; }
       .branco-video { order: 2; max-width: 340px; }
       .branco .btn-whatsapp { width: 335px; max-width: 100%; }

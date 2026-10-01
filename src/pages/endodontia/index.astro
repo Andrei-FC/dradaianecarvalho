@@ -4,7 +4,7 @@ import BarraMarca from '../../components/BarraMarca.astro';
 import BotaoFlutuante from '../../components/BotaoFlutuante.astro';
 import Hero from '../../components/endodontia/Hero.astro';
 import SelosBanda from '../../components/endodontia/SelosBanda.astro';
-import Sinais from '../../components/endodontia/Sinais.astro';
+import Situacoes from '../../components/endodontia/Situacoes.astro';
 import CardDestaque from '../../components/CardDestaque.astro';
 import Video from '../../components/endodontia/Video.astro';
 import Funciona from '../../components/endodontia/Funciona.astro';
@@ -69,6 +69,12 @@ const faq = [
     a: 'Sim. A gestante pode e deve fazer o tratamento de canal quando há indicação. Uma infecção dentária não tratada representa risco maior para a gestação do que o tratamento em si. Informe a Dra. Daiane Carvalho sobre a gravidez e o tempo de gestação na avaliação.' },
   { q: 'Já fiz tratamento de canal e o dente voltou a doer. Tem solução?',
     a: 'Sim. Quando um dente já tratado volta a doer, existe o retratamento endodôntico: o material antigo é removido, o canal é limpo novamente e reselado. A Dra. Daiane Carvalho avalia com radiografia se o retratamento é possível no seu caso.' },
+  { q: 'Preciso tirar um pino antigo. Isso é feito aí?',
+    a: 'Sim. A remoção de pino faz parte do que se resolve no consultório. O pino antigo sai para que o canal possa ser reavaliado e refeito, e a radiografia da avaliação mostra se a raiz tem condição de receber um novo. Você não precisa procurar outro profissional para essa etapa.' },
+  { q: 'Depois do canal, quem coloca o pino e restaura o dente?',
+    a: 'A Dra. Daiane Carvalho. O canal, a colocação do pino quando é necessária e a restauração do dente são feitos no mesmo consultório. O dente sai fechado, e não com uma etapa pendente para resolver em outro lugar.' },
+  { q: 'Outro dentista abriu o meu dente e me encaminhou. Dá para terminar aí?',
+    a: 'Dá, e é uma das situações mais comuns aqui. Me chama no WhatsApp contando o que já foi feito e, se tiver a radiografia, manda junto. Na avaliação eu examino o que está aberto e explico o que falta antes de continuar.' },
   { q: 'Preciso levar raio-X ou algum exame?',
     a: 'Não. A radiografia é feita no próprio consultório, no momento da avaliação. É ela que mostra a real situação da raiz e permite planejar o tratamento com precisão, sem suposição sobre o que precisa ser feito.' },
   { q: 'Como eu marco?',
@@ -90,7 +96,7 @@ const jsonLd = grafo(
 );
 ---
 <Layout
-  title="Tratamento de canal na Barra Funda, São Paulo | Dra. Daiane Carvalho"
+  title="Tratamento de canal e Endodontia na Barra Funda, São Paulo | Dra. Daiane Carvalho"
   description="Tratamento de canal na Barra Funda, São Paulo. Anestesia bem feita e técnica moderna, na maioria dos casos em uma única sessão. Consultório particular."
   origem="landing_endodontia"
   jsonLd={jsonLd}
@@ -99,14 +105,14 @@ const jsonLd = grafo(
   <div class="lp">
     <Hero />
     <SelosBanda />
-    <Sinais id="tratamento" />
+    <Situacoes id="tratamento" />
 
     <section class="conforto section">
       <div class="container">
         <CardDestaque
           cor="teal"
-          titulo="Antes de pensar em extrair, avalie o tratamento de canal"
-          texto="Perder o dente muda a mordida, o sorriso e os dentes vizinhos ao longo do tempo. Na maioria dos casos, o tratamento de canal resolve a dor e mantém o seu dente natural no lugar. Vale avaliar antes de partir para a extração. A avaliação é rápida e sem compromisso."
+          titulo="Na maioria dos casos, resolve em uma sessão"
+          texto="Canal único costuma ser feito do começo ao fim no mesmo dia: menos idas e vindas, menos faltas no trabalho, menos anestesia. Casos mais complexos podem levar mais de uma sessão, e você sabe disso na avaliação, não no meio do caminho."
         />
       </div>
     </section>
@@ -117,14 +123,14 @@ const jsonLd = grafo(
       id="dra-daiane"
       label="Quem vai cuidar de você"
       titulo="Dra. Daiane Carvalho"
-      texto="A Dra. Daiane Carvalho é cirurgiã-dentista e atende na Barra Funda com foco em tratamento de canal — endodontia, a área que trata o canal do dente. Atendo casos de dor com anestesia bem feita e técnica atual, para resolver o problema sem sofrimento e sem perder o dente. Explico cada etapa antes de fazer, para você saber exatamente o que vai acontecer."
+      texto="A Dra. Daiane Carvalho é cirurgiã-dentista com especialização em Endodontia, a área que trata o canal do dente. Atendo canal, retratamento e remoção de pino, com anestesia bem feita e técnica atual. O tratamento de canal existe para manter o dente, em vez de partir para a extração. Explico cada etapa antes de fazer, para você saber exatamente o que vai acontecer."
     />
     <Depoimentos id="depoimentos" contexto="endodontia" />
     <Espaco id="consultorio" />
     <FAQ id="duvidas" itens={faq} />
-    <Rodape ctaMensagem="Olá! Estou com dor de dente e gostaria de combinar um horário." links={linksRodape} />
+    <Rodape ctaMensagem="Olá! Gostaria de combinar um horário." links={linksRodape} />
   </div>
-  <BotaoFlutuante mensagem="Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal." rotulo="Falar com o consultório no WhatsApp sobre tratamento de canal" />
+  <BotaoFlutuante mensagem="Olá! Gostaria de avaliar um tratamento de canal." rotulo="Falar com o consultório no WhatsApp sobre tratamento de canal" />
 </Layout>
 
 <style is:global>

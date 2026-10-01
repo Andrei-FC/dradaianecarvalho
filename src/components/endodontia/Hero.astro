@@ -1,12 +1,24 @@
 ---
 import clinica from '../../data/clinica.json';
-// Hero da landing de endodontia. Ângulo: dor → tira a dor e salva o dente.
+// Hero da landing de endodontia.
+// Eixo desde 01/10: ESPECIALIDADE, não dor. O H1 nomeia os três serviços (canal,
+// retratamento, pino) porque a Campanha B compra `endodontista` e `dentista
+// endodontia` e a página não respondia por nenhum dos dois (SITE-MUDANCAS 1.10.1).
+// A dor não sumiu da página: foi concentrada na seção do vídeo.
+//
+// O H1 NÃO nomeia a Barra Funda de propósito: o <title> já carrega a cidade, o
+// parágrafo de apoio e a seção do consultório dizem, e quem chega pelo anúncio veio
+// de um raio de 3 km. A linha mais valiosa não se gasta informando localização.
+//
 // No desktop a faixa de selos vive AQUI dentro; no mobile ela vira SelosBanda.
 import Selos from './Selos.astro';
 import BotaoWhatsApp from '../BotaoWhatsApp.astro';
 
-const LEAD_SELOS = 'Atendimento humanizado, na Barra Funda. A Dra. Daiane avalia o seu caso, explica cada passo e conduz o tratamento com foco no seu conforto. A maioria dos casos é resolvida em uma única sessão.';
-const MSG = 'Olá! Estou com dor de dente e gostaria de avaliar um tratamento de canal.';
+const LEAD_SELOS = 'Atendimento particular com hora marcada, na Barra Funda. A Dra. Daiane avalia o seu caso, explica cada passo e conduz o tratamento com foco no seu conforto. A maioria dos casos é resolvida em uma única sessão.';
+// A mensagem perdeu "Estou com dor de dente": quem foi encaminhado pelo próprio
+// dentista e não está com dor abria o WhatsApp com uma frase falsa escrita no nome
+// dele e fechava em vez de apagar (SITE-MUDANCAS 1.10.4).
+const MSG = 'Olá! Gostaria de avaliar um tratamento de canal.';
 ---
 <header class="hero section">
   <div class="container hero-inner">
@@ -16,10 +28,15 @@ const MSG = 'Olá! Estou com dor de dente e gostaria de avaliar um tratamento de
           <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--estrela)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           100% de avaliações 5 estrelas no Google
         </span>
-        <h1 class="tipo-display">Dor de dente forte? O tratamento de canal tira a dor e salva o seu dente</h1>
-        <p class="eyebrow tipo-label">{clinica.nome} &middot; {clinica.cro}</p>
+        <h1 class="tipo-display">Tratamento de canal, retratamento e pino: do começo à restauração do dente</h1>
+        <p class="hero-credencial tipo-label">
+          <span class="hero-credencial-nome">{clinica.nome} &middot; {clinica.cro}</span><br />
+          <span>Especialização em Endodontia &mdash; São Leopoldo Mandic</span>
+        </p>
       </div>
-      <p class="lead tipo-subtitulo">Endodontia com técnica moderna e anestesia bem feita, pra resolver a dor sem perder o dente.</p>
+      <p class="lead tipo-subtitulo">Endodontia com radiografia no consultório, diagnóstico na hora e o plano explicado antes de começar.</p>
+
+      <BotaoWhatsApp texto="Descrever o meu caso" mensagem={MSG} posicao="hero" icone={false} class="hero-cta-mobile" />
 
       <div class="hero-selos">
         <p class="lead tipo-corpo">{LEAD_SELOS}</p>
@@ -27,7 +44,7 @@ const MSG = 'Olá! Estou com dor de dente e gostaria de avaliar um tratamento de
         <Selos />
       </div>
     </div>
-    <div class="ph hero-img"><img fetchpriority="high" decoding="async" width="902" height="1004" src="/assets/images/endo-hero.jpg" alt="Finalização de um tratamento de canal no consultório da Dra. Daiane Carvalho, na Barra Funda, São Paulo"></div>
+    <div class="ph hero-img"><img fetchpriority="high" decoding="async" width="840" height="938" src="/assets/images/Hero-principal.jpg" alt="Dra. Daiane Carvalho finalizando um tratamento de canal no consultório na Barra Funda, São Paulo"></div>
   </div>
 </header>
 
@@ -42,6 +59,10 @@ const MSG = 'Olá! Estou com dor de dente e gostaria de avaliar um tratamento de
       margin: 0; text-transform: none; letter-spacing: 0;
     }
     .hero-title-block { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
+    /* A credencial NÃO usa .eyebrow: no Figma ela é cor/texto/suave e só a primeira
+       linha é caixa alta — a segunda carrega a especialização em caixa mista. */
+    .hero-credencial { color: var(--texto-suave); margin: 0; text-transform: none; }
+    .hero-credencial-nome { text-transform: uppercase; }
     .hero-col { display: flex; flex-direction: column; gap: var(--spacing-sm); }
     .hero h1 { color: var(--texto-titulo); margin: 0; }
     .hero .lead { color: var(--texto-suave); margin: 0; }
@@ -50,7 +71,13 @@ const MSG = 'Olá! Estou com dor de dente e gostaria de avaliar um tratamento de
     .hero-img { width: 100%; border-radius: 0; }
     .hero-img img { height: auto; object-fit: contain; }
     .hero-selos { display: none; }
+    /* No celular o CTA do hero sobe para ANTES da foto. Antes disso o botão só
+       aparecia cerca de uma tela e meia abaixo, depois da imagem grande
+       (SITE-MUDANCAS 1.10.4). No desktop ele já está acima da dobra dentro de
+       .hero-selos, então esta cópia some. */
+    .hero .hero-cta-mobile { width: 100%; }
     @media (min-width: 768px) {
+      .hero .hero-cta-mobile { display: none; }
       .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); align-items: center; }
       .hero-col { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
       .hero .lead { margin: 0; }

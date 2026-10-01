@@ -3,7 +3,10 @@
 // Bloco reusável de cabeçalho: eyebrow + título + subtítulo opcional.
 // As variantes Mobile/Desktop do Figma colapsam aqui numa só (fonte responsiva via tokens).
 interface Props {
-  label: string;
+  /** eyebrow. OPCIONAL: a seção "Em que ponto você está" roda sem ele de propósito
+      — no Figma a propriedade ficou vazia E o nó foi ocultado, porque string vazia
+      sozinha deixava 18px de respiro. Em código: não renderizar o elemento. */
+  label?: string;
   titulo: string;
   subtitulo?: string;
   /** centraliza o bloco (usado em Espaço/Consultório) */
@@ -13,7 +16,7 @@ interface Props {
 const { label, titulo, subtitulo, centralizado = false, class: extra = '' } = Astro.props;
 ---
 <div class:list={['section-head', { 'section-head--centro': centralizado }, extra]}>
-  <p class="eyebrow tipo-label">{label}</p>
+  {label && <p class="eyebrow tipo-label">{label}</p>}
   <h2 class="tipo-titulo">{titulo}</h2>
   {subtitulo && <p class="tipo-corpo">{subtitulo}</p>}
 </div>

@@ -1,0 +1,51 @@
+---
+// Seção "Em que ponto você está" (Figma: frame "Incluso" da endodontia, nó 2604:951).
+// Substituiu o checklist "Reconhece algum destes sinais?", que era aula de sintoma.
+// Em vez de ensinar a reconhecer a dor, mostra as quatro situações em que o paciente
+// chega — encaminhamento, retratamento, pino e dúvida. É a situação como espelho.
+//
+// SEM EYEBROW, de propósito. A primeira versão dizia "ANTES DE MARCAR" e cria
+// bloqueio antes do clique. Pelo mesmo motivo o subtítulo perdeu o condicional:
+// era "Se alguma destas é a sua situação…", e o "se" faz o mesmo portão menor.
+//
+// SEM BADGE, de propósito. No Figma a propriedade Badge2 está desligada nos quatro
+// cards. Os valores existem no arquivo (encaminhamento, retratamento, pino,
+// avaliação) mas não renderizam. Os antigos diziam "incluso" e "em consultório",
+// sobra do template de clareamento — "incluso" sem objeto visível lê como
+// gratuidade, vedada pela 11.4 do mestre.
+import TituloSecao from '../TituloSecao.astro';
+import CardIcone from '../CardIcone.astro';
+import IconeDental from '../IconeDental.astro';
+
+interface Props { id?: string; }
+const { id } = Astro.props;
+
+// Os ícones são os que o Andrei trocou em 01/10. O nome do componente nem sempre
+// descreve o uso — o desenho carrega o significado, e a escolha é dele.
+const situacoes = [
+  { icone: 'quebrado',      titulo: 'Outro dentista encaminhou',          texto: 'O dente foi aberto e o caso veio para endodontia. O tratamento pode ser concluído aqui, e o dente sai restaurado.' },
+  { icone: 'sensibilidade', titulo: 'Já fez canal e voltou a doer',       texto: 'Isso tem nome: retratamento endodôntico. O canal é refeito e o dente é reavaliado por inteiro.' },
+  { icone: 'canal',         titulo: 'Tem um pino antigo a refazer',       texto: 'A remoção do pino faz parte do que se resolve aqui, e a recolocação também, sem precisar de outro consultório.' },
+  { icone: 'dor-de-dente',  titulo: 'Está com dor e não sabe se é canal', texto: 'A radiografia feita na avaliação é o que define. Me chama no WhatsApp que eu te oriento.' },
+] as const;
+---
+<section class="situacoes section" id={id}>
+  <div class="container">
+    <TituloSecao
+      titulo="Em que ponto você está"
+      subtitulo="Me chama no WhatsApp contando a sua situação, que eu te oriento."
+    />
+    <div class="cards situacoes-cards">
+      {situacoes.map((s) => (
+        <CardIcone titulo={s.titulo} texto={s.texto}>
+          <IconeDental nome={s.icone} />
+        </CardIcone>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+    .situacoes { background: var(--superficie-alternada); }
+    @media (min-width: 768px) { .situacoes-cards { flex-wrap: nowrap; } }
+</style>
