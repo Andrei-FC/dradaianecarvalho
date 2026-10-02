@@ -24,7 +24,11 @@ const { id } = Astro.props;
 // Os ícones são os que o Andrei trocou em 01/10. O nome do componente nem sempre
 // descreve o uso — o desenho carrega o significado, e a escolha é dele.
 const situacoes = [
-  { icone: 'quebrado',      titulo: 'Outro dentista encaminhou',          texto: 'O dente foi aberto e o caso veio para endodontia. O tratamento pode ser concluído aqui, e o dente sai restaurado.' },
+  // 'para um endodontista', com artigo indefinido. 'o endodontista' leria como
+  // título reivindicado para a Dra., que depende de registro ativo no CRO — ainda
+  // não publicado (mestre 11.6). O indefinido descreve a categoria profissional
+  // para a qual o caso é encaminhado, não quem o recebe.
+  { icone: 'quebrado',      titulo: 'Outro dentista encaminhou',          texto: 'O dente foi aberto e o caso veio para um endodontista. O tratamento pode ser concluído aqui, e o dente sai restaurado.' },
   { icone: 'sensibilidade', titulo: 'Já fez canal e voltou a doer',       texto: 'Isso tem nome: retratamento endodôntico. O canal é refeito e o dente é reavaliado por inteiro.' },
   // Este card era 'Tem um pino antigo a refazer' e descrevia uma pessoa que não
   // existe: ninguém se identifica pelo pino (SITE-MUDANCAS 1.11.3). Virou o card de
