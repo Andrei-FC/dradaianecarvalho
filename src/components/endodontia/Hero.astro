@@ -1,10 +1,19 @@
 ---
 import clinica from '../../data/clinica.json';
 // Hero da landing de endodontia.
-// Eixo desde 01/10: ESPECIALIDADE, não dor. O H1 nomeia os três serviços (canal,
-// retratamento, pino) porque a Campanha B compra `endodontista` e `dentista
-// endodontia` e a página não respondia por nenhum dos dois (SITE-MUDANCAS 1.10.1).
+// Eixo desde 01/10: ESPECIALIDADE, não dor. O H1 nomeia os três serviços porque a
+// Campanha B compra `endodontista` e `dentista endodontia` e a página não respondia
+// por nenhum dos dois (SITE-MUDANCAS 1.10.1).
 // A dor não sumiu da página: foi concentrada na seção do vídeo.
+//
+// O terceiro serviço é `reabilitação`, não `pino` (SITE-MUDANCAS 1.11.3). A Dra.
+// reprovou `pino` em título: ninguém chega dizendo que tem um pino para refazer,
+// porque o paciente não sabe que tem um. Vocabulário de chegada não é vocabulário
+// de procedimento. A palavra continua na página, mas só dentro de reabilitação.
+//
+// O artigo some de propósito: `e a reabilitação do dente` leria como etapa final de
+// um processo; `e reabilitação do dente` lê como o terceiro item de uma lista de
+// serviços. A ambiguidade é intencional — tudo se resolve no mesmo lugar.
 //
 // O H1 NÃO nomeia a Barra Funda de propósito: o <title> já carrega a cidade, o
 // parágrafo de apoio e a seção do consultório dizem, e quem chega pelo anúncio veio
@@ -28,7 +37,7 @@ const MSG = 'Olá! Gostaria de avaliar um tratamento de canal.';
           <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--estrela)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           100% de avaliações 5 estrelas no Google
         </span>
-        <h1 class="tipo-display">Tratamento de canal, retratamento e pino: do começo à restauração do dente</h1>
+        <h1 class="tipo-display">Tratamento de canal, retratamento e reabilitação do dente</h1>
         <p class="hero-credencial tipo-label">
           <span class="hero-credencial-nome">{clinica.nome} &middot; {clinica.cro}</span><br />
           <span>Especialização em Endodontia &mdash; São Leopoldo Mandic</span>

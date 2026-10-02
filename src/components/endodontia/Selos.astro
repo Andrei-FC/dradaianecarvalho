@@ -1,19 +1,22 @@
 ---
 // 4 mini-cards do hero de endodontia (Figma: "Mini Card").
 // Os ícones vêm de DOIS bancos: três do banco de interface e um do dental
-// (`icon/dental/dentenovo` no selo de retratamento e pino). O Figma mapeia assim,
-// e o desenho carrega o significado — por isso o `banco` é explícito por selo.
+// (`icon/dental/dentenovo` no segundo selo). O Figma mapeia assim, e o desenho
+// carrega o significado — por isso o `banco` é explícito por selo.
 //
 // "Anestesia sem dor" saiu em 01/10 e "Salva o dente natural" também. A primeira
 // NÃO é frase vedada (o fato clínico é exato, ver SITE-MUDANCAS 1.10.7); saiu por
-// espaço, para o hero passar a dizer retratamento e pino, que nenhum outro ponto
-// dizia. A segunda saiu por ser promessa de resultado.
+// espaço, para o hero passar a dizer o que nenhum outro ponto dizia. A segunda saiu
+// por ser promessa de resultado.
+//
+// O segundo selo dizia "Retratamento e pino" até 01/10. `pino` saiu de toda posição
+// de título por decisão clínica da Dra. (SITE-MUDANCAS 1.11.2): selo é título.
 import IconeUI from '../IconeUI.astro';
 import IconeDental from '../IconeDental.astro';
 
 const selos = [
   { label: 'Maioria em 1 sessão',        banco: 'ui',     icone: 'calendario' },
-  { label: 'Retratamento e pino',        banco: 'dental', icone: 'dente-novo' },
+  { label: 'Retratamento e restauração', banco: 'dental', icone: 'dente-novo' },
   { label: 'Radiografia no consultório', banco: 'ui',     icone: 'selo-check' },
   { label: 'Pagamento facilitado',       banco: 'ui',     icone: 'cartao' },
 ] as const;

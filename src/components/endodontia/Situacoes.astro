@@ -1,15 +1,16 @@
 ---
 // Seção "Em que ponto você está" (Figma: frame "Incluso" da endodontia, nó 2604:951).
 // Substituiu o checklist "Reconhece algum destes sinais?", que era aula de sintoma.
-// Em vez de ensinar a reconhecer a dor, mostra as quatro situações em que o paciente
-// chega — encaminhamento, retratamento, pino e dúvida. É a situação como espelho.
+// Em vez de ensinar a reconhecer a dor, mostra as quatro chegadas reais —
+// encaminhado, voltou a doer, dente provisório e dor sem diagnóstico. É a situação
+// como espelho, e espelho só funciona com palavra que o paciente usa sobre si.
 //
 // SEM EYEBROW, de propósito. A primeira versão dizia "ANTES DE MARCAR" e cria
 // bloqueio antes do clique. Pelo mesmo motivo o subtítulo perdeu o condicional:
 // era "Se alguma destas é a sua situação…", e o "se" faz o mesmo portão menor.
 //
 // SEM BADGE, de propósito. No Figma a propriedade Badge2 está desligada nos quatro
-// cards. Os valores existem no arquivo (encaminhamento, retratamento, pino,
+// cards. Os valores existem no arquivo (encaminhamento, retratamento, reabilitação,
 // avaliação) mas não renderizam. Os antigos diziam "incluso" e "em consultório",
 // sobra do template de clareamento — "incluso" sem objeto visível lê como
 // gratuidade, vedada pela 11.4 do mestre.
@@ -25,7 +26,11 @@ const { id } = Astro.props;
 const situacoes = [
   { icone: 'quebrado',      titulo: 'Outro dentista encaminhou',          texto: 'O dente foi aberto e o caso veio para endodontia. O tratamento pode ser concluído aqui, e o dente sai restaurado.' },
   { icone: 'sensibilidade', titulo: 'Já fez canal e voltou a doer',       texto: 'Isso tem nome: retratamento endodôntico. O canal é refeito e o dente é reavaliado por inteiro.' },
-  { icone: 'canal',         titulo: 'Tem um pino antigo a refazer',       texto: 'A remoção do pino faz parte do que se resolve aqui, e a recolocação também, sem precisar de outro consultório.' },
+  // Este card era 'Tem um pino antigo a refazer' e descrevia uma pessoa que não
+  // existe: ninguém se identifica pelo pino (SITE-MUDANCAS 1.11.3). Virou o card de
+  // reabilitação, que é onde a Dra. mandou a palavra `pino` morar — como
+  // consequência de pouco remanescente, nunca como motivo da visita.
+  { icone: 'canal',         titulo: 'Fez o canal e o dente ficou provisório', texto: 'Depois do canal vem a reabilitação: restauração, ou pino e coroa se sobrou pouco dente. Tudo feito aqui.' },
   { icone: 'dor-de-dente',  titulo: 'Está com dor e não sabe se é canal', texto: 'A radiografia feita na avaliação é o que define. Me chama no WhatsApp que eu te oriento.' },
 ] as const;
 ---

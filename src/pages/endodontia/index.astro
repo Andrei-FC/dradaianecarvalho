@@ -53,8 +53,13 @@ const faq = [
     a: 'A ideia de que o tratamento de canal dói ficou no passado. Com anestesia bem feita e técnica moderna, o objetivo é você não sentir dor durante o procedimento. Na verdade, ele costuma acabar com a dor que te trouxe até aqui.' },
   { q: 'Quantas sessões são necessárias?',
     a: 'A maioria dos casos é finalizada em uma única sessão. Alguns casos mais complexos podem precisar de uma segunda. Se for o seu caso, eu explico o porquê antes de começar.' },
-  { q: 'O dente vai precisar de coroa depois do tratamento de canal?',
-    a: 'Depende de quanto restou do dente. Quando a cárie comprometeu toda a coroa, a reconstrução costuma ser necessária para devolver resistência à mastigação. Quando o problema está concentrado na raiz e a estrutura do dente foi preservada, a restauração resolve. A avaliação com radiografia responde isso antes de o tratamento começar.' },
+  // Posição 5 por decisão da 1.11.4: esta pergunta subiu da 14 e substituiu
+  // 'O dente vai precisar de coroa depois do tratamento de canal?', que dizia a
+  // mesma coisa nove itens adiante, não mencionava que é feito no consultório e
+  // usava 'coroa' nos dois sentidos — a anatômica do dente e a protética — na
+  // mesma resposta.
+  { q: 'Depois do canal, o dente precisa de mais alguma coisa?',
+    a: 'Precisa ser reabilitado. Quando o dente conserva bastante estrutura, a restauração definitiva resolve. Quando sobrou pouca, entra o pino, que é o reforço para receber a coroa. Os dois caminhos são feitos aqui, no mesmo consultório: o dente sai fechado, e não com uma etapa pendente para resolver em outro lugar.' },
   { q: 'Dá mesmo para salvar o dente?',
     a: 'Na maioria das vezes, sim. O tratamento de canal remove a infecção de dentro do dente e permite mantê-lo no lugar, evitando a extração. Salvar o dente natural é quase sempre a melhor escolha.' },
   { q: 'Vale mais a pena fazer o tratamento de canal ou extrair o dente?',
@@ -69,10 +74,14 @@ const faq = [
     a: 'Sim. A gestante pode e deve fazer o tratamento de canal quando há indicação. Uma infecção dentária não tratada representa risco maior para a gestação do que o tratamento em si. Informe a Dra. Daiane Carvalho sobre a gravidez e o tempo de gestação na avaliação.' },
   { q: 'Já fiz tratamento de canal e o dente voltou a doer. Tem solução?',
     a: 'Sim. Quando um dente já tratado volta a doer, existe o retratamento endodôntico: o material antigo é removido, o canal é limpo novamente e reselado. A Dra. Daiane Carvalho avalia com radiografia se o retratamento é possível no seu caso.' },
-  { q: 'Preciso tirar um pino antigo. Isso é feito aí?',
-    a: 'Sim. A remoção de pino faz parte do que se resolve no consultório. O pino antigo sai para que o canal possa ser reavaliado e refeito, e a radiografia da avaliação mostra se a raiz tem condição de receber um novo. Você não precisa procurar outro profissional para essa etapa.' },
-  { q: 'Depois do canal, quem coloca o pino e restaura o dente?',
-    a: 'A Dra. Daiane Carvalho. O canal, a colocação do pino quando é necessária e a restauração do dente são feitos no mesmo consultório. O dente sai fechado, e não com uma etapa pendente para resolver em outro lugar.' },
+  // Logo depois do retratamento, que é a sequência clínica: quem tem pino para
+  // tirar é quem vai retratar. É a única resposta da página que diz `pino` duas
+  // vezes, e é de propósito — esta é a FAQ que atende quem digitou a palavra no
+  // Google. A pergunta antiga ('Preciso tirar um pino antigo') era a chegada que
+  // a Dra. diz não existir: a pessoa tem um dente tratado, não um problema de
+  // pino. E se o dente tem pino, tem coroa — as duas peças saem juntas.
+  { q: 'Meu dente já tratado tem pino. Dá para refazer o canal?',
+    a: 'Dá. Quando o dente tem pino, tem também uma coroa por cima, e as duas peças saem antes do retratamento. A radiografia da avaliação mostra a condição da raiz e o que vai ser preciso para reabilitar o dente depois. Remoção, retratamento e a reabilitação são feitos no mesmo consultório — você não precisa procurar outro profissional em nenhuma etapa.' },
   { q: 'Outro dentista abriu o meu dente e me encaminhou. Dá para terminar aí?',
     a: 'Dá, e é uma das situações mais comuns aqui. Me chama no WhatsApp contando o que já foi feito e, se tiver a radiografia, manda junto. Na avaliação eu examino o que está aberto e explico o que falta antes de continuar.' },
   { q: 'Preciso levar raio-X ou algum exame?',
@@ -123,7 +132,7 @@ const jsonLd = grafo(
       id="dra-daiane"
       label="Quem vai cuidar de você"
       titulo="Dra. Daiane Carvalho"
-      texto="A Dra. Daiane Carvalho é cirurgiã-dentista com especialização em Endodontia, a área que trata o canal do dente. Atendo canal, retratamento e remoção de pino, com anestesia bem feita e técnica atual. O tratamento de canal existe para manter o dente, em vez de partir para a extração. Explico cada etapa antes de fazer, para você saber exatamente o que vai acontecer."
+      texto="A Dra. Daiane Carvalho é cirurgiã-dentista com especialização em Endodontia, a área que trata o canal do dente. Atendo canal, retratamento e a reabilitação do dente — restauração, pino e coroa —, com anestesia bem feita e técnica atual. O tratamento de canal existe para manter o dente, em vez de partir para a extração. Explico cada etapa antes de fazer, para você saber exatamente o que vai acontecer."
     />
     <Depoimentos id="depoimentos" contexto="endodontia" />
     <Espaco id="consultorio" />
